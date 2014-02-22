@@ -7,13 +7,46 @@
     <link rel="stylesheet" href="amrand.css">
   </head>
   <body>
-    <h1>AmRand</h1>
-    
-    <p>Hello world from Dart!</p>
-    
-    <div id="sample_container_id">
-      <p id="sample_text_id"></p>
+    <header>am Rand...</header>
+    <div class="scene">
+      <div class="cube">
+          <div class="cFace fFront"></div>
+          <div class="cFace fBack"></div>
+          <div class="cFace fLeft"></div>
+          <div class="cFace fRight"></div>
+          <div class="cFace fTop"></div>
+          <div class="cFace fBottom"></div>
+       </div>
     </div>
+    <div id="viewBox">
+      <div class="amRand">am Rand</div>
+      <div id="vTitle"></div>
+      <div id="picBox"></div>
+      <div id="quoteBox" class="hidden"></div>
+      <div id="picInfo" class="hidden"></div>
+    </div>
+    <div id="intro">
+       <h1>ZHDk(Interaction design) Hausaufgabe: <b>Am Rand</b></h1>
+       <hr>
+       <p>Lorem ipsum dolor sit amet, ut mel alienum expetenda definitionem. Probo everti suavitate ad has, has stet volumus repudiare cu, ad sint velit cum. Vocibus tibique duo te, nec ei melius gubergren. Vix ea semper consectetuer. Ex nam pertinacia definitiones. Has et quod dicit vulputate, vim ex singulis moderatius vituperata.</p>
+       <p>Ullum persecuti cum in, ex pri partem quaestio repudiare. Nibh vivendo eu eum, at convenire intellegebat sea. Eruditi minimum per ne, pro cibo tota no. Id tation vituperata qui, justo accusata persequeris ad sed.</p>
+       <p>Vix erant animal fabulas in, sea ad propriae intellegat efficiendi, et vix facer saperet. Facilis civibus omittantur te est, nobis legendos assentior nam ei, cum ad epicuri mediocrem. Electram convenire efficiendi per ut, ridens meliore consequuntur ea quo, no populo laboramus scriptorem sit. Feugiat legimus te sit, vim eu eius iudico apeirian, quo et semper iuvaret. Mea dictas deterruisset ei. His eu alienum oporteat lucilius.</p>
+       <p><i>Feb.2014, Sandro Poli</i></p>
+       <br>
+       <hr>
+       <div id="btnEnter" class="btn">enter</div>
+    </div>
+    <div id="editor" class="hidden">
+      <div><b>Editor</b> [<span id="eId">category</span>] n: <span id="eNum">0</span>  <span id="ePicName">0</span></div>
+      <textarea id="tQuote" placeholder="quote"></textarea>
+      <textarea id="tAuthor" placeholder="author"></textarea>
+      <textarea id="tInfo" placeholder="image info"></textarea>
+      <hr>
+      <button id="btnSearch" class="hidden">search</button>
+      <button id="btnUpdate">update</button>
+      <button id="btnSave">download file with All changes</button>
+    </div>
+    <footer>&copy;2014 Sandro Poli</footer>
 
     <script type="application/dart" src="amrand.dart"></script>
     <script src="packages/browser/dart.js"></script>

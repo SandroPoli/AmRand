@@ -20,7 +20,7 @@
     </div>
     <div id="viewBox">
       <div class="amRand">am Rand</div>
-      <div id="vTitle"></div>
+      <div id="vTitle" class='amRand'></div>
       <div id="picBox"></div>
       <div id="quoteBox" class="hidden"></div>
       <div id="picInfo" class="hidden"></div>
@@ -37,10 +37,13 @@
        <div id="btnEnter" class="btn">enter</div>
     </div>
     <div id="editor" class="hidden">
-      <div><b>Editor</b> [<span id="eId">category</span>] n: <span id="eNum">0</span>  <span id="ePicName">0</span></div>
+      <div><b>Editor</b> [<span id="eId">category</span>] n: <span id="eNum">0</span>  <a id="ePicName" hrfe="" target="_blank">0</a></div>
       <textarea id="tQuote" placeholder="quote"></textarea>
       <textarea id="tAuthor" placeholder="author"></textarea>
       <textarea id="tInfo" placeholder="image info"></textarea>
+      <hr>
+      <input id="iLink" type="text" value="" placeholder="enter link"/>
+      <input id="iZoom" type="range" name="points" value="1" min="0.01" max="1.2" step="0.01">
       <hr>
       <button id="btnSearch" class="hidden">search</button>
       <button id="btnUpdate">update</button>

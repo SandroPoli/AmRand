@@ -143,6 +143,7 @@ iconClick(MouseEvent e){
   curIcon.classes.add('selected');
   curIndex = int.parse(curIcon.id.replaceAll('icon-',''));
   print('click on: ${curIcon.id}');
+  showQteBox(true);
   showPicBox(true);
 }
 
@@ -216,13 +217,11 @@ showPicBox(show){
   var picData = quotes[iDs[curFace]] != null ? quotes[iDs[curFace]][curIndex] : null;
   if (show && picData != null) {
     picData.updateViewer();
-    showQteBox();
   } else {
     picBox
     ..style.backgroundImage = 'url(img/${iDs[curFace]}.png)'
     ..style.backgroundPosition = '0px 0px'
     ..style.backgroundSize = 'cover';
-    hideQteBox();
   }
 }
 
@@ -231,6 +230,15 @@ hideQteBox(){
   qteBox.classes.add('hidden');
   editor.classes.add('hidden');
   picInfo.classes.add('hidden');
+  editor
+      ..querySelector('#tQuote').value = ''
+      ..querySelector('#tAuthor').value = ''
+      ..querySelector('#tInfo').value = ''
+      ..querySelector('#iLink').value = ''
+      ..querySelector('#iZoom').min = '0.0'
+      ..querySelector('#iZoom').max = '1.2'
+      ..querySelector('#iZoom').step = '1.2'
+      ..querySelector('#iZoom').value = '1.0';
 }
 
 showQteBox([e]){
@@ -265,16 +273,6 @@ showQteBox([e]){
     picInfo
     ..innerHtml = picData.info.replaceAll('<br>', '\n')
     ..classes.remove('hidden');
-  } else if ((e is bool && !e)){
-    editor
-     ..querySelector('#tQuote').value = ''
-     ..querySelector('#tAuthor').value = ''
-     ..querySelector('#tInfo').value = ''
-     ..querySelector('#iLink').value = ''
-     ..querySelector('#iZoom').min = '0.0'
-     ..querySelector('#iZoom').max = '1.2'
-     ..querySelector('#iZoom').step = '1.2'
-     ..querySelector('#iZoom').value = '1.0';
   }
 }
 

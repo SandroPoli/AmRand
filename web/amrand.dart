@@ -126,7 +126,7 @@ endOffset(e){
 updateZoom([e]){
   if (picData != null)
     picData
-    ..zoom = num.parse(editor.querySelector('#iZoom').value)
+    ..zoom = double.parse(editor.querySelector('#iZoom').value)
     ..updateViewer();
   querySelector('#pzInfo').text = picData.pzInfo;
 }

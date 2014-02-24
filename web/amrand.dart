@@ -545,6 +545,7 @@ class PicData{
   num _viewFactor = 1.0;
   Stopwatch loader;
   static int longCnt = 0, shortCnt = 0;
+  bool initialized = false;
 
   PicData(this.viewer, this.id, this.quote, this.author, this.info, [src, this._zoom, this._posX, this._posY, this._width, this._height]){
     link = src;
@@ -582,6 +583,7 @@ class PicData{
     loader.stop();
     _width = _img.naturalWidth;
     _height = _img.naturalHeight;
+    initialized = true;
 
     var vSize = viewer.clientWidth >= viewer.clientHeight ? viewer.clientHeight : viewer.clientWidth;
     _viewFactor = 1.0;
@@ -610,7 +612,7 @@ class PicData{
   }
 
   _resize(){
-    if (viewer != null){
+    if (viewer != null && initialized){
       if (_zoom < _minZoom) _zoom = _minZoom;
       if (_zoom > _maxZoom) _zoom = _maxZoom;
       var maxX = (viewer.clientWidth - _width * _zoom).round();
@@ -623,7 +625,7 @@ class PicData{
   }
 
   updateViewer(){
-    if(viewer != null){
+    if(viewer != null && initialized){
       _resize();
       var w = (_width*_zoom * _viewFactor).round();
       var h = (_height*_zoom *_viewFactor).round();

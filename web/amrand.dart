@@ -405,8 +405,8 @@ dbgIcon(id, i,[icon]){
 resize([e]){
   showAll(false);
   var oldSize = vWidth;
-  vWidth = window.innerWidth - 220;
-  vHeight = window.innerHeight - 100;
+  vWidth = 600; // window.innerWidth - 220;
+  vHeight = 600; // window.innerHeight - 100;
   if (vHeight > vWidth)
     vHeight = vWidth;
   else

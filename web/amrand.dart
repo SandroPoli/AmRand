@@ -2,23 +2,38 @@ import 'dart:html';
 import 'dart:async';
 import 'dart:math' as Math;
 
+// --- constants
 const iconsPerSide = 10,
       transitionTime = const Duration(milliseconds: 1000),
       endAnimDone = const Duration(seconds: 3);
+
 num curFace = 0, curIndex = 0, vWidth, vHeight;
 num lastFace = -1, lastIndex = -1, showCnt = 0, lastOffsteX, lastOffsteY;
-bool mustSave = false, canEdit = true, ready = false, offsetting = false, canOffset = false;
+
+bool mustSave = false, canEdit = false, ready = false, offsetting = false, canOffset = false;
+
+// --- global elements
 LinkElement dataLink;
 InputElement  iSaver;
+Element curIcon;
 Element scene, cube, viewBox, picBox, qteBox, picInfo, editor;
 List<Element> catBoxes;
-List<String> categories = ['der Gesellschaft', 'der Sicherheit', 'der Mode', 'der Legalität', 'des Mögliches', 'des Universum'],
-            iDs = ['society', 'security', 'fashion', 'legality', 'other', 'universe'];
+
+// --- cube faces
+List<String> categories = ['der Gesellschaft', 'der Sicherheit', 'der Mode', 'der Legalität', 'des Mögliches', 'des Universum'];
+List<String>        iDs = ['society', 'security', 'fashion', 'legality', 'other', 'universe'];
+
+// --- data map
 Map<String,List<PicData>> quotes;
-Element curIcon;
 PicData picData;
 
+// --- random util
+Math.Random rnd = new Math.Random();
+
+// --- main (web) app
 void main() {
+
+  // --- init global elements
   scene = querySelector('.scene');
   cube = querySelector('.cube');
   viewBox = querySelector('#viewBox');
@@ -28,12 +43,21 @@ void main() {
   picInfo = querySelector('#picInfo');
 
 
+  // --- window evenets
   window.onResize.listen(resize);
 
+  // --- intro events
   querySelector('#btnUpdate').onClick.listen(update);
   querySelector('#btnSearch').onClick.listen(search);
-  querySelector('#btnEnter').onClick.listen(enter);
   querySelector('#btnSave').onClick.listen(saveClick);
+
+  querySelector('#btnEnter').onClick.listen(enter);
+  querySelector('#btnEdit')
+  ..onMouseOver.listen(showEditBtn)
+  ..onMouseLeave.listen(hideEditBtn)
+  ..onClick.listen(enterWithEditor);
+
+  // --- editor events
   querySelector('#iZoom').onChange.listen(updateZoom);
   querySelector('#iLink').onChange.listen(updateLink);
   querySelector('#iOffset').onChange.listen(checkOffset);
@@ -43,9 +67,10 @@ void main() {
   ..onMouseUp.listen(endOffset)
   ..onMouseLeave.listen(endOffset);
 
+  // --- cube events
   scene.onClick.listen(turn);
- // cube.onTransitionEnd.listen((e){showAll(true);});
 
+  // load data and init
   dataLink = new LinkElement()
   ..rel = 'import'
   ..href = 'data/data.html'
@@ -53,7 +78,7 @@ void main() {
   document.head.append(dataLink);
 }
 
-// --- clicks ----
+// --- click events ----
 
 btnEndClick(e){
   picBox.style.backgroundImage = 'url(img/end.png)';
@@ -68,16 +93,30 @@ enter([e]){
       ..onTransitionEnd.listen((e){e.target.remove();});
 }
 
+enterWithEditor(e){
+  canEdit = true;
+  enter(e);
+}
+
+showEditBtn(MouseEvent e){
+  e.currentTarget.classes.remove('hidden');
+}
+
+hideEditBtn(MouseEvent e){
+  e.currentTarget.classes.add('hidden');
+}
+
 iconClick(MouseEvent e){
-  if (e.toElement == curIcon) return;
-  if (curIcon != null){
-    showAll(false);
+  if (e.toElement == curIcon && e.toElement.classes.contains('selected')) return;
+  if (curIcon != null) {
     curIcon..classes.remove('selected');
+    showAll(false);
   }
   curIcon = e.toElement;
   curIcon.classes.add('selected');
-  curIndex = int.parse(curIcon.id.replaceAll('icon-',''));
+  curIndex = int.parse(curIcon.id.replaceAll('icon-${iDs[curFace]}-',''));
   picData = quotes[iDs[curFace]][curIndex];
+  dbgIcon(iDs[curFace], curIndex);
   showAll(true);
   print('click on: ${curIcon.id}');
 }
@@ -90,7 +129,7 @@ checkOffset(e){
     ..style.zIndex = canOffset ? '100' : null
     ..style.cursor = canOffset ? 'move' : 'auto'
     ..style.transitionDuration = canOffset ? '0' : null;
-  querySelector('#pzInfo').text = canOffset ? picData.pzInfo : 'disabled';
+  querySelector('#pzInfo').text = (canOffset && picData != null) ? picData.pzInfo : 'disabled';
 }
 
 startOffset(MouseEvent e){
@@ -121,7 +160,6 @@ endOffset(e){
   }
 }
 
-
 updateZoom([e]){
   if (picData != null)
     picData
@@ -135,7 +173,7 @@ updateLink([e]){
     picData
     ..link = editor.querySelector('#iLink').value
     ..updateViewer();
-  querySelector('#pzInfo').text = picData.pzInfo;
+  querySelector('#pzInfo').text = picData == null ? '' : picData.pzInfo;
 }
 
 // --- displayers
@@ -159,12 +197,16 @@ showAll(show){
     viewBox.classes.add('hidden');
     querySelectorAll('.amRand').forEach((e){e.classes.add('hidden');});
     querySelector('#${iDs[curFace]}').classes.add('hidden');
+    if (curIcon != null){
+      curIcon.classes.remove('selected');
+    }
   }
 
   showPic(show);
   showQte(show);
   showEditor(show);
 }
+
 
 showPic(show){
   print('showPic($show)');
@@ -202,8 +244,12 @@ showQte(show){
       ..classes.remove('hidden');
     }
   } else { // hide
-    qteBox.classes.add('hidden');
-    picInfo.classes.add('hidden');
+    qteBox
+    ..innerHtml = (picData != null ? picData.asQteHtml : 'quote missing!')
+    ..classes.add('hidden');
+    picInfo
+    ..text = (picData != null ? picData.info : '?')
+    ..classes.add('hidden');
   }
   print('showQte($show)');
 }
@@ -268,7 +314,9 @@ initQuotes(link){
           var x = num.parse(el.querySelector('.posX').text);
           var y = num.parse(el.querySelector('.posY').text);
           var z = double.parse(el.querySelector('.zoom').text);
-          entries[i] = new PicData(picBox, pdId, q, a, p, l, z, x, y);
+          var w = el.querySelector('.oWidth') != null ? num.parse(el.querySelector('.oWidth').text) : null;
+          var h = el.querySelector('.oHeight') != null ? num.parse(el.querySelector('.oHeight').text) : null;
+          entries[i] = new PicData(picBox, pdId, q, a, p, l, z, x, y, w, h);
         }
       }
       quotes[id] = entries;
@@ -279,7 +327,6 @@ initQuotes(link){
 
 
 init(){
-  var rnd = new Math.Random();
   for(var i = 0; i < cube.children.length; i++){
     var face = cube.children[i];
     face
@@ -297,23 +344,13 @@ init(){
     for(var side = 0; side < 4; side++){
       for(var i = 1; i <= (side.isEven ? iconsPerSide : iconsPerSide-2); i++){
         var iconId = 'iconH'; // e.g. society1
-        if ([1,10,19,28].contains(iconCnt)) {
-          iconId = 'icon$iconCnt';
-        } else {
-          iconId = side.isEven ? 'iconH' : 'iconV';
-        }
-        PicData pd = quotes[iDs[side]][i];
-        var imgUrl = 'img/${iconId}.png';
         var icon = new DivElement()
-        ..id = 'icon-$iconCnt'
+        ..id = 'icon-$id-$iconCnt'
         ..style.zIndex = '$iconCnt'
-        ..classes.addAll(pd == null ? ['icon', 'side$side', id, 'empty'] : ['icon', 'side$side', id])
-        ..onClick.listen(iconClick)
-        ..style.transform = 'rotate(${rnd.nextInt(20)-10}deg)';
+        ..classes.addAll(['icon', 'side$side', id])
+        ..onClick.listen(iconClick);
         catBox.append(icon);
-        ImageElement image = new ImageElement(src: imgUrl);
-        image.onLoad.listen((e){icon.style.backgroundImage = 'url($imgUrl)';}, onError: (e){icon.style.backgroundImage = 'url(img/icon.png)';});
-        print('init[$side] $iconId');
+        dbgIcon(id, i, icon);
         iconCnt++;
       }
     }
@@ -329,9 +366,45 @@ init(){
   resize();
 }
 
+dbgIcon(id, i,[icon]){
+  if (icon == null) icon = querySelector('#icon-$id-$i');
+  if (icon == null) return;;
+  var pd = quotes[id][i];
+  if (pd == null){
+    icon
+    ..text = 'EMPTY'
+    ..classes.add('empty');
+  } else if (pd.link.isEmpty) {
+    icon
+    ..text = 'NO image'
+    ..classes.add('noPic');
+  } else if (pd.quote.isEmpty) {
+    icon
+    ..text = 'NO quote'
+    ..classes.add('noQte');
+  } else if (pd.author.isEmpty) {
+    icon
+    ..text = 'NO author'
+    ..classes.add('noAuthor');
+  } else if (pd.info.isEmpty) {
+    icon
+    ..text = 'NO info'
+    ..classes.add('noInfo');
+  } else {
+    icon
+    ..text = 'ok'
+    ..classes.remove('empty')
+    ..classes.remove('noQte')
+    ..classes.remove('noAuthor')
+    ..classes.remove('noInfo');
+  }
+  icon.style.transform = 'rotate(${rnd.nextInt(20)-10}deg)';
+}
 // --- resizing
 
 resize([e]){
+  showAll(false);
+  var oldSize = vWidth;
   vWidth = window.innerWidth - 220;
   vHeight = window.innerHeight - 100;
   if (vHeight > vWidth)
@@ -343,45 +416,54 @@ resize([e]){
       ..style.width = '${vWidth}px'
       ..style.height= '${vHeight}px';
 
-   catBoxes.forEach((box){
-     var icons = box.querySelectorAll('.icon');
-     num iSize = vWidth /10,
-         side0cnt=0,
-         side1cnt=1,
-         side2cnt=0,
-         side3cnt=1;
-     icons.forEach((Element icon){
-     icon
-     ..style.width = '${iSize}px'
-     ..style.height = '${iSize}px';
-     if(icon.classes.contains('side0')){
-       icon
-       ..style.top= '0px'
-       ..style.left = '${side0cnt*iSize}px';
-       side0cnt++;
-     } else if(icon.classes.contains('side1')){
-       icon
-       ..style.top = '${side1cnt*iSize}px'
-       ..style.right = '0px';
-       side1cnt++;
-     } else if(icon.classes.contains('side2')){
-       icon
-       ..style.bottom = '0px'
-       ..style.right = '${side2cnt*iSize}px';
-       side2cnt++;
-     } else if(icon.classes.contains('side3')){
-       icon
-       ..style.left= '0px'
-       ..style.bottom = '${side3cnt*iSize}px';
-       side3cnt++;
-     }
+  catBoxes.forEach((box){
+    var icons = box.querySelectorAll('.icon');
+    num iSize = vWidth /10,
+        side0cnt=0,
+        side1cnt=1,
+        side2cnt=0,
+        side3cnt=1;
+    icons.forEach((Element icon){
+      icon
+      ..style.width = '${iSize}px'
+      ..style.height = '${iSize}px';
+      if(icon.classes.contains('side0')){
+        icon
+        ..style.top= '0px'
+        ..style.left = '${side0cnt*iSize}px';
+        side0cnt++;
+      } else if(icon.classes.contains('side1')){
+        icon
+        ..style.top = '${side1cnt*iSize}px'
+        ..style.right = '0px';
+        side1cnt++;
+      } else if(icon.classes.contains('side2')){
+        icon
+        ..style.bottom = '0px'
+        ..style.right = '${side2cnt*iSize}px';
+        side2cnt++;
+      } else if(icon.classes.contains('side3')){
+        icon
+        ..style.left= '0px'
+        ..style.bottom = '${side3cnt*iSize}px';
+        side3cnt++;
+      }
     });
   });
+  if (oldSize != vWidth && oldSize != null){
+    quotes.forEach((k, v){
+      v.forEach((pd){
+        if (pd != null)
+          pd.viewFactor = vWidth / oldSize;
+      });
+    });
+  }
   showAll(true);
 }
 
 turn([e]){
   showAll(false);
+  picData = null;
   showCnt = 0;
   curIndex = 0;
   curFace = curFace == 5 ? 0 : curFace + 1;
@@ -416,6 +498,7 @@ update([e]){
   } else {
     picData = quotes[iDs[curFace]][curIndex] = new PicData(picBox, id, quote, author, info, link, zoom, 0, 0);
   }
+  dbgIcon(iDs[curFace], curIndex);
   showQte(true);
 }
 
@@ -454,44 +537,55 @@ saveClick(e){
 
 class PicData{
   String id, quote, author, info, _link='';
-  num posX = 0, posY = 0, _zoom = 1.0;
+  num _posX = 0, _posY = 0, _zoom = 1.0;
   num _minZoom = 0.0, _maxZoom = 1.0;
   int _width = 500, _height=500;
   ImageElement _img;
   Element viewer;
+  num _viewFactor = 1.0;
+  Stopwatch loader;
+  static int longCnt = 0, shortCnt = 0;
 
-  PicData(this.viewer, this.id, this.quote, this.author, this.info, [src, this._zoom, this. posX, this.posY]){
+  PicData(this.viewer, this.id, this.quote, this.author, this.info, [src, this._zoom, this._posX, this._posY, this._width, this._height]){
     link = src;
   }
 
   set zoom(double z){
-    _zoom = z;
-    _resize();
+    _zoom = z / _viewFactor;
+    updateViewer();
   }
 
-  num get zoom => _zoom;
+  num get zoom => _zoom * _viewFactor;
+
+  set viewFactor(num f){
+    _viewFactor = f * _viewFactor;
+  }
 
   set link(String src){
     _link = src;
     if (_link.isNotEmpty){
+      loader = new Stopwatch()..start();
       _img = new ImageElement(src: _link);
       _img.onLoad.listen(_init);
     }
   }
 
   String get link => _link;
-  String get pzInfo => '$posX, $posY - zoom: ${zoom.toStringAsFixed(3)}';
-   num get minZoom => _minZoom - 0.05;
-  num get maxZoom => _maxZoom + 0.05;
-  num get stepZoom => (_maxZoom - _minZoom) / 50;
+  num get minZoom => (_minZoom - 0.05) * _viewFactor;
+  num get maxZoom => (_maxZoom + 0.05) * _viewFactor;
+  num get stepZoom => (_maxZoom - _minZoom) / 50 * _viewFactor;
+  num get posX => _posX * _viewFactor;
+  num get posY => _posY * _viewFactor;
 
   _init(e){
+    if (_img == null) return;
+    loader.stop();
     _width = _img.naturalWidth;
     _height = _img.naturalHeight;
-    _img = null;
 
     var vSize = viewer.clientWidth >= viewer.clientHeight ? viewer.clientHeight : viewer.clientWidth;
-     var iSize = _width > _height ? _height : _width;
+    _viewFactor = 1.0;
+    var iSize = _width > _height ? _height : _width;
     if (iSize > vSize){
       _minZoom = _width > _height ? vSize / _height : vSize / _width;
       _maxZoom = 1.2;
@@ -500,41 +594,70 @@ class PicData{
       _minZoom = iSize / vSize;
     }
     _resize();
+    if (loader.elapsedMilliseconds > 500){
+      longCnt++;
+      print('[$longCnt / ${longCnt+shortCnt}] $id < $link > ($_width x $_height) loaded in ${loader.elapsedMilliseconds} ms.... consider removing');
+    } else {
+      shortCnt++;
+      print('[$shortCnt / ${longCnt+shortCnt}] $id < $link > ($_width x $_height) loaded in ${loader.elapsedMilliseconds} ms OK');
+    }
   }
 
   incOffset(num x, num y){
-    posX += x.round();
-    posY += y.round();
+    _posX += (x / _viewFactor).round();
+    _posY += (y / _viewFactor).round();
     updateViewer();
   }
 
   _resize(){
     if (viewer != null){
-      if (zoom < _minZoom) zoom = _minZoom;
-      if (zoom > _maxZoom) zoom = _maxZoom;
-      var maxX = (viewer.clientWidth - _width * zoom).round();
-      posX = posX < maxX ? maxX : posX;
-      var maxY = (viewer.clientHeight - _height * zoom).round();
-      posY = posY < maxY ? maxY : posY;
-      posX = posX > 0 ? 0 : posX;
-      posY = posY > 0 ? 0 : posY;
+      if (_zoom < _minZoom) _zoom = _minZoom;
+      if (_zoom > _maxZoom) _zoom = _maxZoom;
+      var maxX = (viewer.clientWidth - _width * _zoom).round();
+      _posX = _posX < maxX ? maxX : _posX;
+      var maxY = (viewer.clientHeight - _height * _zoom).round();
+      _posY = _posY < maxY ? maxY : _posY;
+      _posX = _posX > 0 ? 0 : _posX;
+      _posY = _posY > 0 ? 0 : _posY;
     }
   }
 
   updateViewer(){
     if(viewer != null){
       _resize();
-      var w = (_width*zoom).round();
-      var h = (_height*zoom).round();
+      var w = (_width*_zoom * _viewFactor).round();
+      var h = (_height*_zoom *_viewFactor).round();
+      var x = (_posX * _viewFactor).round();
+      var y = (_posY * _viewFactor).round();
       viewer
       ..style.backgroundImage = 'url($_link)'
-      ..style.backgroundSize = '${(_width*_zoom).round()}px ${(_height*_zoom).round()}px'
-      ..style.backgroundPosition = '${posX}px ${posY}px';
+      ..style.backgroundSize = '${w}px ${h}px'
+      ..style.backgroundPosition = '${x}px ${y}px';
      }
   }
 
   String get asQteHtml => '${quote}<div class="qAuthor"><hr>$author</div>';
-  String get asHtml => '\n        <div id="$id">\n          <div class="quote">$quote</div>\n          <div class="author">$author</div>\n          <div class="info">$info</div>\n          <div class="picInfo"><div class="link">$link</div>\n           <div class="posX">${posX.toStringAsFixed(0)}</div>\n           <div class="posY">${posY.toStringAsFixed(0)}</div>\n           <div class="zoom">${zoom.toStringAsFixed(3)}</div>\n        </div>\n        </div>';
+  String get asHtml{
+    String s = '\n        <div id="$id">';
+    s += '\n          <div class="quote">$quote</div>';
+    s += '\n          <div class="author">$author</div>';
+    s += '\n          <div class="info">$info</div>';
+    s += '\n            <div class="picInfo">';
+    s += '\n              <div class="link">$link</div>';
+
+    if (_width!= null && _height != null){
+      s += '\n              <div class="oWidth">${_width.toStringAsFixed(0)}</div>';
+      s += '\n              <div class="oHeight">${_height.toStringAsFixed(0)}</div>';
+    }
+
+    s += '\n              <div class="posX">${_posX.toStringAsFixed(0)}</div>';
+    s += '\n              <div class="posY">${_posY.toStringAsFixed(0)}</div>';
+    s += '\n              <div class="zoom">${_zoom.toStringAsFixed(3)}</div>';
+    s += '\n            </div>';
+    s += '\n          </div>';
+    return s;
+  }
+  String get pzInfo => '$_posX, $_posY | z: ${_zoom.toStringAsFixed(3)} (f: ${_viewFactor.toStringAsFixed(3)})';
 }
 
 search(e){

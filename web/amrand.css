@@ -95,15 +95,53 @@ footer{
   box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.4), 0 0 50px rgba(255, 255, 255, 0.3);
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+  font-size: small;
+  text-align: center;
 }
 
 .icon.empty{
-  border: 1px solid red;  
+  border: 5px solid red;  
+  color: red;
 }
 
-.icon.selected{
-  width: 0px;
-  height: 0px;
+.icon.noPic{
+  border: 3px solid red;  
+  color: red;
+}
+
+.icon.noQte{
+  border: 2px solid orange;  
+  color: orange;
+}
+
+.icon.noAuthor{
+  border: 2px solid yellow;  
+  color: yellow;
+}
+
+.icon.noInfo{
+  border: 1px solid white;  
+  color: white;
+}
+
+.icon.side0.selected{
+  -webkit-transform: rotateX(90deg) !important;
+}
+
+.icon.side1.selected{
+  -webkit-transform: rotateY(90deg) !important;
+}
+
+.icon.side2.selected{
+  -webkit-transform: rotateX(-90deg) !important;
+}
+
+.icon.side3.selected{
+  -webkit-transform: rotateY(-90deg) !important;
+}
+
+.icon.side0.selected{
+  -webkit-transform: rotateX(270deg) !important;
 }
 
 #picInfo{
@@ -150,6 +188,7 @@ footer{
   width: 100%;
   height: 100%;
   padding: 20px;
+  -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   background: rgba(0, 0, 0, 0.8);
   color: #BDFDFD;
@@ -166,6 +205,19 @@ footer{
 #btnEnd {
   position: relative;
   top: 8%;
+}
+
+#btnEdit {
+  position: absolute;
+  top: -35px;
+  right: 3px;
+  transition: all 0.5s ease-in-out;
+}
+
+#btnEdit.hidden{
+  border-color: rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0 #000;
+  color: rgba(0, 0, 0, 0);
 }
 
 #dataOutput.hidden{
@@ -208,7 +260,7 @@ footer{
   left: 5%;
   background-repeat: no-repeat;
   background-size: cover;
-  backox-shadow: 0px 0px 200px 83px #000 inset;
+  box-shadow: 0px 0px 200px 83px #000 inset;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }

@@ -68,19 +68,19 @@ footer{
   left: -71px;
   z-index: 50;
   font-size: inherit;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .catBox{
   position:absolute;
   width:100%;
   height:100%;  
- /* box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.4), 0 0 50px rgba(255, 255, 255, 0.3); */
   opacity: 1;
 }
 
 .catBox.hidden{
-  opacity: 0;
-  z-index: -1;
+  display: none;
 }
 
 .icon{
@@ -98,7 +98,8 @@ footer{
 }
 
 .icon.selected{
-  opacity: 0;
+  width: 0px;
+  height: 0px;
 }
 
 #picInfo{
@@ -116,7 +117,7 @@ footer{
 }
 
 #picInfo.hidden{
-  left: 70px;
+  top: 2000px;
   opacity: 0;
 }
 
@@ -132,6 +133,11 @@ footer{
   transition: all 0.5s ease-in-out;
   opacity: 1;
   z-index: -10;
+}
+
+#qteBox.hidden{
+  top: -1000px;
+  opacity: 0;  
 }
 
 #dataOutput{
@@ -152,6 +158,12 @@ footer{
 #btnSave {
   width: 100%;
 }
+
+#btnEnd {
+  position: relative;
+  top: 8%;
+}
+
 #dataOutput.hidden{
   top: -200%;
 }
@@ -171,18 +183,17 @@ footer{
   transition: all 0.2s ease-in-out;
 }
 
-
-#quoteBox.hidden{
-  left: 70px;
-  opacity: 0;
-}
-
 .qAuthor{
   opacity: 0.6;
   font-size: smaller;
   font-style: italic;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+}
+
+#pzInfo {
+  font-size: small;
+  display: inline;
 }
 
 #picBox{
@@ -194,15 +205,12 @@ footer{
   background-repeat: no-repeat;
   background-size: cover;
   backox-shadow: 0px 0px 200px 83px #000 inset;
-  -webkit-transition: all 0.1s ease-in-out;
-  transition: all 0.1s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 #picBox.hidden{
-  border: 1px solid red;
   opacity: 0;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
 }
 
 .scene {
@@ -359,7 +367,7 @@ footer{
     left: 50%;
     top: 50%;
     background: black;
-}
+  }
 }
 
 .tvOff {
@@ -369,6 +377,7 @@ footer{
   animation-delay: 2s;
   -webkit-animation-delay:2s;
 }
+
 
 #editor{
   position: absolute;
@@ -413,3 +422,18 @@ input[type='range'] {
   width: 100%;
 }
 
+/* from animate.css by 
+@keyframes slideInDown {
+	0% {
+		opacity: 0;
+		transform: translateY(-2000px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+.slideInDown {
+	animation-name: slideInDown;
+}

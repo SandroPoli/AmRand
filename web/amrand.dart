@@ -3,7 +3,7 @@ import 'dart:async';
 import 'dart:math' as Math;
 
 // --- constants
-const iconsPerSide = 10,
+const iconsPerSide = 8,
       transitionTime = const Duration(milliseconds: 1000),
       endAnimDone = const Duration(seconds: 3);
 
@@ -418,7 +418,7 @@ resize([e]){
 
   catBoxes.forEach((box){
     var icons = box.querySelectorAll('.icon');
-    num iSize = vWidth /10,
+    num iSize = vWidth /iconsPerSide,
         side0cnt=0,
         side1cnt=1,
         side2cnt=0,
@@ -640,23 +640,24 @@ class PicData{
 
   String get asQteHtml => '${quote}<div class="qAuthor"><hr>$author</div>';
   String get asHtml{
-    String s = '\n        <div id="$id">';
+  String s = '';
+    s += '\n        <div id="$id">';
     s += '\n          <div class="quote">$quote</div>';
     s += '\n          <div class="author">$author</div>';
     s += '\n          <div class="info">$info</div>';
-    s += '\n            <div class="picInfo">';
-    s += '\n              <div class="link">$link</div>';
+    s += '\n          <div class="picInfo">';
+    s += '\n            <div class="link">$link</div>';
 
     if (_width!= null && _height != null){
-      s += '\n              <div class="oWidth">${_width.toStringAsFixed(0)}</div>';
-      s += '\n              <div class="oHeight">${_height.toStringAsFixed(0)}</div>';
+      s += '\n            <div class="oWidth">${_width.toStringAsFixed(0)}</div>';
+      s += '\n            <div class="oHeight">${_height.toStringAsFixed(0)}</div>';
     }
 
-    s += '\n              <div class="posX">${_posX.toStringAsFixed(0)}</div>';
-    s += '\n              <div class="posY">${_posY.toStringAsFixed(0)}</div>';
-    s += '\n              <div class="zoom">${_zoom.toStringAsFixed(3)}</div>';
-    s += '\n            </div>';
+    s += '\n            <div class="posX">${_posX.toStringAsFixed(0)}</div>';
+    s += '\n            <div class="posY">${_posY.toStringAsFixed(0)}</div>';
+    s += '\n            <div class="zoom">${_zoom.toStringAsFixed(3)}</div>';
     s += '\n          </div>';
+    s += '\n        </div>';
     return s;
   }
   String get pzInfo => '$_posX, $_posY | z: ${_zoom.toStringAsFixed(3)} (f: ${_viewFactor.toStringAsFixed(3)})';

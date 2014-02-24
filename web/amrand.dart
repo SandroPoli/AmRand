@@ -51,7 +51,6 @@ void main() {
   ..href = 'data/data.html'
   ..onLoad.listen(initQuotes);
   document.head.append(dataLink);
-
 }
 
 // --- clicks ----
@@ -126,7 +125,7 @@ endOffset(e){
 updateZoom([e]){
   if (picData != null)
     picData
-    ..zoom = num.parse(editor.querySelector('#iZoom').value)
+    ..zoom = double.parse(editor.querySelector('#iZoom').value)
     ..updateViewer();
   querySelector('#pzInfo').text = picData.pzInfo;
 }
@@ -145,7 +144,7 @@ showAll(show){
   print('showALL($show) > face:$curFace id: ${iDs[curFace]} ix:$curIndex');
   if (show && curFace == lastFace && curIndex == lastIndex){
     showCnt++;
-    if (showCnt > 3) throw('fix me!');
+    if (showCnt > 3) print('fix me! $showCnt');
   } else {
     showCnt = show ? 1 : 0;
   }
@@ -268,7 +267,7 @@ initQuotes(link){
           var l = el.querySelector('.link').text;
           var x = num.parse(el.querySelector('.posX').text);
           var y = num.parse(el.querySelector('.posY').text);
-          var z = num.parse(el.querySelector('.zoom').text);
+          var z = double.parse(el.querySelector('.zoom').text);
           entries[i] = new PicData(picBox, pdId, q, a, p, l, z, x, y);
         }
       }
@@ -303,11 +302,12 @@ init(){
         } else {
           iconId = side.isEven ? 'iconH' : 'iconV';
         }
+        PicData pd = quotes[iDs[side]][i];
         var imgUrl = 'img/${iconId}.png';
         var icon = new DivElement()
         ..id = 'icon-$iconCnt'
         ..style.zIndex = '$iconCnt'
-        ..classes.addAll(['icon', 'side$side', id])
+        ..classes.addAll(pd == null ? ['icon', 'side$side', id, 'empty'] : ['icon', 'side$side', id])
         ..onClick.listen(iconClick)
         ..style.transform = 'rotate(${rnd.nextInt(20)-10}deg)';
         catBox.append(icon);
@@ -404,7 +404,7 @@ update([e]){
   var author = editor.querySelector('#tAuthor').value.replaceAll('\n','<br>');
   var info = editor.querySelector('#tInfo').value.replaceAll('\n','<br>');
   var link = editor.querySelector('#iLink').value;
-  var zoom = num.parse(editor.querySelector('#iZoom').value);
+  var zoom = double.parse(editor.querySelector('#iZoom').value);
   if (picData != null){
     picData
     ..quote = quote

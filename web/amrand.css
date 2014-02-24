@@ -97,6 +97,10 @@ footer{
   transition: all 0.5s ease-in-out;
 }
 
+.icon.empty{
+  border: 1px solid red;  
+}
+
 .icon.selected{
   width: 0px;
   height: 0px;

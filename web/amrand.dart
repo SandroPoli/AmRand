@@ -145,7 +145,6 @@ showAll(show){
   print('showALL($show) > face:$curFace id: ${iDs[curFace]} ix:$curIndex');
   if (show && curFace == lastFace && curIndex == lastIndex){
     showCnt++;
-    if (showCnt > 3) throw('fix me!');
   } else {
     showCnt = show ? 1 : 0;
   }

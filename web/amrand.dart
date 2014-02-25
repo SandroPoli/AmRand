@@ -369,36 +369,34 @@ init(){
 dbgIcon(id, i,[icon]){
   if (icon == null) icon = querySelector('#icon-$id-$i');
   if (icon == null) return;;
-  if (canEdit){
-     var pd = quotes[id][i];
-    if (pd == null){
-      icon
-      ..text = 'EMPTY'
-      ..classes.add('empty');
-    } else if (pd.link.isEmpty) {
-      icon
-      ..text = 'NO image'
-      ..classes.add('noPic');
-    } else if (pd.quote.isEmpty) {
-      icon
-      ..text = 'NO quote'
-      ..classes.add('noQte');
-    } else if (pd.author.isEmpty) {
-      icon
-      ..text = 'NO author'
-      ..classes.add('noAuthor');
-    } else if (pd.info.isEmpty) {
-      icon
-      ..text = 'NO info'
-      ..classes.add('noInfo');
-    } else {
-      icon
-      ..text = 'ok'
-      ..classes.remove('empty')
-      ..classes.remove('noQte')
-      ..classes.remove('noAuthor')
-      ..classes.remove('noInfo');
-    }
+  var pd = quotes[id][i];
+  if (pd == null){
+    icon
+    ..text = 'EMPTY'
+    ..classes.add('empty');
+  } else if (pd.link.isEmpty) {
+    icon
+    ..text = 'NO image'
+    ..classes.add('noPic');
+  } else if (pd.quote.isEmpty) {
+    icon
+    ..text = 'NO quote'
+    ..classes.add('noQte');
+  } else if (pd.author.isEmpty) {
+    icon
+    ..text = 'NO author'
+    ..classes.add('noAuthor');
+  } else if (pd.info.isEmpty) {
+    icon
+    ..text = 'NO info'
+    ..classes.add('noInfo');
+  } else {
+    icon
+    ..text = 'ok'
+    ..classes.remove('empty')
+    ..classes.remove('noQte')
+    ..classes.remove('noAuthor')
+    ..classes.remove('noInfo');
   }
   icon.style.transform = 'rotate(${rnd.nextInt(20)-10}deg)';
 }
@@ -407,8 +405,8 @@ dbgIcon(id, i,[icon]){
 resize([e]){
   showAll(false);
   var oldSize = vWidth;
-  vWidth = 600; // window.innerWidth - 220;
-  vHeight = 600; // window.innerHeight - 100;
+  vWidth = window.innerWidth - 220;
+  vHeight = window.innerHeight - 100;
   if (vHeight > vWidth)
     vHeight = vWidth;
   else

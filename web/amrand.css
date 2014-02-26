@@ -22,7 +22,7 @@ header,footer {
 
 header {
 	top: 0px;
-	padding-left: 36px;
+	padding-left: 3%;
 	font-size: x-large;
 	color: white;
 	background: rgba(50,50,50,50.8);
@@ -35,15 +35,30 @@ footer {
 	background: rgba(30,30,30,0.8);
 }
 
+
+.colLeft {
+  float: left;
+  padding: 4%;
+}
+
+.colMid {
+  float: left;
+  padding: 7% 5%;
+}
+
+.colRight {
+  float: left;
+  padding: 4%;
+}
+
+
 /* --view box ---*/
 #viewBox {
-	position: absolute;
 	width: 600px;
 	height: 600px;
-	margin-top: 40px;
-	margin-left: 210px;
+	margin: auto;
 	font-size: xx-large;
-
+    position: relative;
 	-webkit-transition: all 0.2s ease-out;
 	-moz-transition: all 0.2s ease-out;
 	-o-transition: all 0.2s ease-out;
@@ -222,63 +237,47 @@ footer {
 }
 
 /* ---quote box ---*/
-#quoteBox {
-	position: absolute;
-	width: 160px;
-	top: 210px;
-	left: -206px;
-	color: whitesmoke;
-	font-size: medium;
-	padding: 8px 20px 0px 20px;
 
-	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	-ms-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-	filter: alpha(opacity=100);
-	opacity: 1;
-	z-index: -10;
+#quoteBox.hidden,
+#picInfo.hidden {
+  -webkit-transform: translateX(-500px);
 }
 
-#qteBox.hidden {
-	top: -1000px;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-	filter: alpha(opacity=0);
-	opacity: 0;
+#quoteBox {
+  margin-left: 15.5%;
+  width: 160px;
+  color: whitesmoke;
+  font-size: medium;
+  padding: 8px 20px 0px 20px;
+ -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
 }
 
 #picInfo {
-	position: absolute;
-	width: 160px;
-	bottom: 20px;
-	left: -206px;
-	color: whitesmoke;
-	font-size: medium;
-	padding: 8px 20px 0px 20px;
-
-	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	-ms-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-	filter: alpha(opacity=100);
-	opacity: 1;
-	z-index: -10;
-}
-
-#picInfo.hidden {
-	top: 2000px;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-	filter: alpha(opacity=0);
-	opacity: 0;
+  margin-left: 15.5%;
+  width: 160px;
+  color: whitesmoke;
+  font-size: medium;
+  padding: 8px 20px 0px 20px;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
 }
 
 /* ---intro page ---*/
 #intro {
 	position: absolute;
+	top: 0px;
+	left: 0px;
 	width: 100%;
 	height: 100%;
 	color: whitesmoke;
@@ -449,10 +448,7 @@ input[type='range'] {
 
 /* ---cube ---*/
 .scene {
-	display: inline-block;
-	margin-top: 50px;
-	margin-left: 25px;
-	position: absolute;
+	margin: 50px;
 	width: 150px;
 	height: 150px;
 	-webkit-perspective: 1000px;
@@ -556,240 +552,79 @@ input[type='range'] {
 }
 
 /* === animations === */
+.tv {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: transparent;
+	top: 0%;
+	left: 0%;
+	background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	-webkit-box-shadow: inset 0px 0px 300px 50px #000;
+	box-shadow: inset 0px 0px 300px 50px #000;
+	vertical-align: middle;
+	line-height: 600px;
+}
+
 @keyframes "tvOff" {
  0% {
-    background-color: black;
+    width: 100%;
+   	height: 100%;
+   	left: 0%;
+   	top: 0%;
+   	background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
+	background-repeat: no-repeat;
+   	font-size: 0px;
+   	color: transparent;
+   	border-radius: 0%;
+   	-webkit-box-shadow: inset 0px 0px 300px 50px #000, 0px 0px 0px 0px white;
+   	box-shadow: inset 0px 0px 300px 50px #000, 0px 0px 0px 0px white;
  }
- 40% {
-    background-image: url(img/endPoint.png);
-   	height: 4px;
-   	top: 50%;
-   	background: rgba(255,255,255,0.5);
-   	-webkit-box-shadow: 0px 0px 50px 1px white;
-   	box-shadow: 0px 0px 50px 1px white;
+ 60% {
+    -webkit-box-shadow: inset 0px 0px 3000px 50px #FFF, 0px 0px 10px 1px white;
+   	box-shadow: inset 0px 0px 3000px 50px #FFF, 0px 0px 10px 1px white;
  }
- 80% {
-    height: 4px;
-   	width: 300%;
-   	left: -100%;
-   	top: 50%;
-   	background: rgba(255,255,255,0.8);
-   	border-radius: 50%;
-   	-webkit-box-shadow: 0px 0px 50px 1px white;
-   	box-shadow: 0px 0px 50px 1px white;
- }
- 88% {
-    height: 10%;
-   	width: 3%;
-   	left: 45%;
-   	top: 45%;
-   	background: rgba(255,255,255,0.9);
-   	border-radius: 50%;
-   	-webkit-box-shadow: 0px 0px 50px 5px white;
-   	box-shadow: 0px 0px 50px 5px white;
+ 85% {
+    width: 100%;
+   	height: 1%;
+   	left: 0%;
+   	top: 49.5%;
+   	font-size: xx-large;
+   	line-height: 0%;
+   	color: #FFF;
+   	background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
+   	border-radius: 0%;
+   	-webkit-box-shadow: inset 0px 0px 0px 0px #FFF, 0px 0px 30px 2px white;
+   	box-shadow: inset 0px 0px 0px 0px #FFF, 0px 0px 30px 2px white;
+   	text-shadow: 0px 0px 8px #000;
  }
  90% {
-    height: 0px;
-   	width: 0px;
+    width: 1%;
+   	height: 1%;
+   	left: 49.5%;
+   	top: 49.5%;
+   	font-size: 0px;
+   	line-height: 0px;
+   	color: #FFF;
+   	background: #FFF;
+   	border-radius: 50%;
+   	-webkit-box-shadow: 0px 0px 100px 20px #FFF;
+   	box-shadow: 0px 0px 100px 20px #FFF;
+   	text-shadow: 0px 0px 8px #000;
+ }
+ 100% {
+    width: 0%;
+   	height: 0%;
    	left: 50%;
    	top: 50%;
-   	background: black;
+   	background: #000;
+   	-webkit-box-shadow: 0px 0px 0px 0px #000;
+   	box-shadow: 0px 0px 0px 0px #000;
+   	color: black;
  }
- 100% {
-    height: 0px;
-   	width: 0px;
-   	left: 50%;
-   	top: 50%;
-   	background: black;
- }
-
-}
-
-@-moz-keyframes tvOff {
- 0% {
-   background-color: black;
- }
- 40% {
-   background-image: url(img/endPoint.png);
-   height: 4px;
-   top: 50%;
-   background: rgba(255,255,255,0.5);
-   box-shadow: 0px 0px 50px 1px white;
- }
- 80% {
-   height: 4px;
-   width: 300%;
-   left: -100%;
-   top: 50%;
-   background: rgba(255,255,255,0.8);
-   border-radius: 50%;
-   box-shadow: 0px 0px 50px 1px white;
- }
- 88% {
-   height: 10%;
-   width: 3%;
-   left: 45%;
-   top: 45%;
-   background: rgba(255,255,255,0.9);
-   border-radius: 50%;
-   box-shadow: 0px 0px 50px 5px white;
- }
- 90% {
-   height: 0px;
-   width: 0px;
-   left: 50%;
-   top: 50%;
-   background: black;
- }
- 100% {
-   height: 0px;
-   width: 0px;
-   left: 50%;
-   top: 50%;
-   background: black;
- }
-
-}
-
-@-webkit-keyframes "tvOff" {
- 0% {
-   background-color: black;
- }
- 40% {
-   background-image: url(img/endPoint.png);
-   height: 4px;
-   top: 50%;
-   background: rgba(255,255,255,0.5);
-   -webkit-box-shadow: 0px 0px 50px 1px white;
-   box-shadow: 0px 0px 50px 1px white;
- }
- 80% {
-   height: 4px;
-   width: 300%;
-   left: -100%;
-   top: 50%;
-   background: rgba(255,255,255,0.8);
-   border-radius: 50%;
-   -webkit-box-shadow: 0px 0px 50px 1px white;
-   box-shadow: 0px 0px 50px 1px white;
- }
- 88% {
-   height: 10%;
-   width: 3%;
-   left: 45%;
-   top: 45%;
-   background: rgba(255,255,255,0.9);
-   border-radius: 50%;
-   -webkit-box-shadow: 0px 0px 50px 5px white;
-   box-shadow: 0px 0px 50px 5px white;
- }
- 90% {
-   height: 0px;
-   width: 0px;
-   left: 50%;
-   top: 50%;
-   background: black;
- }
- 100% {
-   height: 0px;
-   width: 0px;
-   left: 50%;
-   top: 50%;
-   background: black;
- }
-
-}
-
-@-ms-keyframes "tvOff" {
- 0% {
-   background-color: black;
- }
- 40% {
-   background-image: url(img/endPoint.png);
-   height: 4px;
-   top: 50%;
-   background: rgba(255,255,255,0.5);
-   box-shadow: 0px 0px 50px 1px white;
- }
- 80% {
-   height: 4px;
-   width: 300%;
-   left: -100%;
-   top: 50%;
-   background: rgba(255,255,255,0.8);
-   border-radius: 50%;
-   box-shadow: 0px 0px 50px 1px white;
- }
- 88% {
-   height: 10%;
-   width: 3%;
-   left: 45%;
-   top: 45%;
-   background: rgba(255,255,255,0.9);
-   border-radius: 50%;
-   box-shadow: 0px 0px 50px 5px white;
- }
- 90% {
-   height: 0px;
-   width: 0px;
-   left: 50%;
-   top: 50%;
-   background: black;
- }
- 100% {
-   height: 0px;
-   width: 0px;
-   left: 50%;
-   top: 50%;
-   background: black;
- }
-
-}
-
-@-o-keyframes "tvOff" {
- 0% {
-   background-color: black;
- }
- 40% {
-   background-image: url(img/endPoint.png);
-   height: 4px;
-   top: 50%;
-   background: rgba(255,255,255,0.5);
-   box-shadow: 0px 0px 50px 1px white;
- }
- 80% {
-   height: 4px;
-   width: 300%;
-   left: -100%;
-   top: 50%;
-   background: rgba(255,255,255,0.8);
-   border-radius: 50%;
-   box-shadow: 0px 0px 50px 1px white;
- }
- 88% {
-   height: 10%;
-   width: 3%;
-   left: 45%;
-   top: 45%;
-   background: rgba(255,255,255,0.9);
-   border-radius: 50%;
-   box-shadow: 0px 0px 50px 5px white;
- }
- 90% {
-   height: 0px;
-   width: 0px;
-   left: 50%;
-   top: 50%;
-   background: black;
- }
- 100% {
-   height: 0px;
-   width: 0px;
-   left: 50%;
-   top: 50%;
-   background: black;
- }
-
 }
 
 .tvOff {
@@ -798,104 +633,43 @@ input[type='range'] {
 	-ms-animation-name: tvOff;
 	-o-animation-name: tvOff;
 	animation-name: tvOff;
-	animation-duration: 1s;
+	animation-duration: 4s;
 
-	-webkit-animation-timing-function: ease-in-out;
-	-moz-animation-timing-function: ease-in-out;
-	-ms-animation-timing-function: ease-in-out;
-	-o-animation-timing-function: ease-in-out;
-	animation-timing-function: ease-in-out;
+	-webkit-animation-timing-function: ease-out;
+	-moz-animation-timing-function: ease-out;
+	-ms-animation-timing-function: ease-out;
+	-o-animation-timing-function: ease-out;
+	animation-timing-function: ease-out;
+	top: 50%;
+	left: 50%;
+	width: 0%;
+	height: 0%;
 
-	-webkit-animation-delay: 2s;
-	-moz-animation-delay: 2s;
-	-ms-animation-delay: 2s;
-	-o-animation-delay: 2s;
-	animation-delay: 2s;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	text-shadow: none;
+	font-size: 0px;
+	color: transparent;
 }
 
-/*  === from animate.css  === */
-@keyframes "slideInDown" {
- 0% {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-   	filter: alpha(opacity=0);
-   	opacity: 0;
-   	-webkit-transform: translateY(-2000px);
-   	-moz-transform: translateY(-2000px);
-   	-o-transform: translateY(-2000px);
-   	-ms-transform: translateY(-2000px);
-   	transform: translateY(-2000px);
- }
- 100% {
-    -webkit-transform: translateY(0);
-   	-moz-transform: translateY(0);
-   	-o-transform: translateY(0);
-   	-ms-transform: translateY(0);
-   	transform: translateY(0);
- }
+.tvOn {
+	-webkit-animation-name: tvOff;
+	-moz-animation-name: tvOff;
+	-ms-animation-name: tvOff;
+	-o-animation-name: tvOff;
+	animation-name: tvOff;
+	animation-duration: 4s;
 
+	-webkit-animation-timing-function: ease-in;
+	-moz-animation-timing-function: ease-in;
+	-ms-animation-timing-function: ease-in;
+	-o-animation-timing-function: ease-in;
+	animation-timing-function: ease-in;
+	animation-direction: reverse;
 }
 
-@-moz-keyframes slideInDown {
- 0% {
-   filter: alpha(opacity=0);
-   opacity: 0;
-   -moz-transform: translateY(-2000px);
-   transform: translateY(-2000px);
- }
- 100% {
-   -moz-transform: translateY(0);
-   transform: translateY(0);
- }
-
+@keyframes "flyRight" {
+  0%{}
+  100%{ margin-left: -1000px;}
 }
 
-@-webkit-keyframes "slideInDown" {
- 0% {
-   filter: alpha(opacity=0);
-   opacity: 0;
-   -webkit-transform: translateY(-2000px);
-   transform: translateY(-2000px);
- }
- 100% {
-   -webkit-transform: translateY(0);
-   transform: translateY(0);
- }
-
-}
-
-@-ms-keyframes "slideInDown" {
- 0% {
-   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-   filter: alpha(opacity=0);
-   opacity: 0;
-   -ms-transform: translateY(-2000px);
-   transform: translateY(-2000px);
- }
- 100% {
-   -ms-transform: translateY(0);
-   transform: translateY(0);
- }
-
-}
-
-@-o-keyframes "slideInDown" {
- 0% {
-   filter: alpha(opacity=0);
-   opacity: 0;
-   -o-transform: translateY(-2000px);
-   transform: translateY(-2000px);
- }
- 100% {
-   -o-transform: translateY(0);
-   transform: translateY(0);
- }
-
-}
-
-.slideInDown {
-	-webkit-animation-name: slideInDown;
-	-moz-animation-name: slideInDown;
-	-ms-animation-name: slideInDown;
-	-o-animation-name: slideInDown;
-	animation-name: slideInDown;
-}

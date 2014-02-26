@@ -80,13 +80,6 @@ void main() {
 
 // --- click events ----
 
-btnEndClick(e){
-  picBox.style.backgroundImage = 'url(img/end.png)';
-  picBox.classes.add('tvOff');
-  querySelector('#btnEnd').style.display = 'none';
-  var t = new Timer(endAnimDone, (){picBox.style.backgroundImage = 'url(img/universe.png)';});
-}
-
 enter([e]){
   querySelector('#intro')
       ..classes.add('hidden')
@@ -115,8 +108,12 @@ iconClick(MouseEvent e){
   curIcon = e.toElement;
   curIcon.classes.add('selected');
   curIndex = int.parse(curIcon.id.replaceAll('icon-${iDs[curFace]}-',''));
-  picData = quotes[iDs[curFace]][curIndex];
-  dbgIcon(iDs[curFace], curIndex);
+  if (iDs[curFace] == 'universe'){
+    querySelector('#tv').classes.add('tvOff');
+  } else {
+    picData = quotes[iDs[curFace]][curIndex];
+    dbgIcon(iDs[curFace], curIndex);
+  }
   showAll(true);
   print('click on: ${curIcon.id}');
 }
@@ -197,6 +194,7 @@ showAll(show){
     viewBox.classes.add('hidden');
     querySelectorAll('.amRand').forEach((e){e.classes.add('hidden');});
     querySelector('#${iDs[curFace]}').classes.add('hidden');
+    querySelector('#tv').classes.remove('tvOff');
     if (curIcon != null){
       curIcon.classes.remove('selected');
     }
@@ -207,28 +205,24 @@ showAll(show){
   showEditor(show);
 }
 
-
 showPic(show){
   print('showPic($show)');
   if (show){
-    if (picBox.classes.contains('tvOff')){
-       picBox.classes.remove('tvOff');
-       querySelector('#btnEnd').style.display = 'block';
-    } else {
-      if (picData != null){
-        picData.updateViewer();
-      } else { // set category pic;
-        picBox
-        ..style.backgroundImage = 'url(img/${iDs[curFace]}.png)'
-        ..style.backgroundPosition = '0px 0px'
-        ..style.backgroundSize = 'cover';
-      }
+    if (picData != null){
+      picData.updateViewer();
+    } else if (iDs[curFace] == 'universe'){ // set category pic;
+      picBox.style.backgroundImage = null;
+    } else { // set category pic;
+      picBox
+      ..style.backgroundImage = 'url(img/${iDs[curFace]}.png)'
+      ..style.backgroundPosition = '0px 0px'
+      ..style.backgroundSize = 'cover';
     }
   } else {
     picBox
-    ..style.backgroundImage = 'url(img/${iDs[curFace]}.png)'
-    ..style.backgroundPosition = '0px 0px'
-    ..style.backgroundSize = 'cover';
+      ..style.backgroundImage = 'url(img/${iDs[curFace]}.png)'
+      ..style.backgroundPosition = '0px 0px'
+      ..style.backgroundSize = 'cover';
   }
 }
 
@@ -245,10 +239,10 @@ showQte(show){
     }
   } else { // hide
     qteBox
-    ..innerHtml = (picData != null ? picData.asQteHtml : 'quote missing!')
+    ..innerHtml = (picData != null ? picData.asQteHtml : (canEdit ? 'quote missing!' : ''))
     ..classes.add('hidden');
     picInfo
-    ..text = (picData != null ? picData.info : '?')
+    ..text = (picData != null ? picData.info : '')
     ..classes.add('hidden');
   }
   print('showQte($show)');
@@ -299,27 +293,28 @@ initQuotes(link){
  quotes = new Map<String, List<PicData>>();
  var dataBody = link.target.import;
   iDs.forEach((id){
-    var data = dataBody.body.querySelector('#d-$id');
-//    if (data != null){
-    var entries = new List<PicData>(37);
-    for(var i = 1; i <=36; i++){
-      var pdId = '${id}$i';
-      if (data != null){
-        var el = data.querySelector('#$pdId');
-        if (el != null){
-          var q = el.querySelector('.quote').innerHtml;
-          var a = el.querySelector('.author').innerHtml;
-          var p = el.querySelector('.info').innerHtml;
-          var l = el.querySelector('.link').text;
-          var x = num.parse(el.querySelector('.posX').text);
-          var y = num.parse(el.querySelector('.posY').text);
-          var z = double.parse(el.querySelector('.zoom').text);
-          var w = el.querySelector('.oWidth') != null ? num.parse(el.querySelector('.oWidth').text) : null;
-          var h = el.querySelector('.oHeight') != null ? num.parse(el.querySelector('.oHeight').text) : null;
-          entries[i] = new PicData(picBox, pdId, q, a, p, l, z, x, y, w, h);
+    if (id != 'universe'){
+      var data = dataBody.body.querySelector('#d-$id');
+      var entries = new List<PicData>(37);
+      for(var i = 1; i <=36; i++){
+        var pdId = '${id}$i';
+        if (data != null){
+          var el = data.querySelector('#$pdId');
+          if (el != null){
+            var q = el.querySelector('.quote').innerHtml;
+            var a = el.querySelector('.author').innerHtml;
+            var p = el.querySelector('.info').innerHtml;
+            var l = el.querySelector('.link').text;
+            var x = num.parse(el.querySelector('.posX').text);
+            var y = num.parse(el.querySelector('.posY').text);
+            var z = double.parse(el.querySelector('.zoom').text);
+            var w = el.querySelector('.oWidth') != null ? num.parse(el.querySelector('.oWidth').text) : null;
+            var h = el.querySelector('.oHeight') != null ? num.parse(el.querySelector('.oHeight').text) : null;
+            entries[i] = new PicData(picBox, pdId, q, a, p, l, z, x, y, w, h);
+          }
         }
+        quotes[id] = entries;
       }
-      quotes[id] = entries;
     }
   });
   init();
@@ -355,12 +350,11 @@ init(){
       }
     }
     if (id == 'universe'){
-      var btnEnd = new DivElement()
-            ..id = 'btnEnd'
-            ..text = 'explore the edge of the universe'
-            ..classes.add('btn')
-            ..onClick.listen(btnEndClick);
-      catBox.append(btnEnd);
+      var tv = new DivElement()
+      ..id = 'tv'
+      ..text = 'nichts (?)'
+      ..classes.add('tv');
+      catBox.append(tv);
     }
   });
   resize();
@@ -369,34 +363,36 @@ init(){
 dbgIcon(id, i,[icon]){
   if (icon == null) icon = querySelector('#icon-$id-$i');
   if (icon == null) return;;
-  var pd = quotes[id][i];
-  if (pd == null){
-    icon
-    ..text = 'EMPTY'
-    ..classes.add('empty');
-  } else if (pd.link.isEmpty) {
-    icon
-    ..text = 'NO image'
-    ..classes.add('noPic');
-  } else if (pd.quote.isEmpty) {
-    icon
-    ..text = 'NO quote'
-    ..classes.add('noQte');
-  } else if (pd.author.isEmpty) {
-    icon
-    ..text = 'NO author'
-    ..classes.add('noAuthor');
-  } else if (pd.info.isEmpty) {
-    icon
-    ..text = 'NO info'
-    ..classes.add('noInfo');
-  } else {
-    icon
-    ..text = 'ok'
-    ..classes.remove('empty')
-    ..classes.remove('noQte')
-    ..classes.remove('noAuthor')
-    ..classes.remove('noInfo');
+  if (canEdit){
+    var pd = quotes[id][i];
+    if (pd == null){
+      icon
+      ..text = 'EMPTY'
+      ..classes.add('empty');
+    } else if (pd.link.isEmpty) {
+      icon
+      ..text = 'NO image'
+      ..classes.add('noPic');
+    } else if (pd.quote.isEmpty) {
+      icon
+      ..text = 'NO quote'
+      ..classes.add('noQte');
+    } else if (pd.author.isEmpty) {
+      icon
+      ..text = 'NO author'
+      ..classes.add('noAuthor');
+    } else if (pd.info.isEmpty) {
+      icon
+      ..text = 'NO info'
+      ..classes.add('noInfo');
+    } else {
+      icon
+      ..text = 'ok'
+      ..classes.remove('empty')
+      ..classes.remove('noQte')
+      ..classes.remove('noAuthor')
+      ..classes.remove('noInfo');
+    }
   }
   icon.style.transform = 'rotate(${rnd.nextInt(20)-10}deg)';
 }
@@ -405,8 +401,8 @@ dbgIcon(id, i,[icon]){
 resize([e]){
   showAll(false);
   var oldSize = vWidth;
-  vWidth = window.innerWidth - 220;
-  vHeight = window.innerHeight - 100;
+  vWidth = 600; // window.innerWidth - 220;
+  vHeight = 600; // window.innerHeight - 100;
   if (vHeight > vWidth)
     vHeight = vWidth;
   else

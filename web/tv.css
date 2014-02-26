@@ -1,0 +1,117 @@
+
+.tv {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: transparent;
+	top: 0%;
+	left: 0%;
+	background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	-webkit-box-shadow: inset 0px 0px 300px 50px #000;
+	box-shadow: inset 0px 0px 300px 50px #000;
+	vertical-align: middle;
+	line-height: 600px;
+}
+
+@keyframes "tvOff" {
+ 0% {
+    width: 100%;
+   	height: 100%;
+   	left: 0%;
+   	top: 0%;
+   	background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
+	background-repeat: no-repeat;
+   	font-size: 0px;
+   	color: transparent;
+   	border-radius: 0%;
+   	-webkit-box-shadow: inset 0px 0px 300px 50px #000, 0px 0px 0px 0px white;
+   	box-shadow: inset 0px 0px 300px 50px #000, 0px 0px 0px 0px white;
+ }
+ 60% {
+    -webkit-box-shadow: inset 0px 0px 3000px 50px #FFF, 0px 0px 10px 1px white;
+   	box-shadow: inset 0px 0px 3000px 50px #FFF, 0px 0px 10px 1px white;
+ }
+ 85% {
+    width: 100%;
+   	height: 1%;
+   	left: 0%;
+   	top: 49.5%;
+   	font-size: xx-large;
+   	line-height: 0%;
+   	color: #FFF;
+   	background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
+   	border-radius: 0%;
+   	-webkit-box-shadow: inset 0px 0px 0px 0px #FFF, 0px 0px 30px 2px white;
+   	box-shadow: inset 0px 0px 0px 0px #FFF, 0px 0px 30px 2px white;
+   	text-shadow: 0px 0px 8px #000;
+ }
+ 90% {
+    width: 1%;
+   	height: 1%;
+   	left: 49.5%;
+   	top: 49.5%;
+   	font-size: 0px;
+   	line-height: 0px;
+   	color: #FFF;
+   	background: #FFF;
+   	border-radius: 50%;
+   	-webkit-box-shadow: 0px 0px 100px 20px #FFF;
+   	box-shadow: 0px 0px 100px 20px #FFF;
+   	text-shadow: 0px 0px 8px #000;
+ }
+ 100% {
+    width: 0%;
+   	height: 0%;
+   	left: 50%;
+   	top: 50%;
+   	background: #000;
+   	-webkit-box-shadow: 0px 0px 0px 0px #000;
+   	box-shadow: 0px 0px 0px 0px #000;
+   	color: black;
+ }
+
+}
+
+.tvOff {
+	-webkit-animation-name: tvOff;
+	-moz-animation-name: tvOff;
+	-ms-animation-name: tvOff;
+	-o-animation-name: tvOff;
+	animation-name: tvOff;
+	animation-duration: 4s;
+
+	-webkit-animation-timing-function: ease-out;
+	-moz-animation-timing-function: ease-out;
+	-ms-animation-timing-function: ease-out;
+	-o-animation-timing-function: ease-out;
+	animation-timing-function: ease-out;
+	top: 50%;
+	left: 50%;
+	width: 0%;
+	height: 0%;
+
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	text-shadow: none;
+	font-size: 0px;
+	color: transparent;
+}
+
+.tvOn {
+	-webkit-animation-name: tvOff;
+	-moz-animation-name: tvOff;
+	-ms-animation-name: tvOff;
+	-o-animation-name: tvOff;
+	animation-name: tvOff;
+	animation-duration: 4s;
+
+	-webkit-animation-timing-function: ease-in;
+	-moz-animation-timing-function: ease-in;
+	-ms-animation-timing-function: ease-in;
+	-o-animation-timing-function: ease-in;
+	animation-timing-function: ease-in;
+	animation-direction: reverse;
+}

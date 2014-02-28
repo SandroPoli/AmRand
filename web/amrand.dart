@@ -1,37 +1,54 @@
 import 'dart:html';
-import 'dart:async';
 import 'dart:math' as Math;
+import 'dart:convert';
 
 // --- constants
 const iconsPerSide = 8,
       transitionTime = const Duration(milliseconds: 1000),
       endAnimDone = const Duration(seconds: 3);
 
+// --- globals
 num curFace = 0, curIndex = 0, vWidth, vHeight;
 num lastFace = -1, lastIndex = -1, showCnt = 0, lastOffsteX, lastOffsteY;
 
-bool mustSave = false, canEdit = false, ready = false, offsetting = false, canOffset = false;
+// -- flags
+bool mustSave = false,
+  canEdit = false,
+  ready = false,
+  offsetting = false,
+  canOffset = false,
+  dbg = true;
 
-// --- global elements
+// -- elements
 LinkElement dataLink;
-InputElement  iSaver;
-Element curIcon;
+InputElement  iSaver, iLink, iZoom, iOffset;
+TextAreaElement tQuote, tAuthor, tInfo;
+Element curIcon, pzInfo;
 Element scene, cube, viewBox, picBox, qteBox, editor;
 List<Element> catBoxes;
 
-// --- cube faces
-List<String> categories = ['der Gesellschaft', 'der Sicherheit', 'der Tendenze', 'der Legalität', 'des Mögliches', 'des Universum'];
+// -- cube faces
+List<String> categories = ['der Gesellschaft', 'der Sicherheit', 'der Tendenze', 'der LegalitÃ¤t', 'des MÃ¶gliches', 'des Universum'];
 List<String>        iDs = ['society', 'security', 'fashion', 'legality', 'other', 'universe'];
 
-// --- data map
+// -- datas
 Map<String,List<PicData>> quotes;
 PicData picData;
 
-// --- random util
+// -- random util
 Math.Random rnd = new Math.Random();
 
 // --- main (web) app
 void main() {
+
+  dbgOut('main: started...');
+  // load data and init
+  // load data and init
+  dataLink = new LinkElement()
+  ..rel = 'import'
+  ..href = 'data/data.html'
+  ..onLoad.listen(initQuotes);
+  document.head.append(dataLink);
 
   // --- init global elements
   scene = querySelector('.scene');
@@ -40,83 +57,84 @@ void main() {
   picBox = querySelector('#picBox');
   qteBox = querySelector('#quoteBox');
   editor = querySelector('#editor');
+  tQuote = editor.querySelector('#tQuote');
+  tAuthor = editor.querySelector('#tAuthor');
+  tInfo = editor.querySelector('#tInfo');
+  iLink = editor.querySelector('#iLink');
+  iZoom = editor.querySelector('#iZoom');
+  iOffset = editor.querySelector('#iOffset');
+  pzInfo = editor.querySelector('#pzInfo');
 
+  dbgOut('main: globals initialized...');
 
-  // --- window evenets
-  window.onResize.listen(resize);
+  dbgOut('main: data loading started...');
 
   // --- intro events
   querySelector('#btnUpdate').onClick.listen(update);
   querySelector('#btnSearch').onClick.listen(search);
   querySelector('#btnSave').onClick.listen(saveClick);
-
   querySelector('#btnEnter').onClick.listen(enter);
   querySelector('.intro').onClick.listen(smallIntroClick);
   querySelector('.edit').onClick.listen(smallEditClick);
-  querySelector('#btnEdit')
-  ..onMouseOver.listen(showEditBtn)
-  ..onMouseLeave.listen(hideEditBtn)
-  ..onClick.listen(enterWithEditor);
+
+  dbgOut('main: intro events set...');
 
   // --- editor events
-  querySelector('#iZoom').onChange.listen(updateZoom);
-  querySelector('#iLink').onChange.listen(updateLink);
-  querySelector('#iOffset').onChange.listen(checkOffset);
+  iZoom.onChange.listen(updateZoom);
+  iLink.onChange.listen(updateLink);
+  iOffset.onChange.listen(checkOffset);
   picBox
   ..onMouseDown.listen(startOffset)
   ..onMouseMove.listen(changeOffset)
   ..onMouseUp.listen(endOffset)
   ..onMouseLeave.listen(endOffset);
 
+  dbgOut('main: editor events set...');
+
   // --- cube events
   scene.onClick.listen(turn);
   cube.onTransitionEnd.listen(turned);
 
-  // load data and init
-  dataLink = new LinkElement()
-  ..rel = 'import'
-  ..href = 'data/data.html'
-  ..onLoad.listen(initQuotes);
-  document.head.append(dataLink);
+  dbgOut('main: cube events set...');
+
+  // --- window evenets
+  window.onResize.listen(resize);
+
+  dbgOut('main: window events set...');
+
 }
+
+dbgOut(txt) => dbg ?  print(txt) : {};
 
 // --- click events ----
 
 enter([e]){
+  dbgOut('enterBtn clicked...');
   querySelector('#intro').classes.add('hidden');
 }
 
-enterWithEditor(e){
-  canEdit = true;
-  enter(e);
-}
-
 smallIntroClick(e){
+  dbgOut('introBtn clicked...');
   querySelector('#intro').classes.remove('hidden');
 }
 
 smallEditClick(e){
+  dbgOut('editBtn clicked...');
   hideAll();
   canEdit = true;
   showAll();
 }
 
-showEditBtn(MouseEvent e){
-  e.currentTarget.classes.remove('hidden');
-}
-
-hideEditBtn(MouseEvent e){
-  e.currentTarget.classes.add('hidden');
-}
-
 showDetails(show){
+  dbgOut('show details($show)');
   showPic(show);
   showQte(show);
   showEditor(show);
 }
 
 iconClick(MouseEvent e){
-  if (e.toElement == curIcon && e.toElement.classes.contains('selected')) return;
+  Element el = e.toElement;
+  if (el == curIcon && el.classes.contains('selected')) return;
   if (curIcon != null) {
     curIcon..classes.remove('selected');
     showDetails(false);
@@ -130,17 +148,18 @@ iconClick(MouseEvent e){
     picData = quotes[iDs[curFace]][curIndex];
     dbgIcon(iDs[curFace], curIndex);
   }
-  print('click on: ${curIcon.id}');
+  dbgOut('iconClick on: ${curIcon.id}');
 }
 
 iconDone(e){
+  dbgOut('iconDone()');
   showDetails(true);
 }
 
 checkOffset(e){
   CheckboxInputElement cbx = querySelector('#iOffset');
   canOffset = cbx.checked;
-  querySelector('#iZoom').disabled = !canOffset;
+  iZoom.disabled = !canOffset;
   picBox
     ..style.zIndex = canOffset ? '100' : null
     ..style.cursor = canOffset ? 'move' : 'auto'
@@ -177,41 +196,39 @@ endOffset(e){
 }
 
 updateZoom([e]){
-  if (picData != null)
+  if (picData != null){
     picData
-    ..zoom = double.parse(editor.querySelector('#iZoom').value)
+    ..zoom = double.parse(iZoom.value)
     ..updateViewer();
-  querySelector('#pzInfo').text = picData.pzInfo;
+    querySelector('#pzInfo').text = picData.pzInfo;
+  }
 }
 
 updateLink([e]){
-  if (picData != null)
+  if (picData != null){
     picData
-    ..link = editor.querySelector('#iLink').value
+    ..link = iLink.value
     ..updateViewer();
-  querySelector('#pzInfo').text = picData == null ? '' : picData.pzInfo;
+    querySelector('#pzInfo').text = picData == null ? '' : picData.pzInfo;
+  }
 }
 
 // --- displayers
 
 hideAll(){
+  dbgOut('hideALL()');
   showViewBox(false);
   showDetails(false);
 }
 
 showAll(){
+  dbgOut('showALL()');
   showViewBox(true);
   showDetails(true);
 }
 
 showViewBox(show){
-  print('showViewBox($show) > face:$curFace id: ${iDs[curFace]} ix:$curIndex');
-  if (show && curFace == lastFace && curIndex == lastIndex){
-    showCnt++;
-    if (showCnt > 3) print('fix me! $showCnt');
-  } else {
-    showCnt = show ? 1 : 0;
-  }
+  dbgOut('showViewBox($show)');
   if (show){
     viewBox.classes.remove('hidden');
     picBox
@@ -230,14 +247,10 @@ showViewBox(show){
     querySelector('#tv').classes.remove('tvOff');
     if (curIcon != null)curIcon.classes.remove('selected');
   }
-
-//  showPic(show);
-//  showQte(show);
-//  showEditor(show);
 }
 
 showPic(show){
-  print('showPic($show)');
+  dbgOut('showPic($show)');
   if (show){
     if (picData != null){
       picData.updateViewer();
@@ -258,6 +271,7 @@ showPic(show){
 }
 
 showQte(show){
+  dbgOut('showQte($show)');
   if (show){
     if (picData != null){
       qteBox
@@ -269,56 +283,57 @@ showQte(show){
     ..innerHtml = (picData != null ? picData.asQteHtml : (canEdit ? 'quote missing!' : ''))
     ..classes.add('hidden');
   }
-  print('showQte($show)');
 }
 
 showEditor(show){
+  dbgOut('showEditor($show)');
   if (!canEdit) return;
   if (show){
     if (picData != null){
-      editor
-      ..querySelector('#tQuote').value = picData.quote.replaceAll('<br>', '\n')
-      ..querySelector('#tAuthor').value = picData.author.replaceAll('<br>', '\n')
-      ..querySelector('#tInfo').value = picData.info.replaceAll('<br>', '\n')
-      ..querySelector('#iLink').value = picData.link
-      ..querySelector('#iZoom').min = picData.minZoom.toStringAsFixed(3)
-      ..querySelector('#iZoom').max = picData.maxZoom.toStringAsFixed(3)
-      ..querySelector('#iZoom').step = picData.stepZoom.toStringAsFixed(3)
-      ..querySelector('#iZoom').value = picData.zoom.toStringAsFixed(3)
-      ..querySelector('#iZoom').disabled = true
-      ..querySelector('#iOffset').disabled = false
-      ..querySelector('#iOffset').checked = false
-      ..querySelector('#pzInfo').text = picData.pzInfo;
+      tQuote.value = picData.quote.replaceAll('<br>', '\n');
+      tAuthor.value = picData.author.replaceAll('<br>', '\n');
+      tInfo.value = picData.info.replaceAll('<br>', '\n');
+      iLink.value = picData.link;
+      iZoom
+      ..min = picData.minZoom.toStringAsFixed(3)
+      ..max = picData.maxZoom.toStringAsFixed(3)
+      ..step = picData.stepZoom.toStringAsFixed(3)
+      ..value = picData.zoom.toStringAsFixed(3)
+      ..disabled = true;
+      iOffset
+      ..disabled = false
+      ..checked = false;
+      pzInfo.text = picData.pzInfo;
     }
     editor
       ..querySelector('#eId').text = iDs[curFace]
       ..querySelector('#eNum').text = curIndex.toString()
       ..classes.remove('hidden');
   }else{
-    editor
-    ..querySelector('#tQuote').value = ''
-    ..querySelector('#tAuthor').value = ''
-    ..querySelector('#tInfo').value = ''
-    ..querySelector('#iLink').value = ''
-    ..querySelector('#iZoom').min = '0.0'
-    ..querySelector('#iZoom').max = '1.2'
-    ..querySelector('#iZoom').step = '1.2'
-    ..querySelector('#iZoom').value = '1.0'
-    ..querySelector('#iZoom').disabled = true
-    ..querySelector('#iOffset').disabled = true
-    ..classes.add('hidden');
+    tQuote.value = '';
+    tAuthor.value = '';
+    tInfo.value = '';
+    iLink.value = '';
+    iZoom
+    ..min = '0.0'
+    ..max = '1.2'
+    ..step = '1.2'
+    ..value = '1.0'
+    ..disabled = true;
+    iOffset.disabled = true;
+    editor.classes.add('hidden');
   }
-  print('showEditor($show)');
 }
 
 // --- initialization
 
-initQuotes(link){
- quotes = new Map<String, List<PicData>>();
- var dataBody = link.target.import;
+initQuotes(e){
+  dbgOut('initQuote() = data load event received...');
+  quotes = new Map<String, List<PicData>>();
+  var doc = dataLink.import;
   iDs.forEach((id){
     if (id != 'universe'){
-      var data = dataBody.body.querySelector('#d-$id');
+      var data = doc.body.querySelector('#d-$id');
       var entries = new List<PicData>(37);
       for(var i = 1; i <=36; i++){
         var pdId = '${id}$i';
@@ -346,6 +361,7 @@ initQuotes(link){
 
 
 init(){
+  dbgOut('init()');
   for(var i = 0; i < cube.children.length; i++){
     var face = cube.children[i];
     face
@@ -382,6 +398,10 @@ init(){
       catBox.append(tv);
     }
   });
+  ready = true;
+  querySelector('#btnEnter').classes.remove('hidden');
+  querySelector('#loading').classes.add('hidden');
+  dbgOut('init() done = ready');
   resize();
 }
 
@@ -424,6 +444,7 @@ dbgIcon(id, i,[icon]){
 // --- resizing
 
 resize([e]){
+  if (!ready) return;
   hideAll();
   var oldSize = vWidth;
   vWidth = 600; // window.innerWidth - 220;
@@ -508,11 +529,11 @@ update([e]){
   mustSave = true;
   var id = '${iDs[curFace]}${curIndex}';
   var picData = quotes[iDs[curFace]][curIndex];
-  var quote = editor.querySelector('#tQuote').value.replaceAll('\n','<br>');
-  var author = editor.querySelector('#tAuthor').value.replaceAll('\n','<br>');
-  var info = editor.querySelector('#tInfo').value.replaceAll('\n','<br>');
-  var link = editor.querySelector('#iLink').value;
-  var zoom = double.parse(editor.querySelector('#iZoom').value);
+  var quote = tQuote.value.replaceAll('\n','<br>');
+  var author = tAuthor.value.replaceAll('\n','<br>');
+  var info = tInfo.value.replaceAll('\n','<br>');
+  var link = iLink.value;
+  var zoom = double.parse(iZoom.value);
   if (picData != null){
     picData
     ..quote = quote
@@ -527,6 +548,10 @@ update([e]){
   dbgIcon(iDs[curFace], curIndex);
   showQte(true);
 }
+
+//String getDataFileContent(){
+//  return JSON.encode(quotes);
+//}
 
 String getDataFileContent(){
   var ts = new DateTime.now().toLocal();
@@ -554,23 +579,23 @@ saveClick(e){
 
   AnchorElement downloadLink = new AnchorElement(href: Url.createObjectUrlFromBlob(blob))
                  ..text = 'Download me'
-                 ..download = 'data(${new DateTime.now().toLocal()}).html';
+                 ..download = 'data(last).html';
 
   downloadLink.onClick.listen((e)=>downloadLink.remove());
   document.body.append(downloadLink);
   downloadLink.click();
+
+
 }
 
 class PicData{
-  String id, quote, author, info, _link='';
+  String id='', quote='', author='', info='', _link='';
   num _posX = 0, _posY = 0, _zoom = 1.0;
   num _minZoom = 0.0, _maxZoom = 1.0;
   int _width = 500, _height=500;
   ImageElement _img;
   Element viewer;
   num _viewFactor = 1.0;
-  Stopwatch loader;
-  static int longCnt = 0, shortCnt = 0;
   bool initialized = false;
 
   PicData(this.viewer, this.id, this.quote, this.author, this.info, [src, this._zoom, this._posX, this._posY, this._width, this._height]){
@@ -591,9 +616,8 @@ class PicData{
   set link(String src){
     _link = src;
     if (_link.isNotEmpty){
-      loader = new Stopwatch()..start();
       _img = new ImageElement(src: _link);
-      _img.onLoad.listen(_init);
+      _img.onLoad.listen(_init, onError: (e){dbgOut('$_link FAILED: $e');});
     }
   }
 
@@ -606,7 +630,6 @@ class PicData{
 
   _init(e){
     if (_img == null) return;
-    loader.stop();
     _width = _img.naturalWidth;
     _height = _img.naturalHeight;
     initialized = true;
@@ -622,13 +645,6 @@ class PicData{
       _minZoom = iSize / vSize;
     }
     _resize();
-    if (loader.elapsedMilliseconds > 500){
-      longCnt++;
-      print('[$longCnt / ${longCnt+shortCnt}] $id < $link > ($_width x $_height) loaded in ${loader.elapsedMilliseconds} ms.... consider removing');
-    } else {
-      shortCnt++;
-      print('[$shortCnt / ${longCnt+shortCnt}] $id < $link > ($_width x $_height) loaded in ${loader.elapsedMilliseconds} ms OK');
-    }
   }
 
   incOffset(num x, num y){
@@ -662,6 +678,21 @@ class PicData{
       ..style.backgroundSize = '${w}px ${h}px'
       ..style.backgroundPosition = '${x}px ${y}px';
      }
+  }
+
+  String toJson(){
+    Map jo = new Map<String,String>();
+    jo['id'] = id;
+    jo['quote'] = quote;
+    jo['author'] = author;
+    jo['info']  = info;
+    jo['link']  = link;
+    jo['oWidth'] = JSON.encode(_width);
+    jo['oHeight'] = JSON.encode(_height);
+    jo['posX'] = JSON.encode(_posX);
+    jo['posY'] = JSON.encode(_posY);
+    jo['zoom'] = JSON.encode(_zoom);
+    return JSON.encode(jo); // convert to JSON
   }
 
   String get asQteHtml => '${quote}<div class="qAuthor"><hr>$author</div><hr><div class="qInfo">$info</div>';
@@ -703,7 +734,7 @@ search(e){
 
   }
 
-  var qUrl = 'https://www.google.ch/search?q=zitat+über+$whatQte';
+  var qUrl = 'https://www.google.ch/search?q=zitat+Ã¼ber+$whatQte';
   window.open(qUrl, 'quotes');
 
   var iUrl = 'https://www.google.ch/search?q=$whatPic&source=lnms&tbm=isch&sa=X&ei=E24GU7XYK_Lo7Aah0YDQDQ&sqi=2&ved=0CAcQ_AUoAQ&biw=1920&bih=955';

@@ -2,3 +2,5 @@ name: AmRand
 description: A sample web application
 dependencies:
   browser: any
+  json: any
+  math: any

@@ -16,7 +16,7 @@ bool mustSave = false, canEdit = false, ready = false, offsetting = false, canOf
 LinkElement dataLink;
 InputElement  iSaver;
 Element curIcon;
-Element scene, cube, viewBox, picBox, qteBox, picInfo, editor;
+Element scene, cube, viewBox, picBox, qteBox, editor;
 List<Element> catBoxes;
 
 // --- cube faces
@@ -40,7 +40,6 @@ void main() {
   picBox = querySelector('#picBox');
   qteBox = querySelector('#quoteBox');
   editor = querySelector('#editor');
-  picInfo = querySelector('#picInfo');
 
 
   // --- window evenets
@@ -52,6 +51,8 @@ void main() {
   querySelector('#btnSave').onClick.listen(saveClick);
 
   querySelector('#btnEnter').onClick.listen(enter);
+  querySelector('.intro').onClick.listen(smallIntroClick);
+  querySelector('.edit').onClick.listen(smallEditClick);
   querySelector('#btnEdit')
   ..onMouseOver.listen(showEditBtn)
   ..onMouseLeave.listen(hideEditBtn)
@@ -69,6 +70,7 @@ void main() {
 
   // --- cube events
   scene.onClick.listen(turn);
+  cube.onTransitionEnd.listen(turned);
 
   // load data and init
   dataLink = new LinkElement()
@@ -81,14 +83,22 @@ void main() {
 // --- click events ----
 
 enter([e]){
-  querySelector('#intro')
-      ..classes.add('hidden')
-      ..onTransitionEnd.listen((e){e.target.remove();});
+  querySelector('#intro').classes.add('hidden');
 }
 
 enterWithEditor(e){
   canEdit = true;
   enter(e);
+}
+
+smallIntroClick(e){
+  querySelector('#intro').classes.remove('hidden');
+}
+
+smallEditClick(e){
+  hideAll();
+  canEdit = true;
+  showAll();
 }
 
 showEditBtn(MouseEvent e){
@@ -99,11 +109,17 @@ hideEditBtn(MouseEvent e){
   e.currentTarget.classes.add('hidden');
 }
 
+showDetails(show){
+  showPic(show);
+  showQte(show);
+  showEditor(show);
+}
+
 iconClick(MouseEvent e){
   if (e.toElement == curIcon && e.toElement.classes.contains('selected')) return;
   if (curIcon != null) {
     curIcon..classes.remove('selected');
-    showAll(false);
+    showDetails(false);
   }
   curIcon = e.toElement;
   curIcon.classes.add('selected');
@@ -114,8 +130,11 @@ iconClick(MouseEvent e){
     picData = quotes[iDs[curFace]][curIndex];
     dbgIcon(iDs[curFace], curIndex);
   }
-  showAll(true);
   print('click on: ${curIcon.id}');
+}
+
+iconDone(e){
+  showDetails(true);
 }
 
 checkOffset(e){
@@ -175,8 +194,18 @@ updateLink([e]){
 
 // --- displayers
 
-showAll(show){
-  print('showALL($show) > face:$curFace id: ${iDs[curFace]} ix:$curIndex');
+hideAll(){
+  showViewBox(false);
+  showDetails(false);
+}
+
+showAll(){
+  showViewBox(true);
+  showDetails(true);
+}
+
+showViewBox(show){
+  print('showViewBox($show) > face:$curFace id: ${iDs[curFace]} ix:$curIndex');
   if (show && curFace == lastFace && curIndex == lastIndex){
     showCnt++;
     if (showCnt > 3) print('fix me! $showCnt');
@@ -185,6 +214,10 @@ showAll(show){
   }
   if (show){
     viewBox.classes.remove('hidden');
+    picBox
+         ..style.backgroundImage = 'url(img/${iDs[curFace]}.png)'
+         ..style.backgroundPosition = '0px 0px'
+         ..style.backgroundSize = 'cover';
     querySelectorAll('.amRand').forEach((e){e.classes.remove('hidden');});
     querySelector('#vTitle').text = categories[curFace];
     querySelector('#${iDs[curFace]}').classes.remove('hidden');
@@ -195,14 +228,12 @@ showAll(show){
     querySelectorAll('.amRand').forEach((e){e.classes.add('hidden');});
     querySelector('#${iDs[curFace]}').classes.add('hidden');
     querySelector('#tv').classes.remove('tvOff');
-    if (curIcon != null){
-      curIcon.classes.remove('selected');
-    }
+    if (curIcon != null)curIcon.classes.remove('selected');
   }
 
-  showPic(show);
-  showQte(show);
-  showEditor(show);
+//  showPic(show);
+//  showQte(show);
+//  showEditor(show);
 }
 
 showPic(show){
@@ -229,10 +260,6 @@ showPic(show){
 showQte(show){
   if (show){
     if (picData != null){
-      picInfo
-      ..innerHtml = picData.info.replaceAll('<br>', '\n')
-      ..classes.remove('hidden');
-
       qteBox
       ..innerHtml = picData.asQteHtml
       ..classes.remove('hidden');
@@ -240,9 +267,6 @@ showQte(show){
   } else { // hide
     qteBox
     ..innerHtml = (picData != null ? picData.asQteHtml : (canEdit ? 'quote missing!' : ''))
-    ..classes.add('hidden');
-    picInfo
-    ..text = (picData != null ? picData.info : '')
     ..classes.add('hidden');
   }
   print('showQte($show)');
@@ -343,6 +367,7 @@ init(){
         ..id = 'icon-$id-$iconCnt'
         ..style.zIndex = '$iconCnt'
         ..classes.addAll(['icon', 'side$side', id])
+        ..onTransitionEnd.listen(iconDone)
         ..onClick.listen(iconClick);
         catBox.append(icon);
         dbgIcon(id, i, icon);
@@ -399,7 +424,7 @@ dbgIcon(id, i,[icon]){
 // --- resizing
 
 resize([e]){
-  showAll(false);
+  hideAll();
   var oldSize = vWidth;
   vWidth = 600; // window.innerWidth - 220;
   vHeight = 600; // window.innerHeight - 100;
@@ -454,11 +479,12 @@ resize([e]){
       });
     });
   }
-  showAll(true);
+  showAll();
 }
 
 turn([e]){
-  showAll(false);
+  hideAll();
+  qteBox.classes.remove('side$curFace');
   picData = null;
   showCnt = 0;
   curIndex = 0;
@@ -471,7 +497,11 @@ turn([e]){
     case 4: cube.style.transform = 'rotateX(-85deg) rotateY(5deg)';break;
     case 1: cube.style.transform = 'rotateY(170deg) rotateX(-5deg)';break;
   }
-  showAll(true);
+}
+
+turned([e]){
+  showViewBox(true);
+  qteBox.classes.add('side$curFace');
 }
 
 update([e]){
@@ -634,7 +664,7 @@ class PicData{
      }
   }
 
-  String get asQteHtml => '${quote}<div class="qAuthor"><hr>$author</div>';
+  String get asQteHtml => '${quote}<div class="qAuthor"><hr>$author</div><hr><div class="qInfo">$info</div>';
   String get asHtml{
   String s = '';
     s += '\n        <div id="$id">';

@@ -35,22 +35,20 @@ footer {
 	background: rgba(30,30,30,0.8);
 }
 
-
 .colLeft {
-  float: left;
-  padding: 4%;
+	float: left;
+	padding: 4%;
 }
 
 .colMid {
-  float: left;
-  padding: 7% 5%;
+	float: left;
+	padding: 7% 5%;
 }
 
 .colRight {
-  float: left;
-  padding: 4%;
+	float: left;
+	padding: 4%;
 }
-
 
 /* --view box ---*/
 #viewBox {
@@ -58,7 +56,8 @@ footer {
 	height: 600px;
 	margin: auto;
 	font-size: xx-large;
-    position: relative;
+	position: relative;
+
 	-webkit-transition: all 0.2s ease-out;
 	-moz-transition: all 0.2s ease-out;
 	-o-transition: all 0.2s ease-out;
@@ -237,40 +236,100 @@ footer {
 }
 
 /* ---quote box ---*/
+#quoteBox.hidden {
+	-webkit-transform: translateX(50px) translateY(-200px) scale(0.5,0.5) !important;
+	-moz-transform: translateX(50px) translateY(-200px) scale(0.5,0.5) !important;
+	-o-transform: translateX(50px) translateY(-200px) scale(0.5,0.5) !important;
+	-ms-transform: translateX(50px) translateY(-200px) scale(0.5,0.5) !important;
+	transform: translateX(50px) translateY(-200px) scale(0.5,0.5) !important;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
 
-#quoteBox.hidden,
-#picInfo.hidden {
-  -webkit-transform: translateX(-500px);
+#quoteBox.side0 {
+	-webkit-transform: translateX(44px) translateY(0);
+	-moz-transform: translateX(44px) translateY(0);
+	-o-transform: translateX(44px) translateY(0);
+	-ms-transform: translateX(44px) translateY(0);
+	transform: translateX(44px) translateY(0);
+}
+
+#quoteBox.side1 {
+	-webkit-transform: translateX(10px) translateY(0);
+	-moz-transform: translateX(10px) translateY(0);
+	-o-transform: translateX(10px) translateY(0);
+	-ms-transform: translateX(10px) translateY(0);
+	transform: translateX(10px) translateY(0);
+}
+
+#quoteBox.side2 {
+	-webkit-transform: translateX(30px) translateY(0);
+	-moz-transform: translateX(30px) translateY(0);
+	-o-transform: translateX(30px) translateY(0);
+	-ms-transform: translateX(30px) translateY(0);
+	transform: translateX(30px) translateY(0);
+}
+
+#quoteBox.side3 {
+	-webkit-transform: translateX(50px) translateY(0);
+	-moz-transform: translateX(50px) translateY(0);
+	-o-transform: translateX(50px) translateY(0);
+	-ms-transform: translateX(50px) translateY(0);
+	transform: translateX(50px) translateY(0);
+}
+
+#quoteBox.side4 {
+	-webkit-transform: translateX(37px) translateY(0);
+	-moz-transform: translateX(37px) translateY(0);
+	-o-transform: translateX(37px) translateY(0);
+	-ms-transform: translateX(37px) translateY(0);
+	transform: translateX(37px) translateY(0);
+}
+
+#quoteBox.side5 {
+	-webkit-transform: translateX(19px) translateY(0);
+	-moz-transform: translateX(19px) translateY(0);
+	-o-transform: translateX(19px) translateY(0);
+	-ms-transform: translateX(19px) translateY(0);
+	transform: translateX(19px) translateY(0);
 }
 
 #quoteBox {
-  margin-left: 15.5%;
-  width: 160px;
-  color: whitesmoke;
-  font-size: medium;
-  padding: 8px 20px 0px 20px;
- -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  filter: alpha(opacity=100);
+	width: 160px;
+	color: whitesmoke;
+	font-size: medium;
+	padding: 8px 20px 0px 20px;
+
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
 }
 
-#picInfo {
-  margin-left: 15.5%;
-  width: 160px;
-  color: whitesmoke;
-  font-size: medium;
-  padding: 8px 20px 0px 20px;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  filter: alpha(opacity=100);
+.qAuthor {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+	filter: alpha(opacity=60);
+	opacity: 0.6;
+	font-size: smaller;
+	font-style: italic;
+
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+.qInfo {
+	font-size: smaller;
+
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
 }
 
 /* ---intro page ---*/
@@ -359,6 +418,19 @@ input[type='range'] {
 }
 
 /* ---buttons ---*/
+.smallBtn {
+	color: gray;
+	font-style: underline;
+}
+
+.smallBtn:hover {
+	color: cyan !important;
+}
+
+.smallBtn.edit {
+	color: black;
+}
+
 .btn {
 	padding: 20px;
 	border: 1px solid #FFF;
@@ -406,7 +478,7 @@ input[type='range'] {
 	color: rgba(0, 0, 0, 0);
 }
 
-/* ---cat:  universe ---*/
+/* ---cat:   universe ---*/
 #dataHint {
 	position: absolute;
 	top: 20px;
@@ -430,20 +502,6 @@ input[type='range'] {
 	-o-transition: all 0.2s ease-in-out;
 	-ms-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
-}
-
-.qAuthor {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-	filter: alpha(opacity=60);
-	opacity: 0.6;
-	font-size: smaller;
-	font-style: italic;
-
-	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	-ms-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
 }
 
 /* ---cube ---*/
@@ -562,7 +620,11 @@ input[type='range'] {
 	left: 0%;
 	background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
 	background-repeat: no-repeat;
+
+	-webkit-background-size: contain;
+	-moz-background-size: contain;
 	background-size: contain;
+
 	-webkit-box-shadow: inset 0px 0px 300px 50px #000;
 	box-shadow: inset 0px 0px 300px 50px #000;
 	vertical-align: middle;
@@ -576,7 +638,7 @@ input[type='range'] {
    	left: 0%;
    	top: 0%;
    	background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
-	background-repeat: no-repeat;
+   	background-repeat: no-repeat;
    	font-size: 0px;
    	color: transparent;
    	border-radius: 0%;
@@ -625,6 +687,228 @@ input[type='range'] {
    	box-shadow: 0px 0px 0px 0px #000;
    	color: black;
  }
+
+}
+
+@-moz-keyframes tvOff {
+ 0% {
+   width: 100%;
+   height: 100%;
+   left: 0%;
+   top: 0%;
+   background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
+   background-repeat: no-repeat;
+   font-size: 0px;
+   color: transparent;
+   border-radius: 0%;
+   box-shadow: inset 0px 0px 300px 50px #000, 0px 0px 0px 0px white;
+ }
+ 60% {
+   box-shadow: inset 0px 0px 3000px 50px #FFF, 0px 0px 10px 1px white;
+ }
+ 85% {
+   width: 100%;
+   height: 1%;
+   left: 0%;
+   top: 49.5%;
+   font-size: xx-large;
+   line-height: 0%;
+   color: #FFF;
+   background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
+   border-radius: 0%;
+   box-shadow: inset 0px 0px 0px 0px #FFF, 0px 0px 30px 2px white;
+   text-shadow: 0px 0px 8px #000;
+ }
+ 90% {
+   width: 1%;
+   height: 1%;
+   left: 49.5%;
+   top: 49.5%;
+   font-size: 0px;
+   line-height: 0px;
+   color: #FFF;
+   background: #FFF;
+   border-radius: 50%;
+   box-shadow: 0px 0px 100px 20px #FFF;
+   text-shadow: 0px 0px 8px #000;
+ }
+ 100% {
+   width: 0%;
+   height: 0%;
+   left: 50%;
+   top: 50%;
+   background: #000;
+   box-shadow: 0px 0px 0px 0px #000;
+   color: black;
+ }
+
+}
+
+@-webkit-keyframes "tvOff" {
+ 0% {
+   width: 100%;
+   height: 100%;
+   left: 0%;
+   top: 0%;
+   background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
+   background-repeat: no-repeat;
+   font-size: 0px;
+   color: transparent;
+   border-radius: 0%;
+   -webkit-box-shadow: inset 0px 0px 300px 50px #000, 0px 0px 0px 0px white;
+   box-shadow: inset 0px 0px 300px 50px #000, 0px 0px 0px 0px white;
+ }
+ 60% {
+   -webkit-box-shadow: inset 0px 0px 3000px 50px #FFF, 0px 0px 10px 1px white;
+   box-shadow: inset 0px 0px 3000px 50px #FFF, 0px 0px 10px 1px white;
+ }
+ 85% {
+   width: 100%;
+   height: 1%;
+   left: 0%;
+   top: 49.5%;
+   font-size: xx-large;
+   line-height: 0%;
+   color: #FFF;
+   background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
+   border-radius: 0%;
+   -webkit-box-shadow: inset 0px 0px 0px 0px #FFF, 0px 0px 30px 2px white;
+   box-shadow: inset 0px 0px 0px 0px #FFF, 0px 0px 30px 2px white;
+   text-shadow: 0px 0px 8px #000;
+ }
+ 90% {
+   width: 1%;
+   height: 1%;
+   left: 49.5%;
+   top: 49.5%;
+   font-size: 0px;
+   line-height: 0px;
+   color: #FFF;
+   background: #FFF;
+   border-radius: 50%;
+   -webkit-box-shadow: 0px 0px 100px 20px #FFF;
+   box-shadow: 0px 0px 100px 20px #FFF;
+   text-shadow: 0px 0px 8px #000;
+ }
+ 100% {
+   width: 0%;
+   height: 0%;
+   left: 50%;
+   top: 50%;
+   background: #000;
+   -webkit-box-shadow: 0px 0px 0px 0px #000;
+   box-shadow: 0px 0px 0px 0px #000;
+   color: black;
+ }
+
+}
+
+@-ms-keyframes "tvOff" {
+ 0% {
+   width: 100%;
+   height: 100%;
+   left: 0%;
+   top: 0%;
+   background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
+   background-repeat: no-repeat;
+   font-size: 0px;
+   color: transparent;
+   border-radius: 0%;
+   box-shadow: inset 0px 0px 300px 50px #000, 0px 0px 0px 0px white;
+ }
+ 60% {
+   box-shadow: inset 0px 0px 3000px 50px #FFF, 0px 0px 10px 1px white;
+ }
+ 85% {
+   width: 100%;
+   height: 1%;
+   left: 0%;
+   top: 49.5%;
+   font-size: xx-large;
+   line-height: 0%;
+   color: #FFF;
+   background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
+   border-radius: 0%;
+   box-shadow: inset 0px 0px 0px 0px #FFF, 0px 0px 30px 2px white;
+   text-shadow: 0px 0px 8px #000;
+ }
+ 90% {
+   width: 1%;
+   height: 1%;
+   left: 49.5%;
+   top: 49.5%;
+   font-size: 0px;
+   line-height: 0px;
+   color: #FFF;
+   background: #FFF;
+   border-radius: 50%;
+   box-shadow: 0px 0px 100px 20px #FFF;
+   text-shadow: 0px 0px 8px #000;
+ }
+ 100% {
+   width: 0%;
+   height: 0%;
+   left: 50%;
+   top: 50%;
+   background: #000;
+   box-shadow: 0px 0px 0px 0px #000;
+   color: black;
+ }
+
+}
+
+@-o-keyframes "tvOff" {
+ 0% {
+   width: 100%;
+   height: 100%;
+   left: 0%;
+   top: 0%;
+   background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
+   background-repeat: no-repeat;
+   font-size: 0px;
+   color: transparent;
+   border-radius: 0%;
+   box-shadow: inset 0px 0px 300px 50px #000, 0px 0px 0px 0px white;
+ }
+ 60% {
+   box-shadow: inset 0px 0px 3000px 50px #FFF, 0px 0px 10px 1px white;
+ }
+ 85% {
+   width: 100%;
+   height: 1%;
+   left: 0%;
+   top: 49.5%;
+   font-size: xx-large;
+   line-height: 0%;
+   color: #FFF;
+   background: url(http://vitaliyb.files.wordpress.com/2012/01/hoags_object1.jpg);
+   border-radius: 0%;
+   box-shadow: inset 0px 0px 0px 0px #FFF, 0px 0px 30px 2px white;
+   text-shadow: 0px 0px 8px #000;
+ }
+ 90% {
+   width: 1%;
+   height: 1%;
+   left: 49.5%;
+   top: 49.5%;
+   font-size: 0px;
+   line-height: 0px;
+   color: #FFF;
+   background: #FFF;
+   border-radius: 50%;
+   box-shadow: 0px 0px 100px 20px #FFF;
+   text-shadow: 0px 0px 8px #000;
+ }
+ 100% {
+   width: 0%;
+   height: 0%;
+   left: 50%;
+   top: 50%;
+   background: #000;
+   box-shadow: 0px 0px 0px 0px #000;
+   color: black;
+ }
+
 }
 
 .tvOff {
@@ -667,9 +951,3 @@ input[type='range'] {
 	animation-timing-function: ease-in;
 	animation-direction: reverse;
 }
-
-@keyframes "flyRight" {
-  0%{}
-  100%{ margin-left: -1000px;}
-}
-

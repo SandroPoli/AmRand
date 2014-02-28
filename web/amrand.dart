@@ -20,7 +20,7 @@ Element scene, cube, viewBox, picBox, qteBox, editor;
 List<Element> catBoxes;
 
 // --- cube faces
-List<String> categories = ['der Gesellschaft', 'der Sicherheit', 'der Mode', 'der Legalität', 'des Mögliches', 'des Universum'];
+List<String> categories = ['der Gesellschaft', 'der Sicherheit', 'der Tendenze', 'der Legalität', 'des Mögliches', 'des Universum'];
 List<String>        iDs = ['society', 'security', 'fashion', 'legality', 'other', 'universe'];
 
 // --- data map

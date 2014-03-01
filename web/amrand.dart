@@ -165,11 +165,7 @@ iconClick(MouseEvent e){
   if (iDs[curFace] == 'universe'){
     querySelector('#tv').classes.add('tvOff');
   } else {
-    if (quotes[iDs[curFace]].length > curIndex) {
-      picData = quotes[iDs[curFace]][curIndex];
-    } else {
-      picData = null;
-    }
+    picData = quotes[iDs[curFace]][curIndex];
     dbgIcon(iDs[curFace], curIndex);
   }
   dbgOut('iconClick on: ${curIcon.id}');
@@ -432,36 +428,34 @@ dbgIcon(id, i,[icon]){
   if (icon == null) icon = querySelector('#icon-$id-$i');
   if (icon == null) return;;
   if (canEdit){
-    if (quotes[id].length <= i) {
+    var pd = quotes[id][i];
+    if (pd == null){
       icon
-            ..text = 'EMPTY'
-            ..classes.add('empty');  
+      ..text = 'EMPTY'
+      ..classes.add('empty');
+    } else if (pd.link.isEmpty) {
+      icon
+      ..text = 'NO image'
+      ..classes.add('noPic');
+    } else if (pd.quote.isEmpty) {
+      icon
+      ..text = 'NO quote'
+      ..classes.add('noQte');
+    } else if (pd.author.isEmpty) {
+      icon
+      ..text = 'NO author'
+      ..classes.add('noAuthor');
+    } else if (pd.info.isEmpty) {
+      icon
+      ..text = 'NO info'
+      ..classes.add('noInfo');
     } else {
-      var pd = quotes[id][i];
-      if (pd.link.isEmpty) {
-        icon
-        ..text = 'NO image'
-        ..classes.add('noPic');
-      } else if (pd.quote.isEmpty) {
-        icon
-        ..text = 'NO quote'
-        ..classes.add('noQte');
-      } else if (pd.author.isEmpty) {
-        icon
-        ..text = 'NO author'
-        ..classes.add('noAuthor');
-      } else if (pd.info.isEmpty) {
-        icon
-        ..text = 'NO info'
-        ..classes.add('noInfo');
-      } else {
-        icon
-        ..text = 'ok'
-        ..classes.remove('empty')
-        ..classes.remove('noQte')
-        ..classes.remove('noAuthor')
-        ..classes.remove('noInfo');
-      }
+      icon
+      ..text = 'ok'
+      ..classes.remove('empty')
+      ..classes.remove('noQte')
+      ..classes.remove('noAuthor')
+      ..classes.remove('noInfo');
     }
   }
   icon.style.transform = 'rotate(${rnd.nextInt(20)-10}deg)';
@@ -584,10 +578,14 @@ String getDataFileContent(){
     if (list != null){
       content += '\n               "$key" : [';
       list.forEach((pd){
-        pd.id = '$key${list.indexOf(pd)}';
-        if (pd != null)
+        if (pd != null){
+          pd.id = '$key${list.indexOf(pd)}';
           lStr += '\n                         ${pd.asDartSrc},';
+        }
       });
+      for(var i=list.length;i<28;i++){
+        lStr+='null,';
+      }
       if (lStr[lStr.length-1] == ',')
           lStr = lStr.substring(0, lStr.length-1);
       content += '$lStr';

@@ -82,8 +82,7 @@ Map<String, List<PicData>> quotes = {
                          new PicData(picBox, "fashion13", "", "", "africa cultura", "http://good50x70.org/2011/imagecontest/poster/788.jpg", 0.183, 0, -119, 2953, 4134),
                          new PicData(picBox, "fashion14", "", "", "", "http://good50x70.org/2011/imagecontest/poster/42.jpg", 0.183, 0, -66, 2953, 4134),
                          new PicData(picBox, "fashion15", "", "", "", "http://bioenergyitalyblog.it/wp-content/uploads/2013/05/Fiere-energie-rinnovabili-nel-mondo.png", 1.4025974025974026, -52, 0, 462, 385),
-                         new PicData(picBox, "fashion16", "", "", "telefoni per bambini", "http://www.evidence4action.net/wp-content/uploads/2012/08/Africas-mobile-phone-industry-booming-1.jpg", 1.511, -180, 0, 520, 347),
-                         new PicData(picBox, "fashion17", "", "", "muraglia cinese", "http://dallacity.finanza.com/files/2010/10/000003732362-cina-muraglia-cinese.jpg", 0.4426229508196721, -257, 0, 1800, 1220)
+                         new PicData(picBox, "fashion16", "", "", "telefoni per bambini", "http://www.evidence4action.net/wp-content/uploads/2012/08/Africas-mobile-phone-industry-booming-1.jpg", 1.511, -180, 0, 520, 347),,,,,,,,,,,
                          ],
                "legality" : [
                          new PicData(picBox, "legality0", "", "", "wildes Bauen", "http://www.cartoongallery.eu/englishversion/wp-content/gallery/iboligan/boligan1e.jpg", 0.685, 0, 0, 800, 800),
@@ -125,7 +124,7 @@ Map<String, List<PicData>> quotes = {
                          new PicData(picBox, "other6", "", "", "", "https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-prn2/t1/1794540_747496835261222_1367503856_n.jpg ", 0.8681672025723473, -3, 0, 625, 622),
                          new PicData(picBox, "other7", "", "", "Artist : Erik Ravelo", "http://31.media.tumblr.com/37b7504461a4c9e4f889dd16e1a28fc7/tumblr_msmie1xV4g1rbl50so1_500.jpg", 1.034, 0, 0, 500, 500),
                          new PicData(picBox, "other8", "hängt vom wo man geboren ist", "", "Artist: Pawel Kuczynski", "http://bp3.uuuploads.com/satirical-art-pawel-kuczynski/satirical-art-pawel-kuczynski-7.jpg", 1.219, -156, 0, 605, 426),
-                         new PicData(picBox, "other9", "", "", "", "", 0.453, -170, 0, 1800, 1220),
+                         new PicData(picBox, "other9", "", "", "muraglia cinese", "http://dallacity.finanza.com/files/2010/10/000003732362-cina-muraglia-cinese.jpg", 0.452, -170, 0, 1800, 1220),
                          new PicData(picBox, "other10", "", "", "senzatetto", "http://www.csindy.com/binary/9c46/1272324293-mother_and_baby_by_johnmccabe.jpg", 1.475, -135, 0, 466, 345),
                          new PicData(picBox, "other11", "", "citazione dal libro", "1984", "http://www.penguin.com.au/jpg-large/9780141036144.jpg", 0.415065334358186, 0, -93, 1301, 2124),
                          new PicData(picBox, "other12", "", "", "felixbaumgartner", "http://totallycoolpix.com/wp-content/uploads/2012/10/felixbaumgartner1.jpg", 1.167, 0, 0, 634, 436),

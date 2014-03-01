@@ -164,6 +164,7 @@ iconClick(MouseEvent e){
   curIndex = int.parse(curIcon.id.replaceAll('icon-${iDs[curFace]}-',''));
   if (iDs[curFace] == 'universe'){
     querySelector('#tv').classes.add('tvOff');
+    picData = quotes[iDs[curFace]][0];
   } else {
     picData = quotes[iDs[curFace]][curIndex];
     dbgIcon(iDs[curFace], curIndex);
@@ -273,8 +274,8 @@ showPic(show){
   if (show){
     if (picData != null){
       picData.updateViewer();
-    } else if (iDs[curFace] == 'universe'){ // set category pic;
-      picBox.style.backgroundImage = null;
+//    } else if (iDs[curFace] == 'universe'){ // set category pic;
+//      picBox.style.backgroundImage = null;
     } else { // set category pic;
       picBox
       ..style.backgroundImage = 'url(img/${iDs[curFace]}.png)'

@@ -293,14 +293,10 @@ is:{
 "^":"Ue;"},
 Q:{
 "^":"List/Gv;",
-h:function(a,b){if(!!a.fixed$length)H.vh(P.f("add"))
-a.push(b)},
 Rz:function(a,b){var z
 if(!!a.fixed$length)H.vh(P.f("remove"))
 for(z=0;z<a.length;++z)if(J.TS(a[z],b)){a.splice(z,1)
 return!0}return!1},
-FV:function(a,b){var z
-for(z=J.GP(b);z.G();)this.h(a,z.gl())},
 aN:function(a,b){return H.bQ(a,b)},
 zV:function(a,b){var z,y,x,w
 z=a.length
@@ -315,6 +311,8 @@ D6:function(a,b,c){if(b<0||b>a.length)throw H.b(P.TE(b,0,a.length))
 if(c<b||c>a.length)throw H.b(P.TE(c,b,a.length))
 if(b===c)return H.VM([],[H.Kp(a,0)])
 return H.VM(a.slice(b,c),[H.Kp(a,0)])},
+XU:function(a,b,c){return H.Ri(a,b,c,a.length)},
+u8:function(a,b){return this.XU(a,b,0)},
 bu:function(a){return H.mx(a,"[","]")},
 tt:function(a,b){var z
 if(b)return H.VM(a.slice(),[H.Kp(a,0)])
@@ -351,7 +349,6 @@ yu:function(a){var z
 if(a>=-2147483648&&a<=2147483647)return a|0
 if(isFinite(a)){z=a<0?Math.ceil(a):Math.floor(a)
 return z+0}throw H.b(P.f(''+a))},
-HG:function(a){return this.yu(this.UD(a))},
 UD:function(a){if(a<0)return-Math.round(-a)
 else return Math.round(a)},
 Sy:function(a,b){var z,y
@@ -392,6 +389,17 @@ O:{
 j:function(a,b){if(b<0)throw H.b(P.N(b))
 if(b>=a.length)throw H.b(P.N(b))
 return a.charCodeAt(b)},
+wL:function(a,b,c){var z,y,x,w
+if(c<0||c>b.length)throw H.b(P.TE(c,0,b.length))
+z=a.length
+y=b.length
+if(c+z>y)return
+for(x=0;x<z;++x){w=c+x
+if(w<0)H.vh(P.N(w))
+if(w>=y)H.vh(P.N(w))
+w=b.charCodeAt(w)
+if(x>=z)H.vh(P.N(x))
+if(w!==a.charCodeAt(x))return}return new H.tQ(c,b,a)},
 g:function(a,b){if(typeof b!=="string")throw H.b(new P.AT(b))
 return a+b},
 h8:function(a,b,c){return H.ys(a,b,c)},
@@ -429,7 +437,6 @@ if(v===32||v===13||J.Ga(v));else break}else u=y
 if(w===0&&u===y)return z
 return z.substring(w,u)},
 U:function(a,b){var z,y
-if(typeof b!=="number")return H.s(b)
 if(0>=b)return""
 if(b===1||a.length===0)return a
 if(b!==b>>>0)throw H.b(C.Eq)
@@ -437,8 +444,13 @@ for(z=a,y="";!0;){if((b&1)===1)y=z+y
 b=b>>>1
 if(b===0)break
 z+=z}return y},
-XU:function(a,b,c){if(c<0||c>a.length)throw H.b(P.TE(c,0,a.length))
-return a.indexOf(b,c)},
+XU:function(a,b,c){var z,y,x
+if(b==null)H.vh(new P.AT(null))
+if(c<0||c>a.length)throw H.b(P.TE(c,0,a.length))
+if(typeof b==="string")return a.indexOf(b,c)
+for(z=a.length,y=J.rY(b),x=c;x<=z;++x)if(y.wL(b,a,x)!=null)return x
+return-1},
+u8:function(a,b){return this.XU(a,b,0)},
 Is:function(a,b,c){if(c>a.length)throw H.b(P.TE(c,0,a.length))
 return H.m2(a,b,c)},
 gl0:function(a){return a.length===0},
@@ -624,7 +636,7 @@ w=function (e) { H.Mg(z, e); }
 $.jk().onmessage=w
 $.jk().dartPrint = function (object) {}}}},
 aX:{
-"^":"a;jO,A4,fW,En<,EE<,Qy,UF,C9,lJ",
+"^":"a;jO,Gx,fW,En<,EE<,Qy,UF,C9,lJ",
 v8:function(a,b){if(!this.Qy.n(0,a))return
 if(this.lJ.h(0,b)&&!this.UF)this.UF=!0
 this.PC()},
@@ -651,12 +663,12 @@ $=this.En
 y=null
 try{y=a.call$0()}finally{init.globalState.N0=z
 if(z!=null)$=z.gEn()}return y},
-Zt:function(a){return this.A4.t(0,a)},
-aU:function(a,b){var z=this.A4
+Zt:function(a){return this.Gx.t(0,a)},
+aU:function(a,b){var z=this.Gx
 if(z.x4(a))throw H.b(P.FM("Registry: ports must be registered only once."))
 z.u(0,a,b)},
 PC:function(){var z,y
-z=this.A4.X5-this.fW.X5>0||this.UF
+z=this.Gx.X5-this.fW.X5>0||this.UF
 y=this.jO
 if(z)init.globalState.i2.u(0,y,this)
 else init.globalState.i2.Rz(0,y)}},
@@ -676,7 +688,7 @@ z.av=(y+1&w-1)>>>0
 return v},
 xB:function(){var z,y,x
 z=this.Jc()
-if(z==null){if(init.globalState.yc!=null&&init.globalState.i2.x4(init.globalState.yc.jO)&&init.globalState.Ai===!0&&init.globalState.yc.A4.X5===0)H.vh(P.FM("Program exited with open ReceivePorts."))
+if(z==null){if(init.globalState.yc!=null&&init.globalState.i2.x4(init.globalState.yc.jO)&&init.globalState.Ai===!0&&init.globalState.yc.Gx.X5===0)H.vh(P.FM("Program exited with open ReceivePorts."))
 y=init.globalState
 if(y.EF===!0&&y.i2.X5===0&&y.Xz.GL===0){y=y.rj
 x=H.Gy(H.B7(["command","close"],P.L5(null,null,null,null,null)))
@@ -913,7 +925,7 @@ case"list":return this.Dj(a)
 case"map":return this.tv(a)
 case"sendport":return this.Vf(a)
 case"capability":return this.CU(a)
-default:return this.PR(a)}},
+default:return this.fp(a)}},
 Dj:function(a){var z,y,x,w,v
 z=J.U6(a)
 y=z.t(a,1)
@@ -939,7 +951,7 @@ t=J.U6(v)
 s=0
 for(;s<u;++s)z.u(0,this.XE(y.t(w,s)),this.XE(t.t(v,s)))
 return z},
-PR:function(a){throw H.b("Unexpected serialized object")}},
+fp:function(a){throw H.b("Unexpected serialized object")}},
 yH:{
 "^":"a;Kf,zu,p9",
 Qa:function(a,b){var z,y
@@ -984,7 +996,7 @@ return z==null?y==null:z===y}return!1},
 $isku:true,
 $isXY:true}}],["_js_helper","dart:_js_helper",,H,{
 "^":"",
-wV:function(a,b){var z,y
+Gp:function(a,b){var z,y
 if(b!=null){z=b.x
 if(z!=null)return z}y=J.x(a)
 return typeof a==="object"&&a!==null&&!!y.$isXj},
@@ -1001,7 +1013,7 @@ if(z==null){z=Math.random()*0x3fffffff|0
 a.$identityHash=z}return z},
 vx:[function(a){throw H.b(P.cD(a))},"call$1","Rm",2,0,0],
 BU:function(a,b,c){var z,y
-if(c==null)c=H.Rm()
+c=H.Rm()
 z=/^\s*[+-]?((0x[a-f0-9]+)|(\d+)|([a-z0-9]+))\s*$/i.exec(a)
 if(z!=null){y=z.length
 if(2>=y)return H.e(z,2)
@@ -1012,7 +1024,7 @@ return c.call$1(a)}if(z==null)return c.call$1(a)
 return parseInt(a,10)},
 IH:function(a,b){var z,y
 if(typeof a!=="string")H.vh(new P.AT(a))
-if(b==null)b=H.Rm()
+b=H.Rm()
 if(!/^\s*[+-]?(?:Infinity|NaN|(?:\.\d+|\d+(?:\.\d*)?)(?:[eE][+-]?\d+)?)\s*$/.test(a))return b.call$1(a)
 z=parseFloat(a)
 if(isNaN(z)){y=J.rr(a)
@@ -1043,11 +1055,9 @@ for(z=new H.wi(a,a.length,0,null);z.G();){y=z.lo
 if(typeof y!=="number"||Math.floor(y)!==y)throw H.b(P.u(y))
 if(y<0)throw H.b(P.u(y))
 if(y>65535)return H.Cq(a)}return H.VK(a)},
-o2:function(a){if(a.date===void 0)a.date=new Date(a.y3)
-return a.date},
 of:function(a,b){if(a==null||typeof a==="boolean"||typeof a==="number"||typeof a==="string")throw H.b(new P.AT(a))
 return a[b]},
-aw:function(a,b,c){if(a==null||typeof a==="boolean"||typeof a==="number"||typeof a==="string")throw H.b(new P.AT(a))
+wV:function(a,b,c){if(a==null||typeof a==="boolean"||typeof a==="number"||typeof a==="string")throw H.b(new P.AT(a))
 a[b]=c},
 s:function(a){throw H.b(P.u(a))},
 e:function(a,b){if(a==null)J.q8(a)
@@ -1587,19 +1597,15 @@ wN:{
 call$2:function(a,b){return this.b(a,b)}},
 VX:{
 "^":"Tp:0;c",
-call$1:function(a){return this.c(a)}}}],["","file:///C:/Users/Rudy/Documents/GitHub/AmRand/web/amrand.dart",,D,{
+call$1:function(a){return this.c(a)}},
+tQ:{
+"^":"a;M,J9,zO",
+t:function(a,b){if(b!==0)H.vh(P.N(b))
+return this.zO}}}],["","file:///C:/Users/Rudy/Documents/GitHub/AmRand/web/amrand.dart",,D,{
 "^":"",
 Iq:[function(){var z,y,x
 if($.EU)P.JS("main: started...")
 else H.B7([],P.L5(null,null,null,null,null))
-z=document.createElement("link",null)
-y=J.RE(z)
-y.sVI(z,"import")
-y.sLU(z,"data/data.html")
-y=y.gUV(z)
-H.VM(new W.xC(0,y.uv,y.Ph,W.VF(D.G0()),y.Sg),[H.Kp(y,0)]).Zz()
-$.td=z
-document.head.appendChild(z)
 $.G4=document.querySelector(".scene")
 $.Ez=document.querySelector(".cube")
 $.Ct=document.querySelector("#viewBox")
@@ -1661,7 +1667,10 @@ else H.B7([],P.L5(null,null,null,null,null))
 z=C.IU.aM(window)
 H.VM(new W.xC(0,z.uv,z.Ph,W.VF(D.Zn()),z.Sg),[H.Kp(z,0)]).Zz()
 if($.EU)P.JS("main: window events set...")
-else H.B7([],P.L5(null,null,null,null,null))},"call$0","KW",0,0,1],
+else H.B7([],P.L5(null,null,null,null,null))
+if($.EU)P.JS("initQuote() = data load event received...")
+else H.B7([],P.L5(null,null,null,null,null))
+D.V3()},"call$0","KW",0,0,1],
 Bb:[function(a){if($.EU)P.JS("enterBtn clicked...")
 else H.B7([],P.L5(null,null,null,null,null))
 J.pP(document.querySelector("#intro")).h(0,"hidden")},function(){return D.Bb(null)},null,"call$1","call$0","ee",0,2,2,3],
@@ -1738,16 +1747,17 @@ y=$.th()
 x=$.iY
 if(x>=6)return H.e(y,x)
 if(y[x]==="universe")J.pP(document.querySelector("#tv")).h(0,"tvOff")
-else{$.q2=J.UQ($.uo.t(0,y[x]),$.OX)
+else{y=$.aw().t(0,y[x])
+x=$.OX
+if(x>>>0!==x||x>=y.length)return H.e(y,x)
+$.q2=y[x]
 y=$.th()
-x=$.iY
-if(x>=6)return H.e(y,x)
-D.CW(y[x],$.OX,null)}u="iconClick on: "+H.d(J.F8($.Ym))
+w=$.iY
+if(w>=6)return H.e(y,w)
+D.CW(y[w],x,null)}u="iconClick on: "+H.d(J.F8($.Ym))
 if($.EU)H.qw(u)
 else H.B7([],P.L5(null,null,null,null,null))},"call$1","NQ",2,0,5],
-JK:[function(a){var z,y,x,w
-if($.EU)H.qw("iconDone()")
-else H.B7([],P.L5(null,null,null,null,null))
+Mi:[function(a){var z,y,x,w
 if($.EU)H.qw("show details(true)")
 else H.B7([],P.L5(null,null,null,null,null))
 if($.EU)H.qw("showPic(true)")
@@ -1763,7 +1773,7 @@ if(x==="universe")J.BB(w.style,null)
 else{J.BB(w.style,"url(img/"+z[y]+".png)")
 J.RC(w.style,"0px 0px")
 J.uH(w.style,"cover")}}D.MS(!0)
-D.tR(!0)},"call$1","h5",2,0,4],
+D.tR(!0)},"call$1","G0",2,0,4],
 bv:[function(a){var z,y,x
 z=J.K0(document.querySelector("#iOffset"))
 $.eE=z
@@ -1835,7 +1845,7 @@ if(w>=6)return H.e(x,w)
 J.BB(y,"url(img/"+x[w]+".png)")
 J.RC(z.style,"0px 0px")
 J.uH(z.style,"cover")
-z=W.GN(document.querySelectorAll(".amRand"),null)
+z=W.vD(document.querySelectorAll(".amRand"),null)
 z.aN(z,new D.o6())
 z=document.querySelector("#vTitle")
 w=$.iX()
@@ -1846,7 +1856,7 @@ x="#"+$.th()[x]
 J.pP(document.querySelector(x)).Rz(0,"hidden")
 $.oc=$.iY
 $.Oo=$.OX}else{J.pP(z).h(0,"hidden")
-z=W.GN(document.querySelectorAll(".amRand"),null)
+z=W.vD(document.querySelectorAll(".amRand"),null)
 z.aN(z,new D.pk())
 z=$.th()
 y=$.iY
@@ -1879,11 +1889,9 @@ if(!$.Tl)return
 if(a){z=$.q2
 if(z!=null){y=$.f6
 z=z.gFy()
-z.toString
 J.Fc(y,H.ys(z,"<br>","\n"))
 z=$.O5
 y=$.q2.gQS()
-y.toString
 J.Fc(z,H.ys(y,"<br>","\n"))
 J.Fc($.il,J.JA($.q2.gqa(),"<br>","\n"))
 z=$.kG
@@ -1891,7 +1899,7 @@ y=$.q2
 J.Fc(z,y.gPj())
 z=$.b5
 x=J.RE(z)
-x.sBp(z,C.CD.Sy(y.gHF(y),3))
+x.sLU(z,C.CD.Sy(y.gHF(y),3))
 x.sA5(z,J.r0(J.N9($.q2),3))
 x.sRx(z,C.CD.Sy($.q2.gd5(),3))
 x.sP(z,J.r0(J.Xv($.q2),3))
@@ -1913,20 +1921,13 @@ J.Fc($.il,"")
 J.Fc($.kG,"")
 z=$.b5
 y=J.RE(z)
-y.sBp(z,"0.0")
+y.sLU(z,"0.0")
 y.sA5(z,"1.2")
 y.sRx(z,"1.2")
 y.sP(z,"1.0")
 z.disabled=!0
 J.zL($.zs,!0)
 J.pP($.km).h(0,"hidden")}},
-Mi:[function(a){var z
-if($.EU)P.JS("initQuote() = data load event received...")
-else H.B7([],P.L5(null,null,null,null,null))
-$.uo=P.L5(null,null,null,J.O,[J.Q,D.cJ])
-z=J.Ws($.td)
-H.bQ($.th(),new D.wc(z))
-D.V3()},"call$1","G0",2,0,4],
 V3:function(){var z,y,x,w
 if($.EU)P.JS("init()")
 else H.B7([],P.L5(null,null,null,null,null))
@@ -1937,7 +1938,7 @@ y=y[z]
 w=J.RE(x)
 w.shf(x,"<br>"+H.ys(y," ","<br>"))
 J.BB(w.gS(x),"url(img/"+$.th()[z]+".png)")}$.pi=H.VM([],[W.cv])
-H.bQ($.th(),new D.R0())
+H.bQ($.th(),new D.T7())
 $.aS=!0
 J.pP(document.querySelector("#btnEnter")).Rz(0,"hidden")
 J.pP(document.querySelector("#loading")).h(0,"hidden")
@@ -1947,7 +1948,9 @@ D.a7(null)},
 CW:function(a,b,c){var z,y
 if(c==null){z="#icon-"+H.d(a)+"-"+H.d(b)
 c=document.querySelector(z)}if(c==null)return
-if($.Tl){y=J.UQ($.uo.t(0,a),b)
+if($.Tl){z=$.aw().t(0,a)
+if(b>>>0!==b||b>=z.length)return H.e(z,b)
+y=z[b]
 if(y==null){c.textContent="EMPTY"
 J.pP(c).h(0,"empty")}else if(J.FN(y.gPj())){c.textContent="NO image"
 J.pP(c).h(0,"noPic")}else if(y.Fy.length===0){c.textContent="NO quote"
@@ -1976,7 +1979,7 @@ y=$.pi
 y.toString
 H.bQ(y,new D.nu())
 y=$.oH
-if((z==null?y!=null:z!==y)&&z!=null)$.uo.aN(0,new D.qM(z))
+if((z==null?y!=null:z!==y)&&z!=null)$.aw().aN(0,new D.qM(z))
 if($.EU)P.JS("showALL()")
 else H.B7([],P.L5(null,null,null,null,null))
 D.dj(!0)
@@ -2014,11 +2017,14 @@ z=$.th()
 y=$.iY
 if(y>=6)return H.e(z,y)
 x=z[y]+H.d($.OX)
-y=$.uo
+y=$.aw()
 z=$.th()
 w=$.iY
 if(w>=6)return H.e(z,w)
-v=J.UQ(y.t(0,z[w]),$.OX)
+w=y.t(0,z[w])
+z=$.OX
+if(z>>>0!==z||z>=w.length)return H.e(w,z)
+v=w[z]
 u=J.JA(J.Vm($.f6),"\n","<br>")
 t=J.JA(J.Vm($.O5),"\n","<br>")
 s=J.JA(J.Vm($.il),"\n","<br>")
@@ -2029,32 +2035,42 @@ v.QS=t
 v.qa=s
 v.sPj(r)
 v.sQI(0,q)
-v.KS()}else{z=$.uo
+v.KS()}else{z=$.aw()
 y=$.th()
 w=$.iY
 if(w>=6)return H.e(y,w)
 w=z.t(0,y[w])
 y=$.OX
-v=new D.cJ(x,u,t,s,"",0,0,q,0,1,null,null,null,$.EG,1,!1)
+v=new L.cJ(x,u,t,s,"",0,0,q,0,1,null,null,null,$.EG,1,!1)
 v.sPj(r)
-J.kW(w,y,v)}z=$.th()
+if(y>>>0!==y||y>=w.length)return H.e(w,y)
+w[y]=v}z=$.th()
 y=$.iY
 if(y>=6)return H.e(z,y)
 D.CW(z[y],$.OX,null)
 D.MS(!0)},function(){return D.pn(null)},null,"call$1","call$0","QR",0,2,2,3],
-Nq:function(){var z,y,x
+Nq:function(){var z,y,x,w,v
 z={}
-y=new P.iP(Date.now(),!1)
-y.EK()
-z.a="<!DOCTYPE html>\n<html>\n  <head>\n   <meta charset=\"utf-8\">\n   <title>data of "+H.d(y.FQ())+"</title>\n </head>\n <body>"
-$.uo.aN(0,new D.Sy(z))
-x=z.a+"\n </body>\n </html>"
-z.a=x
-return x},
+z.b="/* ==== generated data file ==== */"
+y="/* ==== generated data file ==== */"+"\n\npart of picData;"
+z.b=y
+y+="\n\nElement picBox;"
+z.b=y
+z.b=y+"\n\nMap<String, List<PicData>> quotes = {"
+$.aw().aN(0,new D.Sy(z))
+x=z.b
+w=x.length
+v=w-1
+if(v<0)return H.e(x,v)
+if(x[v]===","){y=C.xB.Nj(x,0,v)
+z.b=y
+x=y}y=x+"\n };"
+z.b=y
+return y},
 bO:[function(a){var z,y
 z=W.J6((self.URL||self.webkitURL).createObjectURL(W.DA([D.Nq()],"text/plain",null)))
 z.textContent="Download me"
-J.RE(z).sa5(z,"data(last).html")
+J.RE(z).sa5(z,"pic_data_data.dart")
 y=C.xn.gVl(z)
 H.VM(new W.xC(0,y.uv,y.Ph,W.VF(new D.vm(z)),y.Sg),[H.Kp(y,0)]).Zz()
 document.body.appendChild(z)
@@ -2066,7 +2082,10 @@ v=$.iY
 if(v>=6)return H.e(w,v)
 z=w[v]
 y=$.iX()[v]
-try{x=J.UQ($.uo.t(0,w[v]),$.OX)
+try{w=$.aw().t(0,w[v])
+v=$.OX
+if(v>>>0!==v||v>=w.length)return H.e(w,v)
+x=w[v]
 if(J.pO(x.gqa())){z=J.DE(z,"+"+J.JA(x.gqa()," ","+"))
 y=J.DE(y,"+"+J.JA(x.gqa()," ","+"))}}catch(u){H.Ru(u)}t="https://www.google.ch/search?q=zitat+\u00c3\u00bcber+"+H.d(y)
 C.ol.EP(window,t,"quotes")
@@ -2078,28 +2097,7 @@ call$1:function(a){J.pP(a).Rz(0,"hidden")}},
 pk:{
 "^":"Tp:4;",
 call$1:function(a){J.pP(a).h(0,"hidden")}},
-wc:{
-"^":"Tp:4;a",
-call$1:function(a){var z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k
-if(!J.TS(a,"universe")){z=J.RV(this.a).querySelector("#d-"+H.d(a))
-y=Array(37)
-y.fixed$length=init
-x=H.VM(y,[D.cJ])
-for(y=z!=null,w=1;w<=36;++w){v=H.d(a)+w
-if(y){u=z.querySelector("#"+v)
-if(u!=null){t=J.xR(u.querySelector(".quote"))
-s=J.xR(u.querySelector(".author"))
-r=J.xR(u.querySelector(".info"))
-q=u.querySelector(".link").textContent
-p=P.C1(u.querySelector(".posX").textContent,null)
-o=P.C1(u.querySelector(".posY").textContent,null)
-n=H.IH(u.querySelector(".zoom").textContent,null)
-m=u.querySelector(".oWidth")!=null?P.C1(u.querySelector(".oWidth").textContent,null):null
-l=u.querySelector(".oHeight")!=null?P.C1(u.querySelector(".oHeight").textContent,null):null
-k=new D.cJ(v,t,s,r,"",p,o,n,0,1,m,l,null,$.EG,1,!1)
-k.sPj(q)
-x[w]=k}}$.uo.u(0,a,x)}}}},
-R0:{
+T7:{
 "^":"Tp:4;",
 call$1:function(a){var z,y,x,w,v,u,t,s,r,q,p,o
 z=document.createElement("div",null)
@@ -2107,7 +2105,7 @@ z.id=a
 J.pP(z).FV(0,["catBox","hidden"])
 $.Ct.appendChild(z)
 $.pi.push(z)
-for(y=1,x=0;x<4;++x){w=(x&1)===0
+for(y=0,x=0;x<4;++x){w=(x&1)===0
 v=1
 while(!0){if(!(v<=(w?8:6)))break
 u=document.createElement("div",null)
@@ -2118,7 +2116,7 @@ t.gDD(u).FV(0,["icon","side"+x,a])
 s=C.hi.xh(u)
 r=s.Ph
 q=s.Sg
-p=new W.xC(0,s.uv,r,W.VF(D.h5()),q)
+p=new W.xC(0,s.uv,r,W.VF(D.G0()),q)
 p.$builtinTypeInfo=[H.Kp(s,0)]
 s=p.u7
 if(s!=null&&p.VP<=0)J.qV(p.uv,r,s,q)
@@ -2179,113 +2177,32 @@ if(typeof z!=="number")return z.V()
 if(typeof y!=="number")return H.s(y)
 a.sOp(z/y)}}},
 Sy:{
-"^":"Tp:13;a",
-call$2:function(a,b){var z=this.a
-z.a=z.a+("\n      <div id=\"d-"+H.d(a)+"\">")
-if(b!=null)J.kH(b,new D.yi(z))
-z.a=z.a+"\n      </div>"}},
+"^":"Tp:13;b",
+call$2:function(a,b){var z,y,x,w,v,u,t
+z={}
+z.a=""
+if(b!=null){y=this.b
+y.b=y.b+("\n               \""+H.d(a)+"\" : [")
+J.kH(b,new D.yi(z,a,b))
+x=z.a
+w=x.length
+v=w-1
+if(v<0)return H.e(x,v)
+if(x[v]===","){u=C.xB.Nj(x,0,v)
+z.a=u
+z=u}else z=x
+t=y.b+z
+y.b=t
+y.b=t+"\n                         ],"}}},
 yi:{
-"^":"Tp:4;a",
+"^":"Tp:4;a,c,d",
 call$1:function(a){var z
-if(a!=null){z=this.a
-z.a=z.a+a.gEa()}}},
+J.to(a,H.d(this.c)+J.UU(this.d,a))
+z=this.a
+z.a=z.a+("\n                         "+a.gW5()+",")}},
 vm:{
 "^":"Tp:4;a",
-call$1:function(a){return J.Mp(this.a)}},
-cJ:{
-"^":"a;jO,Fy@,QS<,qa<,v3,pQ,G9,kO,pt,j7,QJ,bk,aD,eH,aX,xF",
-sQI:function(a,b){var z=this.aX
-if(typeof b!=="number")return b.V()
-this.kO=b/z
-this.KS()},
-gQI:function(a){return J.vX(this.kO,this.aX)},
-sOp:function(a){this.aX=a*this.aX},
-sPj:function(a){var z,y
-this.v3=a
-if(J.pO(a)){z=this.v3
-y=document.createElement("img",null)
-if(z!=null)J.Yj(y,z)
-this.aD=y
-z=J.wK(y)
-H.VM(new W.xC(0,z.uv,z.Ph,W.VF(this.gfb()),z.Sg),[H.Kp(z,0)]).Zz()}},
-gPj:function(){return this.v3},
-gHF:function(a){return(this.pt-0.05)*this.aX},
-gpC:function(a){return(this.j7+0.05)*this.aX},
-gd5:function(){return(this.j7-this.pt)/50*this.aX},
-AT:[function(a){var z,y,x,w,v,u
-z=this.aD
-if(z==null)return
-y=J.Q6(z)
-this.QJ=y
-z=z.naturalHeight
-this.bk=z
-this.xF=!0
-x=this.eH
-w=x.clientWidth
-x=x.clientHeight
-if(typeof w!=="number")return w.F()
-if(typeof x!=="number")return H.s(x)
-if(w>=x)v=x
-else v=w
-this.aX=1
-if(typeof y!=="number")return y.D()
-if(typeof z!=="number")return H.s(z)
-u=y>z?this.bk:this.QJ
-if(J.xZ(u,v)){if(J.xZ(this.QJ,this.bk)){z=this.bk
-if(typeof z!=="number")return H.s(z)
-z=v/z}else{z=this.QJ
-if(typeof z!=="number")return H.s(z)
-z=v/z}this.pt=z
-this.j7=1.2}else{if(J.xZ(this.QJ,this.bk)){z=this.bk
-if(typeof z!=="number")return H.s(z)
-z=v/z}else{z=this.QJ
-if(typeof z!=="number")return H.s(z)
-z=v/z}this.j7=z
-if(typeof u!=="number")return u.V()
-this.pt=u/v}this.Nb()},"call$1","gfb",2,0,4],
-XQ:function(a,b){this.pQ=J.DE(this.pQ,C.CD.yu(C.CD.UD(a/this.aX)))
-this.G9=J.DE(this.G9,C.CD.yu(C.CD.UD(b/this.aX)))
-this.KS()},
-Nb:function(){var z,y,x,w,v
-z=this.eH
-if(z!=null&&this.xF){if(J.u6(this.kO,this.pt))this.kO=this.pt
-if(J.xZ(this.kO,this.j7))this.kO=this.j7
-y=z.clientWidth
-x=J.vX(this.QJ,this.kO)
-if(typeof y!=="number")return y.W()
-if(typeof x!=="number")return H.s(x)
-w=C.CD.yu(C.CD.UD(y-x))
-this.pQ=J.u6(this.pQ,w)?w:this.pQ
-z=z.clientHeight
-y=J.vX(this.bk,this.kO)
-if(typeof z!=="number")return z.W()
-if(typeof y!=="number")return H.s(y)
-v=C.CD.yu(C.CD.UD(z-y))
-this.G9=J.u6(this.G9,v)?v:this.G9
-this.pQ=J.xZ(this.pQ,0)?0:this.pQ
-this.G9=J.xZ(this.G9,0)?0:this.G9}},
-KS:function(){var z,y,x,w,v
-z=this.eH
-if(z!=null&&this.xF){this.Nb()
-y=J.LL(J.vX(J.vX(this.QJ,this.kO),this.aX))
-x=J.LL(J.vX(J.vX(this.bk,this.kO),this.aX))
-w=J.LL(J.vX(this.pQ,this.aX))
-v=J.LL(J.vX(this.G9,this.aX))
-J.BB(z.style,"url("+H.d(this.v3)+")")
-J.uH(z.style,""+y+"px "+x+"px")
-J.RC(z.style,""+w+"px "+v+"px")}},
-gjv:function(){return H.d(this.Fy)+"<div class=\"qAuthor\"><hr>"+H.d(this.QS)+"</div><hr><div class=\"qInfo\">"+H.d(this.qa)+"</div>"},
-gEa:function(){var z,y
-z=""+("\n        <div id=\""+this.jO+"\">")+("\n          <div class=\"quote\">"+H.d(this.Fy)+"</div>")+("\n          <div class=\"author\">"+H.d(this.QS)+"</div>")+("\n          <div class=\"info\">"+H.d(this.qa)+"</div>")+"\n          <div class=\"picInfo\">"+("\n            <div class=\"link\">"+H.d(this.v3)+"</div>")
-y=this.QJ
-if(y!=null&&this.bk!=null)z=z+("\n            <div class=\"oWidth\">"+J.r0(y,0)+"</div>")+("\n            <div class=\"oHeight\">"+J.r0(this.bk,0)+"</div>")
-return z+("\n            <div class=\"posX\">"+J.r0(this.pQ,0)+"</div>")+("\n            <div class=\"posY\">"+J.r0(this.G9,0)+"</div>")+("\n            <div class=\"zoom\">"+J.r0(this.kO,3)+"</div>")+"\n          </div>"+"\n        </div>"},
-gIY:function(){return H.d(this.pQ)+", "+H.d(this.G9)+" | z: "+J.r0(this.kO,3)+" (f: "+C.CD.Sy(this.aX,3)+")"}},
-ZS:{
-"^":"Tp:4;a",
-call$1:function(a){var z=H.d(this.a.v3)+" FAILED: "+H.d(a)
-if($.EU)P.JS(z)
-else H.B7([],P.L5(null,null,null,null,null))}}},1],["dart._internal","dart:_internal",,H,{
+call$1:function(a){return J.Mp(this.a)}}},1],["dart._internal","dart:_internal",,H,{
 "^":"",
 bQ:function(a,b){var z
 for(z=new H.wi(a,a.length,0,null);z.G();)b.call$1(z.lo)},
@@ -2313,7 +2230,11 @@ tb:function(a,b,c,d,e){var z,y,x
 if(b<d)for(z=b+e-1,y=d+e-1;z>=b;--z,--y){if(z<0||z>=a.length)return H.e(a,z)
 C.Nm.u(c,y,a[z])}else for(x=b+e,y=d,z=b;z<x;++z,++y){if(z<0||z>=a.length)return H.e(a,z)
 C.Nm.u(c,y,a[z])}},
-AM:function(a){return a.gfN()},
+Ri:function(a,b,c,d){var z
+if(c>=a.length)return-1
+for(z=c;z<d;++z){if(z>=a.length)return H.e(a,z)
+if(J.TS(a[z],b))return z}return-1},
+Fv:function(a){return a.gfN()},
 aL:{
 "^":"mW;",
 gA:function(a){return new H.wi(this,this.gB(this),0,null)},
@@ -2355,17 +2276,17 @@ xy:{
 $isqC:true},
 MH:{
 "^":"An;lo,OI,T6",
-ja:function(a){return this.T6.call$1(a)},
+mb:function(a){return this.T6.call$1(a)},
 G:function(){var z=this.OI
-if(z.G()){this.lo=this.ja(z.gl())
+if(z.G()){this.lo=this.mb(z.gl())
 return!0}this.lo=null
 return!1},
 gl:function(){return this.lo}},
 A8:{
 "^":"aL;CR,T6",
-ja:function(a){return this.T6.call$1(a)},
+mb:function(a){return this.T6.call$1(a)},
 gB:function(a){return J.q8(this.CR)},
-Zv:function(a,b){return this.ja(J.i4(this.CR,b))},
+Zv:function(a,b){return this.mb(J.i4(this.CR,b))},
 $asaL:function(a,b){return[b]},
 $asmW:function(a,b){return[b]},
 $isqC:true},
@@ -2376,14 +2297,13 @@ z.$builtinTypeInfo=this.$builtinTypeInfo
 return z}},
 SO:{
 "^":"An;OI,T6",
-ja:function(a){return this.T6.call$1(a)},
-G:function(){for(var z=this.OI;z.G();)if(this.ja(z.gl())===!0)return!0
+mb:function(a){return this.T6.call$1(a)},
+G:function(){for(var z=this.OI;z.G();)if(this.mb(z.gl())===!0)return!0
 return!1},
 gl:function(){return this.OI.gl()}},
 SU:{
 "^":"a;",
 sB:function(a,b){throw H.b(P.f("Cannot change the length of a fixed-length list"))},
-FV:function(a,b){throw H.b(P.f("Cannot add to a fixed-length list"))},
 Rz:function(a,b){throw H.b(P.f("Cannot remove from a fixed-length list"))}}}],["dart._js_names","dart:_js_names",,H,{
 "^":"",
 kU:function(a){var z=H.VM((function(victim, hasOwnProperty) {
@@ -2410,7 +2330,7 @@ try{P.Cx()}catch(z){H.Ru(z)
 P.jL(C.RT,P.qZ())
 $.S6=$.S6.aw
 throw z}},"call$0","qZ",0,0,1],
-eW:function(a){var z,y
+IA:function(a){var z,y
 z=$.k8
 if(z==null){z=new P.OM(a,null)
 $.k8=z
@@ -2445,12 +2365,12 @@ if($.X3===c)return d.call$1(e)
 z=P.PJ(c)
 try{y=d.call$1(e)
 return y}finally{$.X3=z}},
-Mu:function(a,b,c,d,e,f){var z,y
+Qx:function(a,b,c,d,e,f){var z,y
 if($.X3===c)return d.call$2(e,f)
 z=P.PJ(c)
 try{y=d.call$2(e,f)
 return y}finally{$.X3=z}},
-Tk:function(a,b,c,d){P.eW(C.NU!==c?c.ce(d):d)},
+Tk:function(a,b,c,d){P.IA(C.NU!==c?c.ce(d):d)},
 h8:function(a,b,c,d,e){return P.jL(d,C.NU!==c?c.ce(e):e)},
 Ca:{
 "^":"a;kc>,I4<",
@@ -2622,7 +2542,7 @@ m=this.b
 if(q){r=J.w8(z)
 q=z.gI4()
 p.toString
-m.c=P.Mu(p,null,p,u,r,q)}else{r=J.w8(z)
+m.c=P.Qx(p,null,p,u,r,q)}else{r=J.w8(z)
 p.toString
 m.c=P.V7(p,null,p,u,r)}}catch(o){r=H.Ru(o)
 t=r
@@ -2758,7 +2678,7 @@ Hs:{
 call$1:function(a){return this.c.FI(this.d,a)}},
 pK:{
 "^":"Tp:12;a,b",
-call$0:function(){P.eW(new P.eM(this.a,this.b))}},
+call$0:function(){P.IA(new P.eM(this.a,this.b))}},
 eM:{
 "^":"Tp:12;c,d",
 call$0:function(){var z,y,x
@@ -3337,11 +3257,6 @@ for(y=0;y<this.gB(a);++y){x=this.t(a,y)
 if(y>=z.length)return H.e(z,y)
 z[y]=x}return z},
 br:function(a){return this.tt(a,!0)},
-FV:function(a,b){var z,y,x
-for(z=J.GP(b);z.G();){y=z.gl()
-x=this.gB(a)
-this.sB(a,x+1)
-this.u(a,x,y)}},
 Rz:function(a,b){var z
 for(z=0;z<this.gB(a);++z)if(J.TS(this.t(a,z),b)){this.YW(a,z,this.gB(a)-1,a,z+1)
 this.sB(a,this.gB(a)-1)
@@ -3355,6 +3270,11 @@ y=J.U6(d)
 if(e+z>y.gB(d))throw H.b(P.w("Not enough elements"))
 if(e<b)for(x=z-1;x>=0;--x)this.u(a,b+x,y.t(d,e+x))
 else for(x=0;x<z;++x)this.u(a,b+x,y.t(d,e+x))},
+XU:function(a,b,c){var z
+if(c>=this.gB(a))return-1
+for(z=c;z<this.gB(a);++z)if(J.TS(this.t(a,z),b))return z
+return-1},
+u8:function(a,b){return this.XU(a,b,0)},
 bu:function(a){var z
 if($.xb().tg(0,a))return"[...]"
 z=P.p9("")
@@ -3459,7 +3379,7 @@ this.fD=z[y]
 this.Dc=(y+1&x-1)>>>0
 return!0}}}],["dart.core","dart:core",,P,{
 "^":"",
-Hp:function(a){return H.AM(a)},
+Hp:function(a){return H.Fv(a)},
 hl:function(a){var z,y,x,w,v,u
 if(typeof a==="number"||typeof a==="boolean"||null==a)return J.AG(a)
 if(typeof a==="string"){z=new P.Rn("")
@@ -3497,14 +3417,6 @@ for(y=J.GP(a);y.G();)z.push(y.gl())
 if(b)return z
 z.fixed$length=init
 return z},
-C1:function(a,b){var z,y
-z=J.rr(a)
-y=H.BU(z,null,P.ce())
-if(y!=null)return y
-y=H.IH(z,P.ce())
-if(y!=null)return y
-throw H.b(P.cD(a))},
-vF:[function(a){return},"call$1","ce",2,0,4],
 JS:function(a){var z=H.d(a)
 H.qw(z)},
 CL:{
@@ -3512,49 +3424,12 @@ CL:{
 call$2:function(a,b){var z=this.a
 if(z.b>0)z.a.KF(", ")
 z.a.KF(P.Hp(a))}},
-iP:{
-"^":"a;y3,aL",
-n:function(a,b){var z
-if(b==null)return!1
-z=J.x(b)
-if(typeof b!=="object"||b===null||!z.$isiP)return!1
-return this.y3===b.y3&&this.aL===b.aL},
-giO:function(a){return this.y3},
-FQ:function(){if(this.aL)return P.Wu(this.y3,!1)
-return this},
-bu:function(a){var z,y,x,w,v,u,t,s
-z=this.aL
-y=P.Gq(z?H.o2(this).getUTCFullYear()+0:H.o2(this).getFullYear()+0)
-x=P.h0(z?H.o2(this).getUTCMonth()+1:H.o2(this).getMonth()+1)
-w=P.h0(z?H.o2(this).getUTCDate()+0:H.o2(this).getDate()+0)
-v=P.h0(z?H.o2(this).getUTCHours()+0:H.o2(this).getHours()+0)
-u=P.h0(z?H.o2(this).getUTCMinutes()+0:H.o2(this).getMinutes()+0)
-t=P.h0(z?H.o2(this).getUTCSeconds()+0:H.o2(this).getSeconds()+0)
-s=P.Vx(z?H.o2(this).getUTCMilliseconds()+0:H.o2(this).getMilliseconds()+0)
-if(z)return y+"-"+x+"-"+w+" "+v+":"+u+":"+t+"."+s+"Z"
-else return y+"-"+x+"-"+w+" "+v+":"+u+":"+t+"."+s},
-RM:function(a,b){if(Math.abs(a)>8640000000000000)throw H.b(new P.AT(a))},
-EK:function(){H.o2(this)},
-$isiP:true,
-static:{"^":"Oj,Vp,df,p2,ch,QC,Px,DU,kc,Gi,k3,cR,E0,Ke,lT,Nr,bm,o4,Kz,ek,yf,Fk",Wu:function(a,b){var z=new P.iP(a,b)
-z.RM(a,b)
-return z},Gq:function(a){var z,y
-z=Math.abs(a)
-y=a<0?"-":""
-if(z>=1000)return""+a
-if(z>=100)return y+"0"+H.d(z)
-if(z>=10)return y+"00"+H.d(z)
-return y+"000"+H.d(z)},Vx:function(a){if(a>=100)return""+a
-if(a>=10)return"0"+a
-return"00"+a},h0:function(a){if(a>=10)return""+a
-return"0"+a}}},
 a6:{
-"^":"a;Fq<",
+"^":"a;Fq",
 g:function(a,b){return P.k5(0,0,C.jn.g(this.Fq,b.gFq()),0,0,0)},
-U:function(a,b){if(typeof b!=="number")return H.s(b)
-return P.k5(0,0,C.CD.yu(C.CD.UD(this.Fq*b)),0,0,0)},
+U:function(a,b){return P.k5(0,0,C.CD.yu(C.CD.UD(this.Fq*b)),0,0,0)},
 C:function(a,b){return C.jn.C(this.Fq,b.gFq())},
-D:function(a,b){return this.Fq>b.gFq()},
+D:function(a,b){return C.jn.D(this.Fq,b.gFq())},
 F:function(a,b){return C.jn.F(this.Fq,b.gFq())},
 n:function(a,b){var z
 if(b==null)return!1
@@ -3651,13 +3526,13 @@ t:function(a,b){var z=H.of(b,"expando$values")
 return z==null?null:H.of(z,this.J4())},
 u:function(a,b,c){var z=H.of(b,"expando$values")
 if(z==null){z=new P.a()
-H.aw(b,"expando$values",z)}H.aw(z,this.J4(),c)},
+H.wV(b,"expando$values",z)}H.wV(z,this.J4(),c)},
 J4:function(){var z,y
 z=H.of(this,"expando$key")
 if(z==null){y=$.Ss
 $.Ss=y+1
 z="expando$key$"+y
-H.aw(this,"expando$key",z)}return z},
+H.wV(this,"expando$key",z)}return z},
 static:{"^":"bZ,rt,Ss"}},
 An:{
 "^":"a;"},
@@ -3696,7 +3571,7 @@ wv:{
 "^":"a;"}}],["dart.dom.html","dart:html",,W,{
 "^":"",
 J6:function(a){var z=document.createElement("a",null)
-if(a!=null)J.jz(z,a)
+if(a!=null)J.FQ(z,a)
 return z},
 DA:function(a,b,c){var z={}
 z.type=b
@@ -3710,7 +3585,6 @@ return y.gr8(y)},
 Fz:[function(a){if(P.F7()===!0)return"webkitTransitionEnd"
 else if(P.dg()===!0)return"oTransitionEnd"
 return"transitionend"},"call$1","ZK",2,0,10],
-r3:function(a,b){return document.createElement(a)},
 uC:function(a){var z,y,x
 try{z=a
 y=J.x(z)
@@ -3732,15 +3606,15 @@ qE:{
 "^":"cv;",
 "%":"HTMLAppletElement|HTMLBRElement|HTMLCanvasElement|HTMLContentElement|HTMLDListElement|HTMLDataListElement|HTMLDetailsElement|HTMLDialogElement|HTMLDirectoryElement|HTMLDivElement|HTMLFontElement|HTMLFrameElement|HTMLHRElement|HTMLHeadElement|HTMLHeadingElement|HTMLHtmlElement|HTMLLabelElement|HTMLLegendElement|HTMLMarqueeElement|HTMLMenuElement|HTMLModElement|HTMLOListElement|HTMLParagraphElement|HTMLPreElement|HTMLQuoteElement|HTMLShadowElement|HTMLSpanElement|HTMLTableCaptionElement|HTMLTableCellElement|HTMLTableColElement|HTMLTableDataCellElement|HTMLTableHeaderCellElement|HTMLTitleElement|HTMLUListElement|HTMLUnknownElement;HTMLElement"},
 Gh:{
-"^":"qE;a5:download},VI:rel},y0:hostname=,LU:href},tp:port=,A8:protocol=",
+"^":"qE;a5:download},y0:hostname=,mH:href},tp:port=,A8:protocol=",
 bu:function(a){return a.toString()},
 "%":"HTMLAnchorElement"},
 fY:{
-"^":"qE;y0:hostname=,LU:href},tp:port=,A8:protocol=",
+"^":"qE;y0:hostname=,mH:href},tp:port=,A8:protocol=",
 bu:function(a){return a.toString()},
 "%":"HTMLAreaElement"},
 nB:{
-"^":"qE;LU:href}",
+"^":"qE;mH:href}",
 "%":"HTMLBaseElement"},
 QP:{
 "^":"qE;",
@@ -3765,37 +3639,30 @@ if(!!a.setAttribute)a.setAttribute(b,c)}catch(z){H.Ru(z)}},
 "%":"CSS2Properties|CSSStyleDeclaration|MSStyleCSSProperties"},
 QF:{
 "^":"KV;",
-Md:function(a,b){return W.GN(a.querySelectorAll(b),null)},
-"%":"SVGDocument;Document"},
+Md:function(a,b){return W.vD(a.querySelectorAll(b),null)},
+"%":"Document|HTMLDocument|SVGDocument"},
 hs:{
 "^":"KV;",
-gwd:function(a){if(a._docChildren==null)a._docChildren=H.VM(new P.D7(a,new W.e7(a)),[null])
-return a._docChildren},
-Md:function(a,b){return W.GN(a.querySelectorAll(b),null)},
-ghf:function(a){var z,y
-z=W.r3("div",null)
-y=J.RE(z)
-y.jx(z,this.Yv(a,!0))
-return y.ghf(z)},
+Md:function(a,b){return W.vD(a.querySelectorAll(b),null)},
 shf:function(a,b){a.textContent=""
 a.appendChild(J.kp(document.body,b,null,null))},
 "%":";DocumentFragment"},
-BK:{
+Nh:{
 "^":"Gv;",
 bu:function(a){return a.toString()},
 "%":"DOMException"},
 cv:{
-"^":"KV;xr:className%,jO:id=,S:style=",
+"^":"KV;xr:className%,jO:id%,S:style=",
 gQg:function(a){return new W.i7(a)},
 gwd:function(a){return new W.VG(a,a.children)},
-Md:function(a,b){return W.GN(a.querySelectorAll(b),null)},
+Md:function(a,b){return W.vD(a.querySelectorAll(b),null)},
 gDD:function(a){return new W.I4(a)},
-gD7:function(a){return P.T7(a.offsetLeft,a.offsetTop,a.offsetWidth,a.offsetHeight,null)},
+gD7:function(a){return P.Ci(a.offsetLeft,a.offsetTop,a.offsetWidth,a.offsetHeight,null)},
 bu:function(a){return a.localName},
 r6:function(a,b,c,d){var z,y,x,w,v
 if(c==null){z=$.lt
 if(z==null){z=H.VM([],[W.kF])
-y=new W.vD(z)
+y=new W.zW(z)
 z.push(W.Tw(null))
 z.push(W.Bl())
 $.lt=y
@@ -3808,7 +3675,7 @@ c=z}}if($.xo==null){z=document.implementation.createHTMLDocument("")
 $.xo=z
 $.BO=z.createRange()
 x=$.xo.createElement("base",null)
-J.jz(x,document.baseURI)
+J.FQ(x,document.baseURI)
 $.xo.head.appendChild(x)}z=$.xo
 if(!!this.$isQP)w=z.body
 else{w=z.createElement(a.tagName,null)
@@ -3825,7 +3692,6 @@ shf:function(a,b){this.YC(a,b)},
 WN:function(a,b,c,d){a.textContent=null
 a.appendChild(this.r6(a,b,c,d))},
 YC:function(a,b){return this.WN(a,b,null,null)},
-ghf:function(a){return a.innerHTML},
 Zi:function(a){return a.getBoundingClientRect()},
 gi9:function(a){return C.mt.xh(a)},
 gVl:function(a){return C.T1.xh(a)},
@@ -3873,17 +3739,14 @@ $aszM:function(){return[W.KV]},
 $isqC:true,
 $isXj:true,
 "%":"HTMLCollection|HTMLFormControlsCollection|HTMLOptionsCollection"},
-ik:{
-"^":"QF;GS:body=",
-"%":"HTMLDocument"},
 tX:{
 "^":"qE;oc:name=,LA:src}",
 "%":"HTMLIFrameElement"},
 pA:{
 "^":"qE;JR:naturalWidth=,LA:src}",
 "%":"HTMLImageElement"},
-Rp:{
-"^":"qE;d4:checked%,lz:disabled},A5:max},Bp:min},oc:name=,LA:src},Rx:step},P:value%",
+JK:{
+"^":"qE;d4:checked%,lz:disabled},A5:max},LU:min},oc:name=,LA:src},Rx:step},P:value%",
 $iscv:true,
 $isD0:true,
 "%":"HTMLInputElement"},
@@ -3894,7 +3757,7 @@ wP:{
 "^":"qE;P:value%",
 "%":"HTMLLIElement"},
 Og:{
-"^":"qE;lz:disabled},LU:href},Gx:import=,VI:rel}",
+"^":"qE;lz:disabled},mH:href}",
 "%":"HTMLLinkElement"},
 u8:{
 "^":"Gv;y0:hostname=,tp:port=,A8:protocol=",
@@ -3911,7 +3774,7 @@ Ee:{
 "^":"qE;oc:name=",
 "%":"HTMLMetaElement"},
 Qb:{
-"^":"qE;A5:max},Bp:min},P:value%",
+"^":"qE;A5:max},LU:min},P:value%",
 "%":"HTMLMeterElement"},
 bn:{
 "^":"Ik;",
@@ -3952,8 +3815,6 @@ try{z=a.parentNode
 J.ky(z,b,a)}catch(y){H.Ru(y)}return a},
 bu:function(a){var z=a.nodeValue
 return z==null?J.Gv.prototype.bu.call(this,a):z},
-jx:function(a,b){return a.appendChild(b)},
-Yv:function(a,b){return a.cloneNode(b)},
 dR:function(a,b,c){return a.replaceChild(b,c)},
 "%":"DocumentType|Entity|Notation;Node"},
 BH:{
@@ -4001,8 +3862,7 @@ lp:{
 "^":"qE;lz:disabled},B:length=,oc:name=,P:value%",
 "%":"HTMLSelectElement"},
 I0:{
-"^":"hs;hf:innerHTML%",
-Yv:function(a,b){return a.cloneNode(b)},
+"^":"hs;hf:innerHTML}",
 "%":"ShadowRoot"},
 yN:{
 "^":"qE;LA:src}",
@@ -4193,9 +4053,6 @@ this.MW.replaceChild(c,z[b])},
 sB:function(a,b){throw H.b(P.f("Cannot resize element lists"))},
 gA:function(a){var z=this.br(this)
 return new H.wi(z,z.length,0,null)},
-FV:function(a,b){var z,y
-z=J.x(b)
-for(z=J.GP(typeof b==="object"&&b!==null&&!!z.$ise7?P.F(b,!0,null):b),y=this.MW;z.G();)y.appendChild(z.gl())},
 YW:function(a,b,c,d,e){throw H.b(P.RH(null))},
 Rz:function(a,b){return!1},
 $asar:function(){return[W.cv]},
@@ -4208,14 +4065,14 @@ if(b>>>0!==b||b>=z.length)return H.e(z,b)
 return z[b]},
 u:function(a,b,c){throw H.b(P.f("Cannot modify list"))},
 sB:function(a,b){throw H.b(P.f("Cannot modify list"))},
-gDD:function(a){return W.UL(this.Sc)},
+gDD:function(a){return W.or(this.Sc)},
 gS:function(a){return W.HD(this.Sc)},
 S8:function(a,b){var z=C.t5.ev(this.Sn,new W.B1())
 this.Sc=P.F(z,!0,H.ip(z,"mW",0))},
 $isList:true,
 $aszM:null,
 $isqC:true,
-static:{GN:function(a,b){var z=H.VM(new W.wz(a,null),[b])
+static:{vD:function(a,b){var z=H.VM(new W.wz(a,null),[b])
 z.S8(a,b)
 return z}}},
 B1:{
@@ -4245,11 +4102,10 @@ if(y===0)throw H.b(P.w("No elements"))
 if(y>1)throw H.b(P.w("More than one element"))
 return z.firstChild},
 FV:function(a,b){var z,y,x,w
-z=J.w1(b)
-if(typeof b==="object"&&b!==null&&!!z.$ise7){z=b.NL
+z=b.NL
 y=this.NL
 if(z!==y)for(x=z.childNodes.length,w=0;w<x;++w)y.appendChild(z.firstChild)
-return}for(z=z.gA(b),y=this.NL;z.G();)y.appendChild(z.gl())},
+return},
 Rz:function(a,b){return!1},
 u:function(a,b,c){var z,y
 z=this.NL
@@ -4263,7 +4119,6 @@ sB:function(a,b){throw H.b(P.f("Cannot set length on immutable List."))},
 t:function(a,b){var z=this.NL.childNodes
 if(b>>>0!==b||b>=z.length)return H.e(z,b)
 return z[b]},
-$ise7:true,
 $asar:function(){return[W.KV]},
 $aszM:function(){return[W.KV]}},
 hm:{
@@ -4296,13 +4151,13 @@ z=this.MW.attributes
 y=H.VM([],[J.O])
 for(x=z.length,w=0;w<x;++w){if(w>=z.length)return H.e(z,w)
 v=z[w]
-if(this.mb(v))y.push(J.C9(v))}return y},
+if(this.FJ(v))y.push(J.C9(v))}return y},
 gUQ:function(a){var z,y,x,w,v
 z=this.MW.attributes
 y=H.VM([],[J.O])
 for(x=z.length,w=0;w<x;++w){if(w>=z.length)return H.e(z,w)
 v=z[w]
-if(this.mb(v))y.push(J.Vm(v))}return y},
+if(this.FJ(v))y.push(J.Vm(v))}return y},
 $isZ0:true,
 $asZ0:function(){return[J.O,J.O]}},
 i7:{
@@ -4315,7 +4170,7 @@ y=z.getAttribute(b)
 z.removeAttribute(b)
 return y},
 gB:function(a){return this.gvc().length},
-mb:function(a){return a.namespaceURI==null}},
+FJ:function(a){return a.namespaceURI==null}},
 nF:{
 "^":"As;QX,Kd",
 lF:function(){var z=P.Ls(null,null,null,J.O)
@@ -4328,7 +4183,7 @@ OS:function(a){this.Kd.aN(0,new W.vf(a))},
 Rz:function(a,b){return this.xz(new W.A1(b))},
 xz:function(a){return this.Kd.es(0,!1,new W.hD(a))},
 yJ:function(a){this.Kd=H.VM(new H.A8(P.F(this.QX,!0,null),new W.FK()),[null,null])},
-static:{UL:function(a){var z=new W.nF(a,null)
+static:{or:function(a){var z=new W.nF(a,null)
 z.yJ(a)
 return z}}},
 FK:{
@@ -4354,7 +4209,7 @@ for(y=J.uf(this.MW).split(" "),y=new H.wi(y,y.length,0,null);y.G();){x=J.rr(y.lo
 if(x.length!==0)z.h(0,x)}return z},
 p5:function(a){P.F(a,!0,null)
 J.Pw(this.MW,a.zV(0," "))}},
-I2:{
+Fk:{
 "^":"a;Ph",
 zc:function(a,b){return H.VM(new W.RO(a,this.Ph,b),[null])},
 aM:function(a){return this.zc(a,!1)},
@@ -4386,26 +4241,26 @@ Qm:function(a,b){return H.VM(new W.eu(a,this.cN(a),b),[null])},
 xh:function(a){return this.Qm(a,!1)}},
 JQ:{
 "^":"a;Ks<",
-i0:function(a){return $.Fv().tg(0,a.tagName)},
+i0:function(a){return $.AM().tg(0,a.tagName)},
 Eb:function(a,b,c){var z,y,x
 z=a.tagName
-y=$.NJ()
+y=$.cS()
 x=y.t(0,H.d(z)+"::"+b)
 if(x==null)x=y.t(0,"*::"+b)
 if(x==null)return!1
 return x.call$4(a,b,c,this)},
 U5:function(a){var z,y
-z=$.NJ()
+z=$.cS()
 if(z.gl0(z)){for(y=new H.wi(C.zm,261,0,null);y.G();)z.u(0,y.lo,W.y3())
 for(y=new H.wi(C.BI,12,0,null);y.G();)z.u(0,y.lo,W.tc())}},
-static:{"^":"zX,Ux,YA,or",Tw:function(a){var z=new W.mk(W.J6(null),C.ol.gmW(window))
+static:{"^":"zX,Ux,YA,ql",Tw:function(a){var z=new W.mk(W.J6(null),C.ol.gmW(window))
 z=new W.JQ(z)
 z.U5(a)
 return z},qD:[function(a,b,c,d){return!0},"call$4","y3",8,0,11],QW:[function(a,b,c,d){var z,y,x,w,v,u
 z=d.gKs()
 y=z.on
 x=J.RE(y)
-x.sLU(y,c)
+x.smH(y,c)
 w=x.gy0(y)
 z=z.Sl
 v=J.RE(z)
@@ -4421,13 +4276,12 @@ return z},"call$4","tc",8,0,11]}},
 Pb:{
 "^":"a;",
 gA:function(a){return new W.W9(a,this.gB(a),-1,null)},
-FV:function(a,b){throw H.b(P.f("Cannot add to immutable List."))},
 Rz:function(a,b){throw H.b(P.f("Cannot remove from immutable List."))},
 YW:function(a,b,c,d,e){throw H.b(P.f("Cannot setRange on immutable List."))},
 $isList:true,
 $aszM:null,
 $isqC:true},
-vD:{
+zW:{
 "^":"a;YM",
 i0:function(a){return H.Ck(this.YM,new W.mD(a))},
 Eb:function(a,b,c){return H.Ck(this.YM,new W.Eg(a,b,c))}},
@@ -4457,7 +4311,7 @@ if(b==="template"&&c==="")return!0
 if(a.getAttribute("template")==="")return this.Wg.tg(0,b)
 return!1},
 static:{"^":"Qr",Bl:function(){var z,y,x,w
-z=H.VM(new H.A8(C.Qx,new W.IA()),[null,null])
+z=H.VM(new H.A8(C.nm,new W.tE()),[null,null])
 y=P.Ls(null,null,null,null)
 y.FV(0,["TEMPLATE"])
 x=P.Ls(null,null,null,null)
@@ -4465,9 +4319,9 @@ x.FV(0,z)
 z=x
 x=P.Ls(null,null,null,null)
 w=P.Ls(null,null,null,J.O)
-w.FV(0,C.Qx)
+w.FV(0,C.nm)
 return new W.ct(w,y,z,x,null)}}},
-IA:{
+tE:{
 "^":"Tp:4;",
 call$1:function(a){return"TEMPLATE::"+H.d(a)}},
 Ow:{
@@ -4560,17 +4414,11 @@ d5:{
 gDD:function(a){if(a._cssClassSet==null)a._cssClassSet=new P.O7(a)
 return a._cssClassSet},
 gwd:function(a){return H.VM(new P.D7(a,new W.e7(a)),[W.cv])},
-ghf:function(a){var z,y,x
-z=W.r3("div",null)
-y=a.cloneNode(!0)
-x=J.RE(z)
-J.bj(x.gwd(z),J.OG(y))
-return x.ghf(z)},
 shf:function(a,b){a.textContent=null
 a.appendChild(this.r6(a,b,null,null))},
 r6:function(a,b,c,d){var z,y,x,w,v
 z=H.VM([],[W.kF])
-d=new W.vD(z)
+d=new W.zW(z)
 z.push(W.Tw(null))
 z.push(W.Bl())
 z.push(new W.Ow())
@@ -4638,11 +4486,11 @@ y=J.v1(this.y)
 return P.Up(P.VC(P.VC(0,z),y))},
 g:function(a,b){var z,y,x
 z=this.x
-y=C.jn.gx(b)
+y=b.gx(b)
 if(typeof z!=="number")return z.g()
 y=C.CD.g(z,y)
 z=this.y
-x=C.jn.gy(b)
+x=b.gy(b)
 if(typeof z!=="number")return z.g()
 x=new P.hL(y,C.CD.g(z,x))
 x.$builtinTypeInfo=this.$builtinTypeInfo
@@ -4650,7 +4498,6 @@ return x},
 U:function(a,b){var z,y
 z=this.x
 if(typeof z!=="number")return z.U()
-if(typeof b!=="number")return H.s(b)
 y=this.y
 if(typeof y!=="number")return y.U()
 y=new P.hL(z*b,y*b)
@@ -4696,7 +4543,7 @@ tn:{
 "^":"IN;Bb>,G6>,R>,fg>",
 $istn:true,
 $astn:null,
-static:{T7:function(a,b,c,d,e){var z,y
+static:{Ci:function(a,b,c,d,e){var z,y
 if(typeof c!=="number")return c.F()
 if(c>=0)z=c
 else z=-c*0
@@ -4818,8 +4665,6 @@ sB:function(a,b){var z=this.gzT().length
 if(b>=z)return
 else if(b<0)throw H.b(new P.AT("Invalid list length"))
 this.UZ(0,b,z)},
-FV:function(a,b){var z,y
-for(z=J.GP(b),y=this.h2.NL;z.G();)y.appendChild(z.gl())},
 YW:function(a,b,c,d,e){throw H.b(P.f("Cannot setRange on filtered list"))},
 UZ:function(a,b,c){H.bQ(C.Nm.D6(this.gzT(),b,c),new P.GS())},
 Rz:function(a,b){return!1},
@@ -4835,7 +4680,117 @@ call$1:function(a){var z=J.x(a)
 return typeof a==="object"&&a!==null&&!!z.$iscv}},
 GS:{
 "^":"Tp:4;",
-call$1:function(a){return J.Mp(a)}}}],])
+call$1:function(a){return J.Mp(a)}}}],["picData","file:///C:/Users/Rudy/Documents/GitHub/AmRand/web/pic_data.dart",,L,{
+"^":"",
+cJ:{
+"^":"a;jO',Fy@,QS<,qa<,kv,Lx,cI,Xt,I3,Kb,Iu,aD,FZ,eH,PR,xF",
+sQI:function(a,b){var z=this.PR
+if(typeof b!=="number")return b.V()
+this.Xt=b/z
+this.KS()},
+gQI:function(a){return J.vX(this.Xt,this.PR)},
+sOp:function(a){this.PR=a*this.PR},
+sPj:function(a){var z,y
+this.kv=a
+if(J.pO(a)){z=this.kv
+y=document.createElement("img",null)
+if(z!=null)J.Yj(y,z)
+this.FZ=y
+z=J.wK(y)
+H.VM(new W.xC(0,z.uv,z.Ph,W.VF(this.gUN()),z.Sg),[H.Kp(z,0)]).Zz()}},
+gPj:function(){return this.kv},
+gHF:function(a){return(this.I3-0.05)*this.PR},
+gpC:function(a){return(this.Kb+0.05)*this.PR},
+gd5:function(){return(this.Kb-this.I3)/50*this.PR},
+cJ:[function(a){var z,y,x,w,v,u
+z=this.FZ
+if(z==null)return
+y=J.Q6(z)
+this.Iu=y
+z=z.naturalHeight
+this.aD=z
+this.xF=!0
+x=this.eH
+w=x.clientWidth
+x=x.clientHeight
+if(typeof w!=="number")return w.F()
+if(typeof x!=="number")return H.s(x)
+if(w>=x)v=x
+else v=w
+this.PR=1
+if(typeof y!=="number")return y.D()
+if(typeof z!=="number")return H.s(z)
+x=y>z
+if(x)u=z
+else u=y
+if(u>v){this.I3=x?v/z:v/y
+this.Kb=1.2}else{this.Kb=x?v/z:v/y
+this.I3=u/v}this.N9()},"call$1","gUN",2,0,4],
+XQ:function(a,b){this.Lx=this.Lx+C.CD.yu(C.CD.UD(a/this.PR))
+this.cI=this.cI+C.CD.yu(C.CD.UD(b/this.PR))
+this.KS()},
+N9:function(){var z,y,x,w,v,u
+z=this.eH
+if(z!=null&&this.xF){if(J.u6(this.Xt,this.I3))this.Xt=this.I3
+if(J.xZ(this.Xt,this.Kb))this.Xt=this.Kb
+y=z.clientWidth
+x=this.Iu
+w=this.Xt
+if(typeof x!=="number")return x.U()
+if(typeof w!=="number")return H.s(w)
+if(typeof y!=="number")return y.W()
+v=C.CD.yu(C.CD.UD(y-x*w))
+y=this.Lx
+this.Lx=y<v?v:y
+z=z.clientHeight
+y=this.aD
+x=this.Xt
+if(typeof y!=="number")return y.U()
+if(typeof x!=="number")return H.s(x)
+if(typeof z!=="number")return z.W()
+u=C.CD.yu(C.CD.UD(z-y*x))
+z=this.cI
+if(z<u)z=u
+this.cI=z
+y=this.Lx
+this.Lx=y>0?0:y
+this.cI=z>0?0:z}},
+KS:function(){var z,y,x,w,v,u,t
+z=this.eH
+if(z!=null&&this.xF){this.N9()
+y=this.Iu
+x=this.Xt
+if(typeof y!=="number")return y.U()
+if(typeof x!=="number")return H.s(x)
+w=C.CD.yu(C.CD.UD(y*x*this.PR))
+x=this.aD
+y=this.Xt
+if(typeof x!=="number")return x.U()
+if(typeof y!=="number")return H.s(y)
+v=C.CD.yu(C.CD.UD(x*y*this.PR))
+u=C.CD.yu(C.CD.UD(this.Lx*this.PR))
+t=C.CD.yu(C.CD.UD(this.cI*this.PR))
+J.BB(z.style,"url("+H.d(this.kv)+")")
+J.uH(z.style,""+w+"px "+v+"px")
+J.RC(z.style,""+u+"px "+t+"px")}},
+gjv:function(){return this.Fy+"<div class=\"qAuthor\"><hr>"+this.QS+"</div><hr><div class=\"qInfo\">"+this.qa+"</div>"},
+gW5:function(){var z,y
+z="new PicData(picBox, "+("\""+this.jO+"\", \"")
+y=this.Fy
+y=H.ys(y,"$","\\$")
+z+=H.ys(y,"\"","\\\"")+"\", \""
+y=this.QS
+y=H.ys(y,"$","\\$")
+z+=H.ys(y,"\"","\\\"")+"\", \""
+y=this.qa
+y=H.ys(y,"$","\\$")
+z+=H.ys(y,"\"","\\\"")+"\", \""
+y=J.JA(this.kv,"$","\\$")
+return z+(H.ys(y,"\"","\\\"")+"\", ")+(H.d(this.Xt)+", "+this.Lx+", "+this.cI+", "+H.d(this.Iu)+", "+H.d(this.aD)+")")},
+gIY:function(){return""+this.Lx+", "+this.cI+" | z: "+J.r0(this.Xt,3)+" (f: "+C.CD.Sy(this.PR,3)+")"}},
+ZS:{
+"^":"Tp:4;a",
+call$1:function(a){P.JS(H.d(this.a.kv)+" FAILED: "+H.d(a))}}}],])
 I.$finishClasses($$,$,null)
 $$=null
 J.im.$isint=true
@@ -4846,7 +4801,6 @@ W.KV.$isa=true
 J.O.$isString=true
 J.O.$isa=true
 J.P.$isa=true
-P.a6.$isa6=true
 P.a6.$isa=true
 W.cv.$iscv=true
 W.cv.$isKV=true
@@ -4859,8 +4813,6 @@ W.kF.$iskF=true
 W.kF.$isa=true
 W.Aj.$isAj=true
 W.Aj.$isa=true
-J.Q.$isa=true
-D.cJ.$isa=true
 H.yo.$isa=true
 H.t8.$isa=true
 H.aX.$isa=true
@@ -4886,8 +4838,6 @@ P.b8.$isb8=true
 P.b8.$isa=true
 P.MO.$isMO=true
 P.MO.$isa=true
-P.iP.$isiP=true
-P.iP.$isa=true
 $.$signature_bh={func:"bh",args:[null,null]}
 $.$signature_aB={func:"aB",args:[null]}
 J.Qc=function(a){if(typeof a=="number")return J.P.prototype
@@ -4936,6 +4886,7 @@ return J.Qc(a).g(a,b)}
 J.EC=function(a){return J.RE(a).gRV(a)}
 J.F8=function(a){return J.RE(a).gjO(a)}
 J.FN=function(a){return J.U6(a).gl0(a)}
+J.FQ=function(a,b){return J.RE(a).smH(a,b)}
 J.Fc=function(a,b){return J.RE(a).sP(a,b)}
 J.GJ=function(a,b,c,d){return J.RE(a).Y9(a,b,c,d)}
 J.GP=function(a){return J.w1(a).gA(a)}
@@ -4944,7 +4895,6 @@ J.JA=function(a,b,c){return J.rY(a).h8(a,b,c)}
 J.K0=function(a){return J.RE(a).gd4(a)}
 J.K3=function(a,b){return J.RE(a).sOf(a,b)}
 J.KU=function(a,b){return J.RE(a).T2(a,b)}
-J.LL=function(a){return J.Wx(a).HG(a)}
 J.MK=function(a,b){return J.RE(a).Md(a,b)}
 J.Mp=function(a){return J.w1(a).wg(a)}
 J.Mz=function(a){return J.rY(a).hc(a)}
@@ -4955,19 +4905,18 @@ J.Om=function(a,b){return J.RE(a).sBb(a,b)}
 J.Pw=function(a,b){return J.RE(a).sxr(a,b)}
 J.Q6=function(a){return J.RE(a).gJR(a)}
 J.RC=function(a,b){return J.RE(a).snp(a,b)}
-J.RV=function(a){return J.RE(a).gGS(a)}
 J.TS=function(a,b){if(a==null)return b==null
 if(typeof a!="object")return b!=null&&a===b
 return J.x(a).n(a,b)}
-J.UQ=function(a,b){if(a.constructor==Array||typeof a=="string"||H.wV(a,a[init.dispatchPropertyName]))if(b>>>0===b&&b<a.length)return a[b]
+J.UQ=function(a,b){if(a.constructor==Array||typeof a=="string"||H.Gp(a,a[init.dispatchPropertyName]))if(b>>>0===b&&b<a.length)return a[b]
 return J.U6(a).t(a,b)}
+J.UU=function(a,b){return J.U6(a).u8(a,b)}
 J.V1=function(a,b){return J.w1(a).Rz(a,b)}
 J.Vg=function(a){return J.RE(a).gVl(a)}
 J.Vm=function(a){return J.RE(a).gP(a)}
 J.Vn=function(a,b){return J.RE(a).sVx(a,b)}
 J.Vw=function(a,b,c){return J.U6(a).Is(a,b,c)}
 J.WB=function(a,b){return J.RE(a).skZ(a,b)}
-J.Ws=function(a){return J.RE(a).gGx(a)}
 J.X9=function(a,b,c,d){return J.RE(a).hV(a,b,c,d)}
 J.XH=function(a){return J.Wx(a).yu(a)}
 J.Xv=function(a){return J.RE(a).gQI(a)}
@@ -4975,14 +4924,12 @@ J.YJ=function(a,b){return J.RE(a).sQI(a,b)}
 J.Yj=function(a,b){return J.RE(a).sLA(a,b)}
 J.Yq=function(a){return J.RE(a).gSR(a)}
 J.ZP=function(a,b){return J.RE(a).Tk(a,b)}
-J.bj=function(a,b){return J.w1(a).FV(a,b)}
 J.i4=function(a,b){return J.w1(a).Zv(a,b)}
 J.jV=function(a,b){return J.RE(a).wR(a,b)}
 J.jd=function(a){return J.RE(a).gni(a)}
-J.jz=function(a,b){return J.RE(a).sLU(a,b)}
 J.kH=function(a,b){return J.w1(a).aN(a,b)}
 J.kV=function(a,b,c){return J.RE(a).AH(a,b,c)}
-J.kW=function(a,b,c){if((a.constructor==Array||H.wV(a,a[init.dispatchPropertyName]))&&!a.immutable$list&&b>>>0===b&&b<a.length)return a[b]=c
+J.kW=function(a,b,c){if((a.constructor==Array||H.Gp(a,a[init.dispatchPropertyName]))&&!a.immutable$list&&b>>>0===b&&b<a.length)return a[b]=c
 return J.w1(a).u(a,b,c)}
 J.kp=function(a,b,c,d){return J.RE(a).r6(a,b,c,d)}
 J.ky=function(a,b,c){return J.RE(a).dR(a,b,c)}
@@ -4995,6 +4942,7 @@ J.qV=function(a,b,c,d){return J.RE(a).On(a,b,c,d)}
 J.qk=function(a){return J.RE(a).gS(a)}
 J.r0=function(a,b){return J.Wx(a).Sy(a,b)}
 J.rr=function(a){return J.rY(a).bS(a)}
+J.to=function(a,b){return J.RE(a).sjO(a,b)}
 J.u6=function(a,b){if(typeof a=="number"&&typeof b=="number")return a<b
 return J.Wx(a).C(a,b)}
 J.uH=function(a,b){return J.RE(a).sKc(a,b)}
@@ -5007,7 +4955,6 @@ J.vX=function(a,b){if(typeof a=="number"&&typeof b=="number")return a*b
 return J.Qc(a).U(a,b)}
 J.w8=function(a){return J.RE(a).gkc(a)}
 J.wK=function(a){return J.RE(a).gUV(a)}
-J.xR=function(a){return J.RE(a).ghf(a)}
 J.xZ=function(a,b){if(typeof a=="number"&&typeof b=="number")return a>b
 return J.Wx(a).D(a,b)}
 J.zL=function(a,b){return J.RE(a).slz(a,b)}
@@ -5017,14 +4964,14 @@ C.Eq=new P.Ts()
 C.pr=new P.mg()
 C.NU=new P.R8()
 C.RT=new P.a6(0)
-C.mt=new W.I2("change")
-C.T1=new W.I2("click")
-C.fK=new W.I2("load")
-C.Wh=new W.I2("mousedown")
-C.WL=new W.I2("mouseleave")
-C.Cm=new W.I2("mousemove")
-C.hV=new W.I2("mouseup")
-C.IU=new W.I2("resize")
+C.mt=new W.Fk("change")
+C.T1=new W.Fk("click")
+C.fK=new W.Fk("load")
+C.Wh=new W.Fk("mousedown")
+C.WL=new W.Fk("mouseleave")
+C.Cm=new W.Fk("mousemove")
+C.hV=new W.Fk("mouseup")
+C.IU=new W.Fk("resize")
 C.Nm=J.Q.prototype
 C.jn=J.im.prototype
 C.CD=J.P.prototype
@@ -5165,7 +5112,7 @@ I.makeConstantList = function(list) {
   return list;
 };
 C.zm=H.VM(I.makeConstantList(["*::class","*::dir","*::draggable","*::hidden","*::id","*::inert","*::itemprop","*::itemref","*::itemscope","*::lang","*::spellcheck","*::title","*::translate","A::accesskey","A::coords","A::hreflang","A::name","A::shape","A::tabindex","A::target","A::type","AREA::accesskey","AREA::alt","AREA::coords","AREA::nohref","AREA::shape","AREA::tabindex","AREA::target","AUDIO::controls","AUDIO::loop","AUDIO::mediagroup","AUDIO::muted","AUDIO::preload","BDO::dir","BODY::alink","BODY::bgcolor","BODY::link","BODY::text","BODY::vlink","BR::clear","BUTTON::accesskey","BUTTON::disabled","BUTTON::name","BUTTON::tabindex","BUTTON::type","BUTTON::value","CANVAS::height","CANVAS::width","CAPTION::align","COL::align","COL::char","COL::charoff","COL::span","COL::valign","COL::width","COLGROUP::align","COLGROUP::char","COLGROUP::charoff","COLGROUP::span","COLGROUP::valign","COLGROUP::width","COMMAND::checked","COMMAND::command","COMMAND::disabled","COMMAND::label","COMMAND::radiogroup","COMMAND::type","DATA::value","DEL::datetime","DETAILS::open","DIR::compact","DIV::align","DL::compact","FIELDSET::disabled","FONT::color","FONT::face","FONT::size","FORM::accept","FORM::autocomplete","FORM::enctype","FORM::method","FORM::name","FORM::novalidate","FORM::target","FRAME::name","H1::align","H2::align","H3::align","H4::align","H5::align","H6::align","HR::align","HR::noshade","HR::size","HR::width","HTML::version","IFRAME::align","IFRAME::frameborder","IFRAME::height","IFRAME::marginheight","IFRAME::marginwidth","IFRAME::width","IMG::align","IMG::alt","IMG::border","IMG::height","IMG::hspace","IMG::ismap","IMG::name","IMG::usemap","IMG::vspace","IMG::width","INPUT::accept","INPUT::accesskey","INPUT::align","INPUT::alt","INPUT::autocomplete","INPUT::checked","INPUT::disabled","INPUT::inputmode","INPUT::ismap","INPUT::list","INPUT::max","INPUT::maxlength","INPUT::min","INPUT::multiple","INPUT::name","INPUT::placeholder","INPUT::readonly","INPUT::required","INPUT::size","INPUT::step","INPUT::tabindex","INPUT::type","INPUT::usemap","INPUT::value","INS::datetime","KEYGEN::disabled","KEYGEN::keytype","KEYGEN::name","LABEL::accesskey","LABEL::for","LEGEND::accesskey","LEGEND::align","LI::type","LI::value","LINK::sizes","MAP::name","MENU::compact","MENU::label","MENU::type","METER::high","METER::low","METER::max","METER::min","METER::value","OBJECT::typemustmatch","OL::compact","OL::reversed","OL::start","OL::type","OPTGROUP::disabled","OPTGROUP::label","OPTION::disabled","OPTION::label","OPTION::selected","OPTION::value","OUTPUT::for","OUTPUT::name","P::align","PRE::width","PROGRESS::max","PROGRESS::min","PROGRESS::value","SELECT::autocomplete","SELECT::disabled","SELECT::multiple","SELECT::name","SELECT::required","SELECT::size","SELECT::tabindex","SOURCE::type","TABLE::align","TABLE::bgcolor","TABLE::border","TABLE::cellpadding","TABLE::cellspacing","TABLE::frame","TABLE::rules","TABLE::summary","TABLE::width","TBODY::align","TBODY::char","TBODY::charoff","TBODY::valign","TD::abbr","TD::align","TD::axis","TD::bgcolor","TD::char","TD::charoff","TD::colspan","TD::headers","TD::height","TD::nowrap","TD::rowspan","TD::scope","TD::valign","TD::width","TEXTAREA::accesskey","TEXTAREA::autocomplete","TEXTAREA::cols","TEXTAREA::disabled","TEXTAREA::inputmode","TEXTAREA::name","TEXTAREA::placeholder","TEXTAREA::readonly","TEXTAREA::required","TEXTAREA::rows","TEXTAREA::tabindex","TEXTAREA::wrap","TFOOT::align","TFOOT::char","TFOOT::charoff","TFOOT::valign","TH::abbr","TH::align","TH::axis","TH::bgcolor","TH::char","TH::charoff","TH::colspan","TH::headers","TH::height","TH::nowrap","TH::rowspan","TH::scope","TH::valign","TH::width","THEAD::align","THEAD::char","THEAD::charoff","THEAD::valign","TR::align","TR::bgcolor","TR::char","TR::charoff","TR::valign","TRACK::default","TRACK::kind","TRACK::label","TRACK::srclang","UL::compact","UL::type","VIDEO::controls","VIDEO::height","VIDEO::loop","VIDEO::mediagroup","VIDEO::muted","VIDEO::preload","VIDEO::width"]),[J.O])
-C.Qx=H.VM(I.makeConstantList(["bind","if","ref","repeat","syntax"]),[J.O])
+C.nm=H.VM(I.makeConstantList(["bind","if","ref","repeat","syntax"]),[J.O])
 C.BI=H.VM(I.makeConstantList(["A::href","AREA::href","BLOCKQUOTE::cite","BODY::background","COMMAND::icon","DEL::cite","FORM::action","IMG::src","INPUT::src","INS::cite","Q::cite","VIDEO::poster"]),[J.O])
 C.t5=W.BH.prototype
 C.vB=J.is.prototype
@@ -5199,7 +5146,6 @@ $.aS=!1
 $.Dw=!1
 $.eE=!1
 $.EU=!0
-$.td=null
 $.kG=null
 $.b5=null
 $.zs=null
@@ -5211,11 +5157,9 @@ $.IY=null
 $.G4=null
 $.Ez=null
 $.Ct=null
-$.EG=null
 $.fB=null
 $.km=null
 $.pi=null
-$.uo=null
 $.q2=null
 $.oK=null
 $.S6=null
@@ -5231,6 +5175,7 @@ $.EM=null
 $.w5=null
 $.PN=null
 $.aj=null
+$.EG=null
 I.$lazy($,"globalThis","DX","jk",function(){return function() { return this; }()})
 I.$lazy($,"globalWindow","cO","C5",function(){return $.jk().window})
 I.$lazy($,"globalWorker","u9","vy",function(){return $.jk().Worker})
@@ -5273,17 +5218,277 @@ I.$lazy($,"undefinedLiteralPropertyPattern","A7","ko",function(){return H.cM(fun
     return e.message;
   }
 }())})
-I.$lazy($,"categories","E3","iX",function(){return["der Gesellschaft","der Sicherheit","der Tendenze","der Legalit\u00c3\u00a4t","des M\u00c3\u00b6gliches","des Universum"]})
+I.$lazy($,"categories","E3","iX",function(){return["der Gesellschaft","der Sicherheit","der Trends","der Legalit\u00e4t","heute","des Universum"]})
 I.$lazy($,"iDs","Gx","th",function(){return["society","security","fashion","legality","other","universe"]})
 I.$lazy($,"rnd","ju","YG",function(){return C.pr})
 I.$lazy($,"_toStringList","Ml","RM",function(){return[]})
 I.$lazy($,"_toStringVisiting","xg","xb",function(){return P.yv(null)})
 I.$lazy($,"_toStringList","yu","tw",function(){return[]})
 I.$lazy($,"_safeConsole","wk","pl",function(){return new W.M0()})
-I.$lazy($,"_allowedElements","zX","Fv",function(){var z=P.Ls(null,null,null,null)
+I.$lazy($,"_allowedElements","zX","AM",function(){var z=P.Ls(null,null,null,null)
 z.FV(0,["A","ABBR","ACRONYM","ADDRESS","AREA","ARTICLE","ASIDE","AUDIO","B","BDI","BDO","BIG","BLOCKQUOTE","BR","BUTTON","CANVAS","CAPTION","CENTER","CITE","CODE","COL","COLGROUP","COMMAND","DATA","DATALIST","DD","DEL","DETAILS","DFN","DIR","DIV","DL","DT","EM","FIELDSET","FIGCAPTION","FIGURE","FONT","FOOTER","FORM","H1","H2","H3","H4","H5","H6","HEADER","HGROUP","HR","I","IFRAME","IMG","INPUT","INS","KBD","LABEL","LEGEND","LI","MAP","MARK","MENU","METER","NAV","NOBR","OL","OPTGROUP","OPTION","OUTPUT","P","PRE","PROGRESS","Q","S","SAMP","SECTION","SELECT","SMALL","SOURCE","SPAN","STRIKE","STRONG","SUB","SUMMARY","SUP","TABLE","TBODY","TD","TEXTAREA","TFOOT","TH","THEAD","TIME","TR","TRACK","TT","U","UL","VAR","VIDEO","WBR"])
 return z})
-I.$lazy($,"_attributeValidators","or","NJ",function(){return H.B7([],P.L5(null,null,null,null,null))})
+I.$lazy($,"_attributeValidators","ql","cS",function(){return H.B7([],P.L5(null,null,null,null,null))})
+I.$lazy($,"quotes","uo","aw",function(){var z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,d0,d1,d2,d3,d4,d5,d6,d7,d8,d9,e0,e1,e2,e3,e4,e5,e6,e7,e8,e9,f0,f1,f2,f3,f4,f5,f6,f7,f8,f9,g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,h0,h1,h2,h3,h4,h5,h6,h7,h8,h9,i0,i1,i2,i3,i4,i5,i6,i7,i8,i9,j0,j1,j2,j3,j4,j5,j6,j7,j8,j9,k0,k1,k2
+z=new L.cJ("society0","Armut,    Keuschheit und Gehorsam -<br>drei Gel\u00fcbde,   <br>deren jedes,   <br>einzeln betrachtet,   <br>der Natur das unausstehlichste scheint,   <br>so unertr\u00e4glich sind sie alle.","Johann Wolfgang von Goethe (1749-1832),   <br>dt. Dichter","Armut","",-250,0,0.393,0,1,2388,1585,null,$.EG,1,!1)
+z.sPj("http://www.ethnoconnect.org.au/files/attach/images/114/778/poverty.jpg")
+y=new L.cJ("society1","Geld ist besser als Armut -<br>wenn auch nur aus finanziellen Gr\u00fcnden.","Woody Allen (*1935),   <br>amerik. Regisseur,    Schauspieler,    Gagschreiber u. Schriftsteller","Reichtum und Armut<br>","",-4,0,0.722,0,1,770,769,null,$.EG,1,!1)
+y.sPj("img/society2.png")
+x=new L.cJ("society2","Es ist besser,    f\u00fcr das,    was man ist,    gehasst,    als f\u00fcr das,    was man nicht ist,    geliebt zu werden.","Andr\u00e9 Gide","Gays","",-49,-49,0.781,0,1,770,770,null,$.EG,1,!1)
+x.sPj("img/society3.png")
+w=new L.cJ("society3","Es gibt zu viele Fl\u00fcchtlinge,    sagen die Menschen.<br>Es gibt zu wenig Menschen,    sagen die Fl\u00fcchtlinge.","Ernst Ferstl","4 j\u00e4hriges Kind \u00fcberquert die W\u00fcste Syrien,    2014","",-42,-42,0.772,0,1,770,769,null,$.EG,1,!1)
+w.sPj("img/society4.png")
+v=new L.cJ("society4","Es gibt keinen Weg zum Frieden,    denn Frieden ist der Weg.","Mahatma Gandhi","Pazifismus","",0,0,0.9,0,1,800,600,null,$.EG,1,!1)
+v.sPj("http://fc06.deviantart.net/fs40/i/2012/192/6/f/mahatma_gandhi_in_type_by_dencii-d1ucmsi.jpg")
+u=new L.cJ("society5","Subkulturen sind nicht ideologische Staatsapparate,    Au\u00dfenposten und Provinzen der Kulturindustrie und Arbeits\u00e4mter,    sondern weiterhin darin produktiv,    nicht-institutionelle Organisations- und Lebensmodelle denkbar zu machen. ","Diedrich Diedrichsen aus: Politische Korrekturen von 1996","Subkulturen wie z.B. Punks","",0,0,1.034,0,1,500,500,null,$.EG,1,!1)
+u.sPj("http://pad3.whstatic.com/images/b/b9/Mohawk-2.jpg")
+t=new L.cJ("society6","Kommunikation erfordert mehr Vorstellungskraft,    <br>als sich viele Leute vorstellen oder in Wirklichkeit haben.","Cyril Northcote Parkinson (1909-93),    brit. Historiker u. Publizist","Kommunikation","",0,-40,0.19838354151359294,0,1,2722,3690,null,$.EG,1,!1)
+t.sPj("http://best-posts.com/wp-content/uploads/2013/12/comic-satire-cartoons-angel-boligan-3.jpg")
+s=new L.cJ("society7","Skinheads: Weil sie das Grau des Lebens nicht ertragen,    verbreiten sie Grauen.","Walter Ludin","Subkultur wie z.B. Skinheads","",0,0,1.034,0,1,744,500,null,$.EG,1,!1)
+s.sPj("http://www.jezblog.com/images/20120105192308_01a_skinheads.jpg")
+r=new L.cJ("society8","Der Ignorant verf\u00fcgt meist \u00fcber eine umfassende Unbildung.","Stefan Sch\u00fctz (*1964)","Ignoranz","",0,0,0.989,0,1,558,700,null,$.EG,1,!1)
+r.sPj("http://cdn.acidcow.com/pics/20131220/comic_satire_14.jpg")
+q=new L.cJ("society9","Global wealth inequality: <br>top 1% own 41%;<br>top 10% own 86%;<br>bottom half own just 1%","Guy Bentley,    October 9,    2013","Reichtum: Carlos Slim Helu  $73 B","",-298,0,0.443,0,1,2495,1247,null,$.EG,1,!1)
+q.sPj("http://i.bullfax.com/imgs/0e4800789ad21ace09e90e31a93c6ab19c9fb683.jpg")
+p=new L.cJ("society10","Entfernt man die Prostitution aus den menschlichen Angelegenheiten,    so werden alle Dinge mit Wollust befleckt.",".Aurelius Augustinus","Prostitution","",0,0,1.013,0,1,654,491,null,$.EG,1,!1)
+p.sPj("http://media.nbcnewyork.com/images/654*491/091409+prostitute+p1.jpg")
+o=new L.cJ("society11","Alkoholismus: Gift und Gegengift sind identisch."," Prof. Dr. med. Gerhard Uhlenbruck (*1929)","Alkoholikern","",0,0,0.717,0,1,770,770,null,$.EG,1,!1)
+o.sPj("img/society12.png")
+n=new L.cJ("society12","Das Hirn ist wie geschaffen f\u00fcr Drogen. Je mehr man nimmt,    desto weniger wird es,    bis sich die Drogen endlich von allein er\u00fcbrigen.","Erhard Blanck (*1942)","Drogensucht","",0,0,0.718,0,1,770,769,null,$.EG,1,!1)
+n.sPj("img/society13.png")
+m=new L.cJ("society13","Behindert zu sein bedeutet lediglich,    da\u00df man etwas nicht kann,    was andere k\u00f6nnen. Wenn alle anderen Menschen fliegen k\u00f6nnten,    w\u00e4re ich schwer behindert \u2013 ohne da\u00df sich an mir irgend etwas daf\u00fcr \u00e4ndern m\u00fc\u00dfte.","Peter Hohl (*1941),    deutscher Journalist und Verleger","Behinderten","",-172,0,0.414,0,1,2205,1360,null,$.EG,1,!1)
+m.sPj("http://www.mikrotribologiecentrum.de/uploads/pics/130201_martin_fleig_snowstorm_01.jpg")
+l=new L.cJ("society14","Erst wenn aus dem obrigkeitlichen Rechtsakt einer einseitig erkl\u00e4rten<br>Duldung Andersgl\u00e4ubiger das Recht auf freie Religionsaus\u00fcbung wird,    das die<br>Gl\u00e4ubigen wie die Ungl\u00e4ubigen einander als freie B\u00fcrger gegenseitig<br>einr\u00e4umen und anerkennen,    erst dann kommt Toleranz zu sich.","Eckmann + Eser Davolio 2003","Fran\u00e7ois Murad<br>in 2013 von syrischen Islamisten gek\u00f6pft","",0,0,1.248,0,1,700,400,null,$.EG,1,!1)
+l.sPj("http://www.opsiyonhaber.com/d/news/18064.jpg")
+k=new L.cJ("society15","Wer sich der Spielsucht \u00fcberl\u00e4\u00dft,   <br>ist seiner Ruhe Feind und der Gesellschaft Pest.","<br>Gottlieb Konrad Pfeffel (1736 - 1809)","Spielsuchtigen","",-131,0,1.025,0,1,800,599,null,$.EG,1,!1)
+k.sPj("http://www.grippe24.info/bilder/pokersucht.jpg")
+j=new L.cJ("society16","Ihre seelische Verfa\u00dftheit ist kein 'Irrtum' der Natur,    sondern <br>ein 'Kunstwerk' <br>des Menschen.","<br>Volkmar Sigusch in \"Geschlechtswechsel\",    1995","Transsexualit\u00e4t","",-6,0,1.075,0,1,720,480,null,$.EG,1,!1)
+j.sPj("http://cdn2-b.examiner.com/sites/default/files/styles/article_large/hash/31/b6/31b6b7873184b12a4194394ea04a47ba.jpg?itok=o_TMK94W")
+i=new L.cJ("society17","Die Revolution ist die erfolgreiche Anstrengung,    eine schlechte Regierung loszuwerden und eine schlechtere zu errichten.","<br>Oscar Wilde","Revolution\u00e4re","",-16,0,1.567,0,1,415,330,null,$.EG,1,!1)
+i.sPj("http://nv-online.info/get_img?ImageId=60856")
+h=new L.cJ("society18","Freundlichkeit ist eine Sprache,    die Taube h\u00f6ren und Blinde sehen!","Mark Twain","Blinden","",0,0,1.055,0,1,1000,667,null,$.EG,1,!1)
+h.sPj("http://metaprocess.files.wordpress.com/2010/01/belief-is-blindness.jpg")
+g=new L.cJ("society19","Gott sei Dank,    da\u00df die Menschen noch nicht fliegen k\u00f6nnen und den Himmel ebenso verschmutzen wie die Erde.","Henry David Thoreau (1817-62),    amerik. SchriftstellerS","artist: Pawel Kuczynski","",-163,0,0.9523809523809523,0,1,800,567,null,$.EG,1,!1)
+g.sPj("http://twistedsifter.files.wordpress.com/2012/05/artwork-satire-cartoonist-pawel-kuczynski-polish-14.jpg")
+f=new L.cJ("society20","Nur wenig ist anregender als die erste gelungenene Missetat","Donatien Alphonse Fran\u00e7ois Marquis de Sade<br>(1740 - 1814)","The Saddest Sadist,    still from video,    2009","",-18,0,1.534,0,1,450,337,null,$.EG,1,!1)
+f.sPj("http://nowherelimited.com/images/mary_reid_kelley-sadie-the_saddest_sadist-still_from_video-1-2009.jpg")
+e=new L.cJ("society21","Kultur ist ein sehr d\u00fcnner Firnis,    der sich leicht in Alkohol aufl\u00f6st.<br><br>","Huxley/x/details","Philip Seymour Hoffman","",-137,0,0.45,0,1,1600,1200,null,$.EG,1,!1)
+e.sPj("http://www.youthunitedpress.com/wp-content/uploads/2014/02/psh.jpg")
+d=new L.cJ("society22","Behinderungen m\u00fcssen keine Verhinderungen sein.","Walter Ludin (*1945),    Schweizer Journalist,    Redakteur","barriere archittetoniche","",-344,0,1.966,0,1,500,263,null,$.EG,1,!1)
+d.sPj("http://www.raffaeleboccia.it/wp-content/uploads/2011/01/rampa.jpg")
+c=new L.cJ("society23","Sie sollen sich lieber an den gesunden Kohl und an Getreidebrei halten als an Fasane und Perlh\u00fchner.","Plinius der \u00c4ltere,    r\u00f6mischer Gelehrter und Schriftsteller,    <br>23 oder 24 \u2013 79","Veganer","",0,0,0.9060402684563759,0,1,618,596,null,$.EG,1,!1)
+c.sPj("http://www.interabota2010.ru/wp-content/uploads/2013/06/vegetarianstvo.jpg")
+b=new L.cJ("society24","Wir \u00c4gypter nutzten Facebook,    um den Pr\u00e4sidenten loszuwerden,    und die Deutschen,    um ihren Verteidigungsminister zu behalten. Das macht den Unterschied aus.","Hamed Abdel-Samad","Gefangen in der virtueller Realit\u00e4t","",0,-156,0.594,0,1,930,1339,null,$.EG,1,!1)
+b.sPj("http://2.bp.blogspot.com/-PDVEyl-Sy2Y/Uh8YVRfLjjI/AAAAAAAASMU/KaxdUyG_slU/s1600/Pawel-Kuczynski+lr.jpg")
+a=new L.cJ("society25","Uns wird st\u00e4ndig eingeredet,    dass wir kaufen,    kaufen und nochmals kaufen m\u00fcssen. Das ist nat\u00fcrlich f\u00fcr die Nachhaltigkeit eine Katastrophe.","Hannes Jaenicke (*1960),    Schauspieler  ","Konsumismus<br>","",0,-136,0.998,0,1,516,700,null,$.EG,1,!1)
+a.sPj("http://www.equilibriarte.net/images/uploads/lor3nz8/comic-satire-21.jpg")
+a0=new L.cJ("society26","\"Das Auge der Erkenntnis\",    <br>ein Analphabet<br>kann es besitzen <br>und sich damit \u00fcber jeden Wissenschaftler erheben.","Emile Michel Cioran,    Die verfehlte Sch\u00f6pfung ","Analphabeten","",0,0,0.7022106631989596,0,1,770,769,null,$.EG,1,!1)
+a0.sPj("img/society33.png")
+a1=new L.cJ("society27","Masochismus: wenn Last zur Lust wird","Walter Ludin (1945*)","Emil Alzamora,    \u201cMasochist\u201d,    2004","",-98,0,0.827,0,1,980,653,null,$.EG,1,!1)
+a1.sPj("http://www.artwebradio.com/wp-content/uploads/2013/07/Emil-Alzamorana.jpg")
+a2=new L.cJ("security0","Wer die Freiheit aufgibt um Sicherheit zu gewinnen,    der wird am Ende beides verlieren.","Benjamin Franklin","Freiheit?","",-206,0,0.752,0,1,1680,1050,null,$.EG,1,!1)
+a2.sPj("http://i1-win.softpedia-static.com/screenshots/MonitorTest_2.png")
+a3=new L.cJ("security1","Wo du sicher bist,    setze Fragezeichen.<br><br>","Wieslaw Brudzinski","jump","",-93,0,0.992,0,1,800,513,null,$.EG,1,!1)
+a3.sPj("http://4.bp.blogspot.com/-KsUAzvEWffs/T4CsVQM0S4I/AAAAAAAA0p8/hHEkQ1C8H30/s1600/adrenalina-alturas-edificios.jpg")
+a4=new L.cJ("security2","Es ist eine Erfahrung aus vielen Bereichen der Umweltpolitik,    dass die Vorreiter nicht nur ihre eigenen,    sondern tats\u00e4chlich die globalen Regeln \u00e4ndern. <br>","Hermann E.","global worming","",-48,0,1.207,0,1,500,333,null,$.EG,1,!1)
+a4.sPj("http://banksyt-shirts.com/wp-content/uploads/2010/12/banksy_global_warming.jpg")
+a5=new L.cJ("security3","\"Der entschiedene Vulkanist wird immer nur durch die Brille des Vulkanisten sehen,    so wie der Neptunist und der Bekenner der neuesten Hebungstheorie durch die seinige.\" ","Johann Wolfgang","Vulkan","",-102,0,0.84,0,1,988,660,null,$.EG,1,!1)
+a5.sPj("http://www.blackball.it/wp-content/uploads/2014/02/103527536-ec982aa1-c438-4a42-94c3-f7717fb67fcf.jpg")
+a6=new L.cJ("security4","Ich will nicht in einer Welt leben,    in der alles,    was ich sage,    alles was ich mache,    der Name jedes Gespr\u00e4chspartners,    jeder Ausdruck von Kreativit\u00e4t,    Liebe oder Freundschaft aufgezeichnet wird.","Edward Snowden","datagate","",0,0,0.271,0,1,2048,2048,null,$.EG,1,!1)
+a6.sPj("http://www.wallpapervortex.com/ipad_air_wallpapers/ipad_air_35276_funny_land_of_the_free.jpg")
+a7=new L.cJ("security5","Seid vor allem immer f\u00e4hig,    jede Ungerechtigkeit gegen jeden Menschen an jedem Ort der Welt im Innersten zu f\u00fchlen. Das ist die sch\u00f6nste Eigenschaft eines Revolution\u00e4rs.","Che Guevara","Stadtguerilla","",0,0,0.354,0,1,2308,1528,null,$.EG,1,!1)
+a7.sPj("https://comunitaolivettiroma.files.wordpress.com/2012/02/99-le-grandi-manifestazioni-del-1968.jpg")
+a8=new L.cJ("security6","In unserer verschmutzten Umwelt wird die Luft langsam sichtbar.<br>","Norman Mailer","Verschmutzung","",-181,0,1.146,0,1,640,427,null,$.EG,1,!1)
+a8.sPj("http://www.tempostretto.it/sites/www.tempostretto.it/files/immagini/gallerie/paura-fumi-tossici-dopo-ennesimo-rogo-all-ex-sanderson-foto-alessio-villari/avi8365.jpg")
+a9=new L.cJ("security7","\u201eNicht die Umweltverschmutzung schadet unserer Umwelt,    sondern verschmutztes Wasser und verschmutzte Luft.\u201c ","George B.","Verschmutztem Wasser","",0,-197,0.998,0,1,510,751,null,$.EG,1,!1)
+a9.sPj("http://notasaocafe.files.wordpress.com/2009/11/boligan_16112009_1.jpg?w=720")
+b0=new L.cJ("security8","Die Gr\u00f6\u00dfenordnung betr\u00e4gt etwa zwei Millionen Todesf\u00e4lle pro Jahr weltweit,    von denen etwa 12 000 Kinder.","http://it.wikipedia.org/wiki/Caduti_del_lavoro","Arbeitssicherheit","",0,0,0.299,0,1,3024,1830,null,$.EG,1,!1)
+b0.sPj("http://www.controvoci.com/news/2008/07_lug/sicurezza%20sul%20lavoro%202.jpg")
+b1=new L.cJ("security9","Die Finanzminister und die Bankiers haben eins gemeinsam. Sie leben von anderer Leute Geld. Die Bankiers haben nur die unangenehme Aufgabe,    es wieder zur\u00fcckzuzahlen.<br>","Hermann Josef Abs ","Macht der Banken","",-90,0,0.483,0,1,1698,1131,null,$.EG,1,!1)
+b1.sPj("http://www.etfnews.it/wp-content/uploads/2012/05/Wall-St-scorte-ed-Azioni-Banca-Borsa-Valori-New-York_000007337843Medium.jpg")
+b2=new L.cJ("security10","\u2019\u2019Der Fu\u00dfball ist einer der am weitesten verbreiteten religi\u00f6sen Aberglauben unserer Zeit. Er ist heute das wirkliche Opium des Volkes.\u2018\u2018 Umberto Eco","Umberto Eco","Ultras","",0,0,0.844,0,1,640,640,null,$.EG,1,!1)
+b2.sPj("http://distilleryimage0.s3.amazonaws.com/ea94eaa08d4111e3be910ab7fe098654_8.jpg")
+b3=new L.cJ("security11","\"Der Mensch erfand die Atombombe,    doch keine Maus der Welt w\u00fcrde eine Mausefalle konstruieren.\"","Albert Einstein","Atombomben","",-170,0,0.542,0,1,1600,1000,null,$.EG,1,!1)
+b3.sPj("http://www.meteoweb.eu/wp-content/uploads/2013/09/bomba-nucleare.jpg")
+b4=new L.cJ("security12","<br>Ich bin nicht sicher,    mit welchen Waffen der dritte Weltkrieg ausgetragen wird,    aber im vierten Weltkrieg werden sie mit St\u00f6cken und Steinen k\u00e4mpfen.<br>","Albert Einstein","Chemiewaffen","",-45,0,1.147,0,1,640,400,null,$.EG,1,!1)
+b4.sPj("http://www.lapresse.it/polopoly_fs/1.421824.1384447523!/image/image.JPG_gen/derivatives/box_640x400/image.JPG")
+b5=new L.cJ("security13","<br>Diese Schei\u00dfe bleibt zwischen Mir,    Dir und Mr.-der-bald-den-rest-seines-kurzen-Schei\u00dflebens-in-unertr\u00e4glichen-Schmerzen-verbringen-wird-Vergewaltiger.<br>","Marcellus Wallace","Vergewaltigungen","",0,0,0.995,0,1,576,544,null,$.EG,1,!1)
+b5.sPj("http://sergiogiuffrida.files.wordpress.com/2007/12/kubrick-stupro.jpg")
+b6=new L.cJ("security14","Krise ist ein produktiver Zustand. Mann muss ihm nur den Beigeschmack der Katastrophe nehmen.<br>","Max Frisch","Krise","",-126,0,1.507,0,1,459,277,null,$.EG,1,!1)
+b6.sPj("http://www.w-t-w.org/en/wp-content/uploads/2013/11/Who-Is-Responsible.jpg")
+b7=new L.cJ("security15","Nichts in dieser Welt ist sicher,    au\u00dfer dem Tod und den Steuern.<br>","Benjamin Franklin","Sicherheit im Haus","",0,-32,0.981,0,1,500,595,null,$.EG,1,!1)
+b7.sPj("https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-frc3/t1/428163_10150687873816259_1338512119_n.jpg")
+b8=new L.cJ("security16"," Managerkrankheit: eine Epidemie,    die durch den Uhrzeiger hervorgerufen und durch den Terminkalender \u00fcbertragen wird.","John Steinbeck","epidemie","",-33,0,0.968,0,1,640,459,null,$.EG,1,!1)
+b8.sPj("http://asienspiegel.ch/wp-content/uploads/2010/12/schweinegrippe.jpg")
+b9=new L.cJ("security17","Asien und Pazifik: 122,   3 Millionen<br><br>Afrika s\u00fcdlich der Sahara: 49,   3 Millionen<br><br>Lateinamerika und Karibik: 5,   7 Millionen<br><br>Sonstige Regionen: 13,   4 Millionen","http://de.wikipedia.org/wiki/Kinderarbeit","Nicht mehr Kinderarbeit","",0,0,0.983,0,1,764,508,null,$.EG,1,!1)
+b9.sPj("http://cfile215.uf.daum.net/image/194B99464FDC21DE2C6863")
+c0=new L.cJ("security18","Ich besch\u00e4ftige mich nicht mit dem,    was getan worden ist. Mich interessiert,    was getan werden muss.<br>","Marie Curie","Mehr Chancen f\u00fcr junge Menschen","",-73,0,1.142,0,1,550,412,null,$.EG,1,!1)
+c0.sPj("http://www.inprecor.gr/wp-content/uploads/2012/10/_%CE%B3%CE%BA%CF%81%CE%AC%CF%86%CE%B9%CF%84%CE%B9_241012-e1351113108574.jpg")
+c1=new L.cJ("security19","Wenn die Leute Menschen w\u00e4ren,    g\u00e4be es kein Ausl\u00e4nderproblem.","Peter E. Schumacher ","Seit 1994 in der Kanal von Sizilien sind 7.065 Menschen tot oder vermisst","",-210,0,0.9851851851851852,0,1,800,532,null,$.EG,1,!1)
+c1.sPj("http://www.suoniemigrantifestival.it/gallery/barcone_immigrati_-foto_g.lotti-.jpg")
+c2=new L.cJ("security20","","","onde anomale","",0,-225,0.92,0,1,600,902,null,$.EG,1,!1)
+c2.sPj("http://bucketofsquash.com/wp-content/uploads/2013/04/de71299e6d5ec2cdffeafb22a8b4aded1.jpg")
+c3=new L.cJ("security21","","","sifdare i propri limiti","",-55,0,0.993,0,1,634,536,null,$.EG,1,!1)
+c3.sPj("http://i.dailymail.co.uk/i/pix/2011/08/22/article-0-0D86D0CA00000578-810_634x536.jpg")
+c4=new L.cJ("security22","","","tsunami","",-98,0,1.273,0,1,620,400,null,$.EG,1,!1)
+c4.sPj("http://i.telegraph.co.uk/multimedia/archive/01500/2004-tsunami_1500383i.jpg")
+c5=new L.cJ("security23","Shanghai Tower<br><br>H\u00f6he 632 m","Architekt: Gensler Architects","Urban Ninjas Climb Shanghai Tower","",0,0,0.757,0,1,717,907,null,$.EG,1,!1)
+c5.sPj("http://www.fubiz.net/wp-content/uploads/2014/02/Shanghai-Tower-2.png")
+c6=new L.cJ("security24","","","http://www.jr-art.net/projects/face-2-face","",-181,0,0.6683168316831684,0,1,1439,808,null,$.EG,1,!1)
+c6.sPj("http://verobellimbusto.files.wordpress.com/2012/05/jr-artist-inside-out-palestina-israel-via-partecipactive1.jpg")
+c7=new L.cJ("security25","","","attentati","",-172,0,1.116,0,1,738,462,null,$.EG,1,!1)
+c7.sPj("http://www.direttanews.it/wp-content/uploads/londra_attentati_7_luglio_2005.jpg")
+c8=new L.cJ("security26","","","carte di credito clonate ","",-121,0,1.548,0,1,600,334,null,$.EG,1,!1)
+c8.sPj("http://www.wpsite.net/wp-content/uploads/2012/04/wordpress-secure.jpg")
+c9=new L.cJ("security27","Aquila,   Abruzzo,   Italy<br>9. April 2009<br><br>67.000 Obdachlose<br><br>Toten bel\u00e4uft sich auf 308","http://de.wikipedia.org/wiki<br>/Erdbeben_von_L%E2%80%99Aquila_2009","Zerst\u00f6rtes Rathaus von L\u2019Aquila","",-276,0,0.723,0,1,1152,768,null,$.EG,1,!1)
+c9.sPj("http://cultura.biografieonline.it/wp-content/uploads/2013/04/aquila-terremoto-2009.jpg")
+d0=new L.cJ("fashion0","\u201eMode ist die erste Stufe der Emanzipation.\u201d","Miuccia Prada","vestiti d'alta moda  con materiale tossico ","",-92,0,1.689,0,1,450,300,null,$.EG,1,!1)
+d0.sPj("http://www.dire.it/codimmagine/6281/formato/ImageGallery/greenpeace.jpg")
+d1=new L.cJ("fashion1","","","Candy Crush Saga","",0,-87,0.758,0,1,728,971,null,$.EG,1,!1)
+d1.sPj("http://2.bp.blogspot.com/-oWavJUr_VIE/UOmemdM9T2I/AAAAAAAAN3o/j0ryQ2u64gQ/s1600/candy_crush_saga_itunes_game_freeappskingdotcom_gameplay.jpg")
+d2=new L.cJ("fashion2","","","","",0,0,0.902,0,1,613,612,null,$.EG,1,!1)
+d2.sPj("https://lh4.googleusercontent.com/-unTzRaQA640/Ub-CKFe0glI/AAAAAAAABPk/iBnVva22lPg/w800-h800/photo.jpg")
+d3=new L.cJ("fashion3","","","espansione economica cinese<br>","",-33,0,1.328,0,1,620,388,null,$.EG,1,!1)
+d3.sPj("http://arte.sky.it/wp-content/uploads/2013/05/Lo-skyline-di-Pechino-620x388.jpg")
+d4=new L.cJ("fashion4","","","google glass","",-122,0,1.213,0,1,619,409,null,$.EG,1,!1)
+d4.sPj("http://www.blogcdn.com/de.engadget.com/media/2013/08/glass-1367355098.jpg")
+d5=new L.cJ("fashion5","","","biofood","",0,0,1.560693641618497,0,1,347,346,null,$.EG,1,!1)
+d5.sPj("http://www.jobswithfood.com/organicstamp.jpg")
+d6=new L.cJ("fashion6","","","robot per insegnare le pose della preghiera","",0,0,1.124,0,1,640,480,null,$.EG,1,!1)
+d6.sPj("http://i1.ytimg.com/vi/IEE3kLIY5NM/sddefault.jpg")
+d7=new L.cJ("fashion7","","","new marketing","",-63,0,0.597,0,1,1240,930,null,$.EG,1,!1)
+d7.sPj("http://www.imore.com/sites/imore.com/files/styles/large/public/field/image/2014/02/flappy_bird_ipad_mini_hero.jpg?itok=IvEvLv6Q")
+d8=new L.cJ("fashion8","","","recycling","",0,0,0.797,0,1,693,693,null,$.EG,1,!1)
+d8.sPj("http://www.jost-transport.ch/uploads/pics/Recycling_01.jpg")
+d9=new L.cJ("fashion9","","","sviluppo della cultura","",0,-75,1.681,0,1,300,420,null,$.EG,1,!1)
+d9.sPj("http://good50x70.org/2011/imagecontest/poster/1985.thumbnail.jpg")
+e0=new L.cJ("fashion10","","","","",-89,0,1.189,0,1,640,426,null,$.EG,1,!1)
+e0.sPj("http://mtdata.ru/u1/photo8FD2/20127618666-0/original.jpg")
+e1=new L.cJ("fashion11","","","fixed gear <br>l'utilizzo della bici","",-108,0,1.202,0,1,600,393,null,$.EG,1,!1)
+e1.sPj("http://www.thecoolist.com/wp-content/uploads/2009/11/bertelli-biciclette_domenica-sport-fixed-gear-bike_2.jpg")
+e2=new L.cJ("fashion12","","","eletric auto","",-349,0,2.092,0,1,468,243,null,$.EG,1,!1)
+e2.sPj("http://media.treehugger.com/assets/images/2011/10/PlugIn2.jpg")
+e3=new L.cJ("fashion13","","","africa cultura","",0,-119,0.183,0,1,2953,4134,null,$.EG,1,!1)
+e3.sPj("http://good50x70.org/2011/imagecontest/poster/788.jpg")
+e4=new L.cJ("fashion14","","","","",0,-66,0.183,0,1,2953,4134,null,$.EG,1,!1)
+e4.sPj("http://good50x70.org/2011/imagecontest/poster/42.jpg")
+e5=new L.cJ("fashion15","","","","",-52,0,1.4025974025974026,0,1,462,385,null,$.EG,1,!1)
+e5.sPj("http://bioenergyitalyblog.it/wp-content/uploads/2013/05/Fiere-energie-rinnovabili-nel-mondo.png")
+e6=new L.cJ("fashion16","","","telefoni per bambini","",-180,0,1.511,0,1,520,347,null,$.EG,1,!1)
+e6.sPj("http://www.evidence4action.net/wp-content/uploads/2012/08/Africas-mobile-phone-industry-booming-1.jpg")
+e7=new L.cJ("legality0","","","wildes Bauen","",0,0,0.685,0,1,800,800,null,$.EG,1,!1)
+e7.sPj("http://www.cartoongallery.eu/englishversion/wp-content/gallery/iboligan/boligan1e.jpg")
+e8=new L.cJ("legality1","","","paradisi fiscali","",-55,0,1.394,0,1,450,332,null,$.EG,1,!1)
+e8.sPj("http://blog.ilgiornale.it/wallandstreet/files/2014/01/image1.jpg")
+e9=new L.cJ("legality2","","","costa concordia","",-188,0,1.206,0,1,622,395,null,$.EG,1,!1)
+e9.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/concordia2702-622x395.jpg")
+f0=new L.cJ("legality3","","","Scontri tra polizia e manifestanti ad Ankara,    in Turchia,    nelle proteste contro lo scandalo corruzione del governo Erdo\u011fan","",-224,0,0.903010033444816,0,1,942,598,null,$.EG,1,!1)
+f0.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/turchia2702.jpg")
+f1=new L.cJ("legality4","","","brasile contro mondiali 2014","",-86,0,1.419,0,1,470,323,null,$.EG,1,!1)
+f1.sPj("http://www.socialfootballtv.com/uploads/articles/1391944556.jpg")
+f2=new L.cJ("legality5","","","Una processione per ricordare le vittime degli scontri a Kiev,    in Ucraina. (Bulent Kilic,    Afp)","",0,0,0.903010033444816,0,1,942,598,null,$.EG,1,!1)
+f2.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/ucraina2602.jpg")
+f3=new L.cJ("legality6","","","inquinamento","",-187,0,1.119,0,1,738,462,null,$.EG,1,!1)
+f3.sPj("http://1.bp.blogspot.com/-Mr9Q4POsOVA/TdvPlJpg_xI/AAAAAAAAAAs/8dw8I5GB67A/s1600/marea_nera_pellicano_ap_06.jpg")
+f4=new L.cJ("legality7","","","politici","",-47,0,1.137,0,1,600,460,null,$.EG,1,!1)
+f4.sPj("http://www.novesudieci.org/wp-content/uploads/2012/06/ricchi-a-tavola.bmp")
+f5=new L.cJ("legality8","","","La sorveglianza contro il bracconaggio nel parco nazionale di Zakouma,    in Ciad. (Marco Longari,    Afp)","",-128,0,0.903010033444816,0,1,942,598,null,$.EG,1,!1)
+f5.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/ciad2602.jpg")
+f6=new L.cJ("legality9","","","I soccorsi dopo un bombardamento aereo ad Aleppo,    in Siria. (Ammar Abdullah,    Reuters/Contrasto)","",-13,0,0.903010033444816,0,1,942,598,null,$.EG,1,!1)
+f6.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/siria2602.jpg")
+f7=new L.cJ("legality10","","","droghe leggere ","",-7,0,0.628,0,1,1280,860,null,$.EG,1,!1)
+f7.sPj("http://assets.vice.com/content-images/article/your-town-is-a-paradise-tel-aviv/galleryImage/02.jpg")
+f8=new L.cJ("legality11","","","maltrattamento animale<br>","",-121,0,1.379,0,1,563,381,null,$.EG,1,!1)
+f8.sPj("http://geograficamente.files.wordpress.com/2010/01/allevamenti_11.jpg")
+f9=new L.cJ("legality12","","","protetanucleare","",-154,0,1.119,0,1,620,412,null,$.EG,1,!1)
+f9.sPj("http://www.greenpeace.org/international/ReSizes/ImageGalleryLarge/Global/international/photos/other/2013/year-in-photos/GP04HYB.jpg")
+g0=new L.cJ("legality13","","","Greenpeace International activist Sini Saarela (from Finland)","",-35,0,1.072,0,1,620,443,null,$.EG,1,!1)
+g0.sPj("http://www.greenpeace.org/international/ReSizes/ImageGalleryLarge/Global/international/photos/other/2013/year-in-photos/20-25/GP04TYP.jpg")
+g1=new L.cJ("legality14","","","","",0,0,1.2,0,1,620,406,null,$.EG,1,!1)
+g1.sPj("http://www.greenpeace.org/international/ReSizes/ImageGalleryLarge/Global/international/photos/other/2013/year-in-photos/GP04J3T.jpg")
+g2=new L.cJ("legality15","","","","",0,-120,0.183,0,1,2953,4134,null,$.EG,1,!1)
+g2.sPj("http://good50x70.org/2011/imagecontest/poster/174.jpg")
+g3=new L.cJ("legality16","","","","",0,-116,0.183,0,1,2953,4134,null,$.EG,1,!1)
+g3.sPj("http://good50x70.org/2011/imagecontest/poster/1638.jpg")
+g4=new L.cJ("legality17","","","","",0,0,0.183,0,1,2953,4134,null,$.EG,1,!1)
+g4.sPj("http://good50x70.org/2011/imagecontest/poster/1545.jpg")
+g5=new L.cJ("legality18","","","<br>NEW BEGINNIG TO LYBIA","",0,-107,0.183,0,1,2953,4134,null,$.EG,1,!1)
+g5.sPj("http://good50x70.org/2011/imagecontest/poster/1771.jpg")
+g6=new L.cJ("legality19","","","DOMESTIC VIOLENCE","",0,-53,0.183,0,1,2953,4134,null,$.EG,1,!1)
+g6.sPj("http://good50x70.org/2011/imagecontest/poster/1766.jpg")
+g7=new L.cJ("legality20","","","","",0,-142,0.183,0,1,2953,4134,null,$.EG,1,!1)
+g7.sPj("http://good50x70.org/2011/imagecontest/poster/1285.jpg")
+g8=new L.cJ("legality21","","","PRESERVE WATER","",0,-171,0.183,0,1,2953,4134,null,$.EG,1,!1)
+g8.sPj("http://good50x70.org/2011/imagecontest/poster/830.jpg")
+g9=new L.cJ("legality22","","","","",0,-1,0.183,0,1,2953,4134,null,$.EG,1,!1)
+g9.sPj("http://good50x70.org/2011/imagecontest/poster/96.jpg")
+h0=new L.cJ("legality23","","","","",0,-121,0.183,0,1,2953,4134,null,$.EG,1,!1)
+h0.sPj("http://good50x70.org/2011/imagecontest/poster/2041.jpg")
+h1=new L.cJ("legality24","","","WOMEN'S RIGHTS VIOLATION","",0,0,0.183,0,1,2953,4134,null,$.EG,1,!1)
+h1.sPj("http://good50x70.org/2011/imagecontest/poster/243.jpg")
+h2=new L.cJ("legality25","","","PANDA <br>SOLIDARITY","",-50,0,0.213,0,1,2953,4134,null,$.EG,1,!1)
+h2.sPj("http://good50x70.org/2011/imagecontest/poster/1927.jpg")
+h3=new L.cJ("legality26","","","media liberi","",0,0,0.183,0,1,2953,4134,null,$.EG,1,!1)
+h3.sPj("http://good50x70.org/2011/imagecontest/poster/1543.jpg")
+h4=new L.cJ("legality27","","","palestina","",-54,0,0.178,0,1,4544,3040,null,$.EG,1,!1)
+h4.sPj("http://www.sunray22b.net/images/Palestine179.jpg")
+h5=new L.cJ("other0","","","Artist: Blu","",0,0,1.2,0,1,640,553,null,$.EG,1,!1)
+h5.sPj("http://www.123inspiration.com/wp-content/uploads/2012/03/street-artiste-BLU-1.png")
+h6=new L.cJ("other1","","","","",0,0,1.193,0,1,590,826,null,$.EG,1,!1)
+h6.sPj("http://www.maxitendance.com/wp-content/uploads/2014/02/caricatures-angel-boligan-corbo-humour-noir-dessins-10.jpg")
+h7=new L.cJ("other2","","","","",-65,0,1.4136125654450262,0,1,500,382,null,$.EG,1,!1)
+h7.sPj("http://reefbuilders.com/files/2011/10/bubble-fish-tank-1.jpg")
+h8=new L.cJ("other3","","","tv dipendenza","",-35,0,1.208,0,1,620,428,null,$.EG,1,!1)
+h8.sPj("http://www.eluniversal.com.mx/img/2007/06/Car/boligan110607.jpg")
+h9=new L.cJ("other4","arrestato per aver denunciato la cina","ai wei wei","semi di girasole","",-172,0,1.091,0,1,760,474,null,$.EG,1,!1)
+h9.sPj("http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2010/10/11/1286797833422/Ai-Weiwei-007.jpg")
+i0=new L.cJ("other5","","","","",0,0,1.131,0,1,600,450,null,$.EG,1,!1)
+i0.sPj("https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-prn2/t1/1655958_744034232274149_1721483115_n.jpg")
+i1=new L.cJ("other6","","","","",-3,0,0.8681672025723473,0,1,625,622,null,$.EG,1,!1)
+i1.sPj("https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-prn2/t1/1794540_747496835261222_1367503856_n.jpg ")
+i2=new L.cJ("other7","","","Artist : Erik Ravelo","",0,0,1.034,0,1,500,500,null,$.EG,1,!1)
+i2.sPj("http://31.media.tumblr.com/37b7504461a4c9e4f889dd16e1a28fc7/tumblr_msmie1xV4g1rbl50so1_500.jpg")
+i3=new L.cJ("other8","h\u00e4ngt vom wo man geboren ist","","Artist: Pawel Kuczynski","",-156,0,1.219,0,1,605,426,null,$.EG,1,!1)
+i3.sPj("http://bp3.uuuploads.com/satirical-art-pawel-kuczynski/satirical-art-pawel-kuczynski-7.jpg")
+i4=new L.cJ("other9","","","muraglia cinese","",-170,0,0.452,0,1,1800,1220,null,$.EG,1,!1)
+i4.sPj("http://dallacity.finanza.com/files/2010/10/000003732362-cina-muraglia-cinese.jpg")
+i5=new L.cJ("other10","","","senzatetto","",-135,0,1.475,0,1,466,345,null,$.EG,1,!1)
+i5.sPj("http://www.csindy.com/binary/9c46/1272324293-mother_and_baby_by_johnmccabe.jpg")
+i6=new L.cJ("other11","","citazione dal libro","1984","",0,-93,0.415065334358186,0,1,1301,2124,null,$.EG,1,!1)
+i6.sPj("http://www.penguin.com.au/jpg-large/9780141036144.jpg")
+i7=new L.cJ("other12","","","felixbaumgartner","",0,0,1.167,0,1,634,436,null,$.EG,1,!1)
+i7.sPj("http://totallycoolpix.com/wp-content/uploads/2012/10/felixbaumgartner1.jpg")
+i8=new L.cJ("other13","","","Artist's Shit 1961 Piero Manzoni 1933-1963 ","",0,0,0.371,0,1,1457,1536,null,$.EG,1,!1)
+i8.sPj("https://www.tate.org.uk/art/images/work/T/T07/T07667_10.jpg")
+i9=new L.cJ("other14","all animals are equal,    but some animals are more equal than others.<br>","la fattoria degli animali","leggi sul uguaglianza ","",0,0,1.231,0,1,400,480,null,$.EG,1,!1)
+i9.sPj("http://www.vegetarianfriends.net/Barndoor4.jpg")
+j0=new L.cJ("other15","","","into the wild (eremitA)","",-133,0,1.501,0,1,500,325,null,$.EG,1,!1)
+j0.sPj("http://31.media.tumblr.com/d1c1d90b3181132521f7db51a2d99e91/tumblr_mfr1flCTEs1r429qho1_500.jpg")
+j1=new L.cJ("other16","","","sochi esagerazioni al limite dello spreco","",-137,0,0.287,0,1,3000,1922,null,$.EG,1,!1)
+j1.sPj("http://cbsboston.files.wordpress.com/2014/02/467578719_10.jpg")
+j2=new L.cJ("other17","","","souspension","",0,0,0.96,0,1,750,500,null,$.EG,1,!1)
+j2.sPj("http://www.suspension.org/hooklife/wp-content/uploads/2013/07/521891_446262625459679_1639662450_n.jpg")
+j3=new L.cJ("other18","","","corrida","",0,0,1.022,0,1,500,489,null,$.EG,1,!1)
+j3.sPj("https://lh3.googleusercontent.com/-pEVRTtLnBV4/UwDH08T7dZI/AAAAAAAADKs/PPqMnv3jSpw/w500/1891101_749392271738345_1873023806_n.jpg")
+j4=new L.cJ("other19","","","","",0,0,0.308,0,1,3255,2440,null,$.EG,1,!1)
+j4.sPj("http://static3.businessinsider.com/image/51f959a0ecad043a1e000004/italys-top-court-confirms-berlusconi-prison-sentence.jpg")
+j5=new L.cJ("other20","\"il carcere dovrebbe essere un luogo riabilitativo e non di maltrattamento\"","","carceri","",0,0,0.9608540925266904,0,1,737,562,null,$.EG,1,!1)
+j5.sPj("http://www.volontariatoggi.info/wp-content/uploads/2009/12/Carcere.jpg")
+j6=new L.cJ("other21","denuncia il padre mafioso","","beppino impastato mafia","",0,0,1.014,0,1,510,510,null,$.EG,1,!1)
+j6.sPj("http://lavocedimpastato.files.wordpress.com/2014/01/peppino-impastato1.jpg")
+j7=new L.cJ("other22","","","deforestazione","",0,-213,1.08,0,1,500,729,null,$.EG,1,!1)
+j7.sPj("http://www.bartarinha.ir/files/fa/news/1390/5/30/26418_729.jpg")
+j8=new L.cJ("other23","WAR IS NOT FOR MEN BUT CLOWNS.<br>","Lukasz Jankowski","Krieg","",-79,0,1.383,0,1,512,377,null,$.EG,1,!1)
+j8.sPj("http://kschelsky.files.wordpress.com/2014/01/1496685_720625347948371_1246488537_n.jpg?w=590")
+j9=new L.cJ("other24","","","","",-127,0,0.6609547123623011,0,1,1280,817,null,$.EG,1,!1)
+j9.sPj("http://www.chronicle.su/wp-content/uploads/Banksy_Napalm_HR_400k.jpg")
+k0=new L.cJ("other25","","","disuguaglianza sociale","",-170,0,0.5142857142857142,0,1,1400,1050,null,$.EG,1,!1)
+k0.sPj("http://1.bp.blogspot.com/-9US8g4Fek_0/UrNpxLiTyPI/AAAAAAAAAX8/SBYgkGF8bAI/s1600/Banksy+-+5.gif")
+k1=new L.cJ("other26","","","bernauer strasse berlin","",0,0,0.734,0,1,1051,736,null,$.EG,1,!1)
+k1.sPj("http://3.bp.blogspot.com/_36-jwxEsTTA/TRNC71kZVBI/AAAAAAAACMc/lf-vPed1LR0/s1600/Berlin+Mauermuseum+2.JPG,    ")
+k2=new L.cJ("other27","","","la morte di marat","",0,-127,0.5394605394605395,0,1,1001,1287,null,$.EG,1,!1)
+k2.sPj("http://upload.wikimedia.org/wikipedia/commons/a/aa/Death_of_Marat_by_David.jpg")
+return H.B7(["society",[z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1],"security",[a2,a3,a4,a5,a6,a7,a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,c0,c1,c2,c3,c4,c5,c6,c7,c8,c9],"fashion",[d0,d1,d2,d3,d4,d5,d6,d7,d8,d9,e0,e1,e2,e3,e4,e5,e6],"legality",[e7,e8,e9,f0,f1,f2,f3,f4,f5,f6,f7,f8,f9,g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,h0,h1,h2,h3,h4],"other",[h5,h6,h7,h8,h9,i0,i1,i2,i3,i4,i5,i6,i7,i8,i9,j0,j1,j2,j3,j4,j5,j6,j7,j8,j9,k0,k1,k2]],P.L5(null,null,null,null,null))})
 
 init.functionAliases={}
 init.metadata=[{func:"uO",args:[J.O]},{func:"X0",void:true},{func:"bw",opt:[null]},,{func:"aB",args:[null]},{func:"XF",args:[W.Aj]},{func:"Gl",ret:J.kn,args:[null,null]},{func:"bX",ret:J.im,args:[null]},{func:"E0",ret:J.kn,args:[P.a,P.a]},{func:"ZY",ret:J.im,args:[P.a]},{func:"EC",ret:J.O,args:[W.D0]},{func:"Vv",ret:J.kn,args:[W.cv,J.O,J.O,W.JQ]},{func:"NT"},{func:"bh",args:[null,null]},{func:"TS",args:[null,J.O]},{func:"Km",args:[W.cv]},{func:"mQ",void:true,args:[null],opt:[P.mE]},{func:"BG",args:[null],opt:[null]},{func:"Uf",ret:J.kn},{func:"bb",args:[null,P.mE]},{func:"lv",args:[P.wv,null]},{func:"Pt",ret:J.O,args:[J.im]},{func:"YI",void:true,args:[P.a]},{func:"qu",void:true,args:[W.KV]},];$=null
@@ -5488,9 +5693,8 @@ $desc=$collectedClasses.Gh
 if($desc instanceof Array)$desc=$desc[1]
 Gh.prototype=$desc
 Gh.prototype.sa5=function(receiver,v){return receiver.download=v}
-Gh.prototype.sVI=function(receiver,v){return receiver.rel=v}
 Gh.prototype.gy0=function(receiver){return receiver.hostname}
-Gh.prototype.sLU=function(receiver,v){return receiver.href=v}
+Gh.prototype.smH=function(receiver,v){return receiver.href=v}
 Gh.prototype.gtp=function(receiver){return receiver.port}
 Gh.prototype.gA8=function(receiver){return receiver.protocol}
 function rK(){}rK.builtin$cls="rK"
@@ -5504,7 +5708,7 @@ $desc=$collectedClasses.fY
 if($desc instanceof Array)$desc=$desc[1]
 fY.prototype=$desc
 fY.prototype.gy0=function(receiver){return receiver.hostname}
-fY.prototype.sLU=function(receiver,v){return receiver.href=v}
+fY.prototype.smH=function(receiver,v){return receiver.href=v}
 fY.prototype.gtp=function(receiver){return receiver.port}
 fY.prototype.gA8=function(receiver){return receiver.protocol}
 function Mr(){}Mr.builtin$cls="Mr"
@@ -5527,7 +5731,7 @@ if(!"name" in nB)nB.name="nB"
 $desc=$collectedClasses.nB
 if($desc instanceof Array)$desc=$desc[1]
 nB.prototype=$desc
-nB.prototype.sLU=function(receiver,v){return receiver.href=v}
+nB.prototype.smH=function(receiver,v){return receiver.href=v}
 function i3(){}i3.builtin$cls="i3"
 if(!"name" in i3)i3.name="i3"
 $desc=$collectedClasses.i3
@@ -5659,11 +5863,11 @@ if(!"name" in cm)cm.name="cm"
 $desc=$collectedClasses.cm
 if($desc instanceof Array)$desc=$desc[1]
 cm.prototype=$desc
-function BK(){}BK.builtin$cls="BK"
-if(!"name" in BK)BK.name="BK"
-$desc=$collectedClasses.BK
+function Nh(){}Nh.builtin$cls="Nh"
+if(!"name" in Nh)Nh.name="Nh"
+$desc=$collectedClasses.Nh
 if($desc instanceof Array)$desc=$desc[1]
-BK.prototype=$desc
+Nh.prototype=$desc
 function ae(){}ae.builtin$cls="ae"
 if(!"name" in ae)ae.name="ae"
 $desc=$collectedClasses.ae
@@ -5677,6 +5881,7 @@ cv.prototype=$desc
 cv.prototype.gxr=function(receiver){return receiver.className}
 cv.prototype.sxr=function(receiver,v){return receiver.className=v}
 cv.prototype.gjO=function(receiver){return receiver.id}
+cv.prototype.sjO=function(receiver,v){return receiver.id=v}
 cv.prototype.gS=function(receiver){return receiver.style}
 function Fs(){}Fs.builtin$cls="Fs"
 if(!"name" in Fs)Fs.name="Fs"
@@ -5760,7 +5965,6 @@ if(!"name" in ik)ik.name="ik"
 $desc=$collectedClasses.ik
 if($desc instanceof Array)$desc=$desc[1]
 ik.prototype=$desc
-ik.prototype.gGS=function(receiver){return receiver.body}
 function QH(){}QH.builtin$cls="QH"
 if(!"name" in QH)QH.name="QH"
 $desc=$collectedClasses.QH
@@ -5790,21 +5994,21 @@ if($desc instanceof Array)$desc=$desc[1]
 pA.prototype=$desc
 pA.prototype.gJR=function(receiver){return receiver.naturalWidth}
 pA.prototype.sLA=function(receiver,v){return receiver.src=v}
-function Rp(){}Rp.builtin$cls="Rp"
-if(!"name" in Rp)Rp.name="Rp"
-$desc=$collectedClasses.Rp
+function JK(){}JK.builtin$cls="JK"
+if(!"name" in JK)JK.name="JK"
+$desc=$collectedClasses.JK
 if($desc instanceof Array)$desc=$desc[1]
-Rp.prototype=$desc
-Rp.prototype.gd4=function(receiver){return receiver.checked}
-Rp.prototype.sd4=function(receiver,v){return receiver.checked=v}
-Rp.prototype.slz=function(receiver,v){return receiver.disabled=v}
-Rp.prototype.sA5=function(receiver,v){return receiver.max=v}
-Rp.prototype.sBp=function(receiver,v){return receiver.min=v}
-Rp.prototype.goc=function(receiver){return receiver.name}
-Rp.prototype.sLA=function(receiver,v){return receiver.src=v}
-Rp.prototype.sRx=function(receiver,v){return receiver.step=v}
-Rp.prototype.gP=function(receiver){return receiver.value}
-Rp.prototype.sP=function(receiver,v){return receiver.value=v}
+JK.prototype=$desc
+JK.prototype.gd4=function(receiver){return receiver.checked}
+JK.prototype.sd4=function(receiver,v){return receiver.checked=v}
+JK.prototype.slz=function(receiver,v){return receiver.disabled=v}
+JK.prototype.sA5=function(receiver,v){return receiver.max=v}
+JK.prototype.sLU=function(receiver,v){return receiver.min=v}
+JK.prototype.goc=function(receiver){return receiver.name}
+JK.prototype.sLA=function(receiver,v){return receiver.src=v}
+JK.prototype.sRx=function(receiver,v){return receiver.step=v}
+JK.prototype.gP=function(receiver){return receiver.value}
+JK.prototype.sP=function(receiver,v){return receiver.value=v}
 function HL(){}HL.builtin$cls="HL"
 if(!"name" in HL)HL.name="HL"
 $desc=$collectedClasses.HL
@@ -5840,9 +6044,7 @@ $desc=$collectedClasses.Og
 if($desc instanceof Array)$desc=$desc[1]
 Og.prototype=$desc
 Og.prototype.slz=function(receiver,v){return receiver.disabled=v}
-Og.prototype.sLU=function(receiver,v){return receiver.href=v}
-Og.prototype.gGx=function(receiver){return receiver.import}
-Og.prototype.sVI=function(receiver,v){return receiver.rel=v}
+Og.prototype.smH=function(receiver,v){return receiver.href=v}
 function u8(){}u8.builtin$cls="u8"
 if(!"name" in u8)u8.name="u8"
 $desc=$collectedClasses.u8
@@ -5926,7 +6128,7 @@ $desc=$collectedClasses.Qb
 if($desc instanceof Array)$desc=$desc[1]
 Qb.prototype=$desc
 Qb.prototype.sA5=function(receiver,v){return receiver.max=v}
-Qb.prototype.sBp=function(receiver,v){return receiver.min=v}
+Qb.prototype.sLU=function(receiver,v){return receiver.min=v}
 Qb.prototype.gP=function(receiver){return receiver.value}
 Qb.prototype.sP=function(receiver,v){return receiver.value=v}
 function PG(){}PG.builtin$cls="PG"
@@ -6134,7 +6336,6 @@ if(!"name" in I0)I0.name="I0"
 $desc=$collectedClasses.I0
 if($desc instanceof Array)$desc=$desc[1]
 I0.prototype=$desc
-I0.prototype.ghf=function(receiver){return receiver.innerHTML}
 I0.prototype.shf=function(receiver,v){return receiver.innerHTML=v}
 function yN(){}yN.builtin$cls="yN"
 if(!"name" in yN)yN.name="yN"
@@ -6487,11 +6688,11 @@ if(!"name" in wf)wf.name="wf"
 $desc=$collectedClasses.wf
 if($desc instanceof Array)$desc=$desc[1]
 wf.prototype=$desc
-function TC(){}TC.builtin$cls="TC"
-if(!"name" in TC)TC.name="TC"
-$desc=$collectedClasses.TC
+function TU(){}TU.builtin$cls="TU"
+if(!"name" in TU)TU.name="TU"
+$desc=$collectedClasses.TU
 if($desc instanceof Array)$desc=$desc[1]
-TC.prototype=$desc
+TU.prototype=$desc
 function bb(){}bb.builtin$cls="bb"
 if(!"name" in bb)bb.name="bb"
 $desc=$collectedClasses.bb
@@ -6557,11 +6758,11 @@ if(!"name" in bM)bM.name="bM"
 $desc=$collectedClasses.bM
 if($desc instanceof Array)$desc=$desc[1]
 bM.prototype=$desc
-function pQ(){}pQ.builtin$cls="pQ"
-if(!"name" in pQ)pQ.name="pQ"
-$desc=$collectedClasses.pQ
+function eW(){}eW.builtin$cls="eW"
+if(!"name" in eW)eW.name="eW"
+$desc=$collectedClasses.eW
 if($desc instanceof Array)$desc=$desc[1]
-pQ.prototype=$desc
+eW.prototype=$desc
 function Qy(){}Qy.builtin$cls="Qy"
 if(!"name" in Qy)Qy.name="Qy"
 $desc=$collectedClasses.Qy
@@ -6637,11 +6838,11 @@ if(!"name" in Gr)Gr.name="Gr"
 $desc=$collectedClasses.Gr
 if($desc instanceof Array)$desc=$desc[1]
 Gr.prototype=$desc
-function cs(){}cs.builtin$cls="cs"
-if(!"name" in cs)cs.name="cs"
-$desc=$collectedClasses.cs
+function Gq(){}Gq.builtin$cls="Gq"
+if(!"name" in Gq)Gq.name="Gq"
+$desc=$collectedClasses.Gq
 if($desc instanceof Array)$desc=$desc[1]
-cs.prototype=$desc
+Gq.prototype=$desc
 function GH(){}GH.builtin$cls="GH"
 if(!"name" in GH)GH.name="GH"
 $desc=$collectedClasses.GH
@@ -6652,11 +6853,11 @@ if(!"name" in To)To.name="To"
 $desc=$collectedClasses.To
 if($desc instanceof Array)$desc=$desc[1]
 To.prototype=$desc
-function jr(){}jr.builtin$cls="jr"
-if(!"name" in jr)jr.name="jr"
-$desc=$collectedClasses.jr
+function NJ(){}NJ.builtin$cls="NJ"
+if(!"name" in NJ)NJ.name="NJ"
+$desc=$collectedClasses.NJ
 if($desc instanceof Array)$desc=$desc[1]
-jr.prototype=$desc
+NJ.prototype=$desc
 function j2(){}j2.builtin$cls="j2"
 if(!"name" in j2)j2.name="j2"
 $desc=$collectedClasses.j2
@@ -6803,11 +7004,11 @@ if(!"name" in fa)fa.name="fa"
 $desc=$collectedClasses.fa
 if($desc instanceof Array)$desc=$desc[1]
 fa.prototype=$desc
-function l4(){}l4.builtin$cls="l4"
-if(!"name" in l4)l4.name="l4"
-$desc=$collectedClasses.l4
+function bi(){}bi.builtin$cls="bi"
+if(!"name" in bi)bi.name="bi"
+$desc=$collectedClasses.bi
 if($desc instanceof Array)$desc=$desc[1]
-l4.prototype=$desc
+bi.prototype=$desc
 function Et(){}Et.builtin$cls="Et"
 if(!"name" in Et)Et.name="Et"
 $desc=$collectedClasses.Et
@@ -6962,8 +7163,8 @@ if(!"name" in f0)f0.name="f0"
 $desc=$collectedClasses.f0
 if($desc instanceof Array)$desc=$desc[1]
 f0.prototype=$desc
-function aX(jO,A4,fW,En,EE,Qy,UF,C9,lJ){this.jO=jO
-this.A4=A4
+function aX(jO,Gx,fW,En,EE,Qy,UF,C9,lJ){this.jO=jO
+this.Gx=Gx
 this.fW=fW
 this.En=En
 this.EE=EE
@@ -7271,6 +7472,13 @@ if(!"name" in VX)VX.name="VX"
 $desc=$collectedClasses.VX
 if($desc instanceof Array)$desc=$desc[1]
 VX.prototype=$desc
+function tQ(M,J9,zO){this.M=M
+this.J9=J9
+this.zO=zO}tQ.builtin$cls="tQ"
+if(!"name" in tQ)tQ.name="tQ"
+$desc=$collectedClasses.tQ
+if($desc instanceof Array)$desc=$desc[1]
+tQ.prototype=$desc
 function o6(){}o6.builtin$cls="o6"
 if(!"name" in o6)o6.name="o6"
 $desc=$collectedClasses.o6
@@ -7281,16 +7489,11 @@ if(!"name" in pk)pk.name="pk"
 $desc=$collectedClasses.pk
 if($desc instanceof Array)$desc=$desc[1]
 pk.prototype=$desc
-function wc(a){this.a=a}wc.builtin$cls="wc"
-if(!"name" in wc)wc.name="wc"
-$desc=$collectedClasses.wc
+function T7(){}T7.builtin$cls="T7"
+if(!"name" in T7)T7.name="T7"
+$desc=$collectedClasses.T7
 if($desc instanceof Array)$desc=$desc[1]
-wc.prototype=$desc
-function R0(){}R0.builtin$cls="R0"
-if(!"name" in R0)R0.name="R0"
-$desc=$collectedClasses.R0
-if($desc instanceof Array)$desc=$desc[1]
-R0.prototype=$desc
+T7.prototype=$desc
 function nu(){}nu.builtin$cls="nu"
 if(!"name" in nu)nu.name="nu"
 $desc=$collectedClasses.nu
@@ -7312,12 +7515,14 @@ if(!"name" in rf)rf.name="rf"
 $desc=$collectedClasses.rf
 if($desc instanceof Array)$desc=$desc[1]
 rf.prototype=$desc
-function Sy(a){this.a=a}Sy.builtin$cls="Sy"
+function Sy(b){this.b=b}Sy.builtin$cls="Sy"
 if(!"name" in Sy)Sy.name="Sy"
 $desc=$collectedClasses.Sy
 if($desc instanceof Array)$desc=$desc[1]
 Sy.prototype=$desc
-function yi(a){this.a=a}yi.builtin$cls="yi"
+function yi(a,c,d){this.a=a
+this.c=c
+this.d=d}yi.builtin$cls="yi"
 if(!"name" in yi)yi.name="yi"
 $desc=$collectedClasses.yi
 if($desc instanceof Array)$desc=$desc[1]
@@ -7327,35 +7532,6 @@ if(!"name" in vm)vm.name="vm"
 $desc=$collectedClasses.vm
 if($desc instanceof Array)$desc=$desc[1]
 vm.prototype=$desc
-function cJ(jO,Fy,QS,qa,v3,pQ,G9,kO,pt,j7,QJ,bk,aD,eH,aX,xF){this.jO=jO
-this.Fy=Fy
-this.QS=QS
-this.qa=qa
-this.v3=v3
-this.pQ=pQ
-this.G9=G9
-this.kO=kO
-this.pt=pt
-this.j7=j7
-this.QJ=QJ
-this.bk=bk
-this.aD=aD
-this.eH=eH
-this.aX=aX
-this.xF=xF}cJ.builtin$cls="cJ"
-if(!"name" in cJ)cJ.name="cJ"
-$desc=$collectedClasses.cJ
-if($desc instanceof Array)$desc=$desc[1]
-cJ.prototype=$desc
-cJ.prototype.gFy=function(){return this.Fy}
-cJ.prototype.sFy=function(v){return this.Fy=v}
-cJ.prototype.gQS=function(){return this.QS}
-cJ.prototype.gqa=function(){return this.qa}
-function ZS(a){this.a=a}ZS.builtin$cls="ZS"
-if(!"name" in ZS)ZS.name="ZS"
-$desc=$collectedClasses.ZS
-if($desc instanceof Array)$desc=$desc[1]
-ZS.prototype=$desc
 function aL(){}aL.builtin$cls="aL"
 if(!"name" in aL)aL.name="aL"
 $desc=$collectedClasses.aL
@@ -7783,18 +7959,11 @@ if(!"name" in CL)CL.name="CL"
 $desc=$collectedClasses.CL
 if($desc instanceof Array)$desc=$desc[1]
 CL.prototype=$desc
-function iP(y3,aL){this.y3=y3
-this.aL=aL}iP.builtin$cls="iP"
-if(!"name" in iP)iP.name="iP"
-$desc=$collectedClasses.iP
-if($desc instanceof Array)$desc=$desc[1]
-iP.prototype=$desc
 function a6(Fq){this.Fq=Fq}a6.builtin$cls="a6"
 if(!"name" in a6)a6.name="a6"
 $desc=$collectedClasses.a6
 if($desc instanceof Array)$desc=$desc[1]
 a6.prototype=$desc
-a6.prototype.gFq=function(){return this.Fq}
 function P7(){}P7.builtin$cls="P7"
 if(!"name" in P7)P7.name="P7"
 $desc=$collectedClasses.P7
@@ -8047,11 +8216,11 @@ if(!"name" in I4)I4.name="I4"
 $desc=$collectedClasses.I4
 if($desc instanceof Array)$desc=$desc[1]
 I4.prototype=$desc
-function I2(Ph){this.Ph=Ph}I2.builtin$cls="I2"
-if(!"name" in I2)I2.name="I2"
-$desc=$collectedClasses.I2
+function Fk(Ph){this.Ph=Ph}Fk.builtin$cls="Fk"
+if(!"name" in Fk)Fk.name="Fk"
+$desc=$collectedClasses.Fk
 if($desc instanceof Array)$desc=$desc[1]
-I2.prototype=$desc
+Fk.prototype=$desc
 function RO(uv,Ph,Sg){this.uv=uv
 this.Ph=Ph
 this.Sg=Sg}RO.builtin$cls="RO"
@@ -8091,11 +8260,11 @@ if(!"name" in Pb)Pb.name="Pb"
 $desc=$collectedClasses.Pb
 if($desc instanceof Array)$desc=$desc[1]
 Pb.prototype=$desc
-function vD(YM){this.YM=YM}vD.builtin$cls="vD"
-if(!"name" in vD)vD.name="vD"
-$desc=$collectedClasses.vD
+function zW(YM){this.YM=YM}zW.builtin$cls="zW"
+if(!"name" in zW)zW.name="zW"
+$desc=$collectedClasses.zW
 if($desc instanceof Array)$desc=$desc[1]
-vD.prototype=$desc
+zW.prototype=$desc
 function mD(a){this.a=a}mD.builtin$cls="mD"
 if(!"name" in mD)mD.name="mD"
 $desc=$collectedClasses.mD
@@ -8123,11 +8292,11 @@ if(!"name" in ct)ct.name="ct"
 $desc=$collectedClasses.ct
 if($desc instanceof Array)$desc=$desc[1]
 ct.prototype=$desc
-function IA(){}IA.builtin$cls="IA"
-if(!"name" in IA)IA.name="IA"
-$desc=$collectedClasses.IA
+function tE(){}tE.builtin$cls="tE"
+if(!"name" in tE)tE.name="tE"
+$desc=$collectedClasses.tE
 if($desc instanceof Array)$desc=$desc[1]
-IA.prototype=$desc
+tE.prototype=$desc
 function Ow(){}Ow.builtin$cls="Ow"
 if(!"name" in Ow)Ow.name="Ow"
 $desc=$collectedClasses.Ow
@@ -8263,4 +8432,34 @@ if(!"name" in GS)GS.name="GS"
 $desc=$collectedClasses.GS
 if($desc instanceof Array)$desc=$desc[1]
 GS.prototype=$desc
-return[qE,Gh,rK,fY,Mr,lJ,P2,nB,i3,it,Az,QP,IF,n6,Ny,nx,QQ,fW,y4,d7,Um,oJ,He,HA,vH,xO,Em,NW,rV,Wy,QF,hs,cm,BK,ae,cv,Fs,hY,ea,D0,as,dU,Aa,u5,Yu,iG,jP,Ax,xf,rH,ik,QH,ST,X2,tX,pA,Rp,HL,In,wP,eP,A6,Og,u8,M6,El,mC,SV,aB,rw,Ih,D8,Vh,rC,ZY,cx,Ee,Qb,PG,xe,Hw,bn,Ik,xI,Aj,oU,ih,KV,BH,KY,G7,l9,Ql,wL,bP,FH,SN,me,ni,rR,qj,nC,KR,ew,fs,u2,bX,lr,MC,iQ,qI,Ea,lp,kd,I0,yN,Cp,ua,HN,Ul,KK,ii,fq,h4,UK,GI,Tb,Iv,BT,yY,kJ,FB,xV,Pe,y6,Cw,Kn,Z2,w6,BR,vw,aG,fA,Oi,UM,YC,hq,WS,NL,yp,c1,Mq,Nf,Nc,Mx,rh,Zv,Q7,yK,Dh,ZJ,mU,ph,IT,JY,Pq,kx,nV,Zc,ui,D6,DQ,Sm,xL,es,jw,lv,pf,NV,W1,zo,wf,TC,bb,Nd,zp,Xu,lu,tk,US,oB,NY,d4,MI,Ub,bM,pQ,Qy,Fu,QN,f1,BA,d0,tp,rE,CC,PQ,uz,Yd,p8,AD,Gr,cs,GH,To,jr,j2,jf,rQ,Lx,LR,d5,hy,r8,SG,CG,UN,MT,Rk,Eo,YS,UD,ZD,vt,cu,BD,vR,j8,Ja,zI,cB,LQ,yR,HP,fa,l4,Et,QS,Pi,qO,xt,tG,P0,xl,Xr,Sl,Qm,ET,V6,eo,Gv,kn,YE,Ue,iC,is,Q,P,im,VA,O,PK,JO,f0,aX,cC,RA,t8,JH,jl,vK,Iy,JM,Ua,ns,yo,Bj,NO,II,fP,X1,HU,oo,OW,Tf,AP,yH,FA,Av,ku,FD,Zr,ZQ,az,vV,Am,XO,dr,TL,KX,uZ,OQ,Tp,Bp,v,mh,lb,tD,hJ,dC,wN,VX,o6,pk,wc,R0,nu,Gj,qM,rf,Sy,yi,vm,cJ,ZS,aL,wi,i1,xy,MH,A8,U5,SO,SU,Ca,b8,vs,da,xw,dm,rq,RW,YP,jZ,FZ,OM,qh,lz,Rl,Jb,M4,B5,PI,MO,nP,fI,dR,uR,fZ,TF,K5,Cg,Hs,pK,eM,R8,k6,oi,fG,EQ,YB,a1,db,i5,N6,jg,YO,oz,b6,tj,zQ,u3,mW,ar,lD,W0,Sw,o0,CL,iP,a6,P7,DW,Ge,LK,AT,bJ,ub,ds,lj,UV,Ts,VS,t7,HG,aE,kM,An,c8,a,mE,Rn,wv,M0,BV,Xn,vY,A5,pV,id,VG,wz,B1,Cv,dx,ec,e7,hm,x5,nj,HR,tJ,i7,nF,FK,Si,vf,A1,hD,I4,I2,RO,eu,xC,hP,JQ,Pb,vD,mD,Eg,m6,ct,IA,Ow,W9,dW,rB,kF,mk,MM,fm,O7,XY,mg,hL,IN,tn,b0,DV,Ob,GV,As,GE,rl,D7,Zf,GS]}
+function cJ(jO,Fy,QS,qa,kv,Lx,cI,Xt,I3,Kb,Iu,aD,FZ,eH,PR,xF){this.jO=jO
+this.Fy=Fy
+this.QS=QS
+this.qa=qa
+this.kv=kv
+this.Lx=Lx
+this.cI=cI
+this.Xt=Xt
+this.I3=I3
+this.Kb=Kb
+this.Iu=Iu
+this.aD=aD
+this.FZ=FZ
+this.eH=eH
+this.PR=PR
+this.xF=xF}cJ.builtin$cls="cJ"
+if(!"name" in cJ)cJ.name="cJ"
+$desc=$collectedClasses.cJ
+if($desc instanceof Array)$desc=$desc[1]
+cJ.prototype=$desc
+cJ.prototype.sjO=function(receiver,v){return this.jO=v}
+cJ.prototype.gFy=function(){return this.Fy}
+cJ.prototype.sFy=function(v){return this.Fy=v}
+cJ.prototype.gQS=function(){return this.QS}
+cJ.prototype.gqa=function(){return this.qa}
+function ZS(a){this.a=a}ZS.builtin$cls="ZS"
+if(!"name" in ZS)ZS.name="ZS"
+$desc=$collectedClasses.ZS
+if($desc instanceof Array)$desc=$desc[1]
+ZS.prototype=$desc
+return[qE,Gh,rK,fY,Mr,lJ,P2,nB,i3,it,Az,QP,IF,n6,Ny,nx,QQ,fW,y4,d7,Um,oJ,He,HA,vH,xO,Em,NW,rV,Wy,QF,hs,cm,Nh,ae,cv,Fs,hY,ea,D0,as,dU,Aa,u5,Yu,iG,jP,Ax,xf,rH,ik,QH,ST,X2,tX,pA,JK,HL,In,wP,eP,A6,Og,u8,M6,El,mC,SV,aB,rw,Ih,D8,Vh,rC,ZY,cx,Ee,Qb,PG,xe,Hw,bn,Ik,xI,Aj,oU,ih,KV,BH,KY,G7,l9,Ql,wL,bP,FH,SN,me,ni,rR,qj,nC,KR,ew,fs,u2,bX,lr,MC,iQ,qI,Ea,lp,kd,I0,yN,Cp,ua,HN,Ul,KK,ii,fq,h4,UK,GI,Tb,Iv,BT,yY,kJ,FB,xV,Pe,y6,Cw,Kn,Z2,w6,BR,vw,aG,fA,Oi,UM,YC,hq,WS,NL,yp,c1,Mq,Nf,Nc,Mx,rh,Zv,Q7,yK,Dh,ZJ,mU,ph,IT,JY,Pq,kx,nV,Zc,ui,D6,DQ,Sm,xL,es,jw,lv,pf,NV,W1,zo,wf,TU,bb,Nd,zp,Xu,lu,tk,US,oB,NY,d4,MI,Ub,bM,eW,Qy,Fu,QN,f1,BA,d0,tp,rE,CC,PQ,uz,Yd,p8,AD,Gr,Gq,GH,To,NJ,j2,jf,rQ,Lx,LR,d5,hy,r8,SG,CG,UN,MT,Rk,Eo,YS,UD,ZD,vt,cu,BD,vR,j8,Ja,zI,cB,LQ,yR,HP,fa,bi,Et,QS,Pi,qO,xt,tG,P0,xl,Xr,Sl,Qm,ET,V6,eo,Gv,kn,YE,Ue,iC,is,Q,P,im,VA,O,PK,JO,f0,aX,cC,RA,t8,JH,jl,vK,Iy,JM,Ua,ns,yo,Bj,NO,II,fP,X1,HU,oo,OW,Tf,AP,yH,FA,Av,ku,FD,Zr,ZQ,az,vV,Am,XO,dr,TL,KX,uZ,OQ,Tp,Bp,v,mh,lb,tD,hJ,dC,wN,VX,tQ,o6,pk,T7,nu,Gj,qM,rf,Sy,yi,vm,aL,wi,i1,xy,MH,A8,U5,SO,SU,Ca,b8,vs,da,xw,dm,rq,RW,YP,jZ,FZ,OM,qh,lz,Rl,Jb,M4,B5,PI,MO,nP,fI,dR,uR,fZ,TF,K5,Cg,Hs,pK,eM,R8,k6,oi,fG,EQ,YB,a1,db,i5,N6,jg,YO,oz,b6,tj,zQ,u3,mW,ar,lD,W0,Sw,o0,CL,a6,P7,DW,Ge,LK,AT,bJ,ub,ds,lj,UV,Ts,VS,t7,HG,aE,kM,An,c8,a,mE,Rn,wv,M0,BV,Xn,vY,A5,pV,id,VG,wz,B1,Cv,dx,ec,e7,hm,x5,nj,HR,tJ,i7,nF,FK,Si,vf,A1,hD,I4,Fk,RO,eu,xC,hP,JQ,Pb,zW,mD,Eg,m6,ct,tE,Ow,W9,dW,rB,kF,mk,MM,fm,O7,XY,mg,hL,IN,tn,b0,DV,Ob,GV,As,GE,rl,D7,Zf,GS,cJ,ZS]}

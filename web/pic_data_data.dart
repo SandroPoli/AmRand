@@ -83,7 +83,17 @@ Map<String, List<PicData>> quotes = {
                          new PicData(picBox, "fashion14", "", "", "", "http://good50x70.org/2011/imagecontest/poster/42.jpg", 0.183, 0, -66, 2953, 4134),
                          new PicData(picBox, "fashion15", "", "", "", "http://bioenergyitalyblog.it/wp-content/uploads/2013/05/Fiere-energie-rinnovabili-nel-mondo.png", 1.4025974025974026, -52, 0, 462, 385),
                          new PicData(picBox, "fashion16", "", "", "telefoni per bambini", "http://www.evidence4action.net/wp-content/uploads/2012/08/Africas-mobile-phone-industry-booming-1.jpg", 1.511, -180, 0, 520, 347),
-                         new PicData(picBox, "fashion17", "", "", "muraglia cinese", "http://dallacity.finanza.com/files/2010/10/000003732362-cina-muraglia-cinese.jpg", 0.4426229508196721, -257, 0, 1800, 1220)
+                         new PicData(picBox, "fashion17", "", "", "muraglia cinese", "http://dallacity.finanza.com/files/2010/10/000003732362-cina-muraglia-cinese.jpg", 0.4426229508196721, -257, 0, 1800, 1220),
+                         new PicData(picBox, "fashion18", "", "", "muraglia cinese", "", 0.4426229508196721, -257, 0, 1800, 1220),
+                         new PicData(picBox, "fashion19", "", "", "muraglia cinese", "", 0.4426229508196721, -257, 0, 1800, 1220),
+                         new PicData(picBox, "fashion20", "", "", "", "", 0.4426229508196721, -257, 0, 1800, 1220),
+                         new PicData(picBox, "fashion21", "", "", "", "", 0.4426229508196721, -257, 0, 1800, 1220),
+                         new PicData(picBox, "fashion22", "", "", "", "", 0.4426229508196721, -257, 0, 1800, 1220),
+                         new PicData(picBox, "fashion23", "", "", "", "", 0.4426229508196721, -257, 0, 1800, 1220),
+                         new PicData(picBox, "fashion24", "", "", "", "", 0.4426229508196721, -257, 0, 1800, 1220),
+                         new PicData(picBox, "fashion25", "", "", "", "", 0.4426229508196721, -257, 0, 1800, 1220),
+                         new PicData(picBox, "fashion26", "", "", "", "", 0.4426229508196721, -257, 0, 1800, 1220),
+                         new PicData(picBox, "fashion27", "", "", "thè", "http://images.fineartamerica.com/images-medium-large/fishing-at-the-edge-of-a-cup-of-tea-mingqi-ge.jpg", 0.9, -253, 0, 900, 600)
                          ],
                "legality" : [
                          new PicData(picBox, "legality0", "", "", "wildes Bauen", "http://www.cartoongallery.eu/englishversion/wp-content/gallery/iboligan/boligan1e.jpg", 0.685, 0, 0, 800, 800),

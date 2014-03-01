@@ -165,7 +165,11 @@ iconClick(MouseEvent e){
   if (iDs[curFace] == 'universe'){
     querySelector('#tv').classes.add('tvOff');
   } else {
-    picData = quotes[iDs[curFace]][curIndex];
+    if (quotes[iDs[curFace]].length > curIndex) {
+      picData = quotes[iDs[curFace]][curIndex];
+    } else {
+      picData = null;
+    }
     dbgIcon(iDs[curFace], curIndex);
   }
   dbgOut('iconClick on: ${curIcon.id}');
@@ -428,34 +432,36 @@ dbgIcon(id, i,[icon]){
   if (icon == null) icon = querySelector('#icon-$id-$i');
   if (icon == null) return;;
   if (canEdit){
-    var pd = quotes[id][i];
-    if (pd == null){
+    if (quotes[id].length <= i) {
       icon
-      ..text = 'EMPTY'
-      ..classes.add('empty');
-    } else if (pd.link.isEmpty) {
-      icon
-      ..text = 'NO image'
-      ..classes.add('noPic');
-    } else if (pd.quote.isEmpty) {
-      icon
-      ..text = 'NO quote'
-      ..classes.add('noQte');
-    } else if (pd.author.isEmpty) {
-      icon
-      ..text = 'NO author'
-      ..classes.add('noAuthor');
-    } else if (pd.info.isEmpty) {
-      icon
-      ..text = 'NO info'
-      ..classes.add('noInfo');
+            ..text = 'EMPTY'
+            ..classes.add('empty');  
     } else {
-      icon
-      ..text = 'ok'
-      ..classes.remove('empty')
-      ..classes.remove('noQte')
-      ..classes.remove('noAuthor')
-      ..classes.remove('noInfo');
+      var pd = quotes[id][i];
+      if (pd.link.isEmpty) {
+        icon
+        ..text = 'NO image'
+        ..classes.add('noPic');
+      } else if (pd.quote.isEmpty) {
+        icon
+        ..text = 'NO quote'
+        ..classes.add('noQte');
+      } else if (pd.author.isEmpty) {
+        icon
+        ..text = 'NO author'
+        ..classes.add('noAuthor');
+      } else if (pd.info.isEmpty) {
+        icon
+        ..text = 'NO info'
+        ..classes.add('noInfo');
+      } else {
+        icon
+        ..text = 'ok'
+        ..classes.remove('empty')
+        ..classes.remove('noQte')
+        ..classes.remove('noAuthor')
+        ..classes.remove('noInfo');
+      }
     }
   }
   icon.style.transform = 'rotate(${rnd.nextInt(20)-10}deg)';

@@ -85,14 +85,14 @@ Map<String, List<PicData>> quotes = {
                          new PicData(picBox, "fashion16", "", "", "telefoni per bambini", "http://www.evidence4action.net/wp-content/uploads/2012/08/Africas-mobile-phone-industry-booming-1.jpg", 1.511, -180, 0, 520, 347),
                          new PicData(picBox, "fashion17", "", "", "muraglia cinese", "http://dallacity.finanza.com/files/2010/10/000003732362-cina-muraglia-cinese.jpg", 0.4426229508196721, -257, 0, 1800, 1220),
                          new PicData(picBox, "fashion18", "", "", "3d printer<br>", "https://mediasaturnstore.blob.core.windows.net/productimages/main/7630003309980_1394187.png", 1.832, 0, -83, 219, 340),
-                         new PicData(picBox, "fashion19", "", "", "muraglia cinese", "", 0.4426229508196721, -257, 0, 1800, 1220),
-                         new PicData(picBox, "fashion20", "", "", "", "", 0.4426229508196721, -257, 0, 1800, 1220),
-                         new PicData(picBox, "fashion21", "", "", "", "", 0.4426229508196721, -257, 0, 1800, 1220),
-                         new PicData(picBox, "fashion22", "", "", "", "", 0.4426229508196721, -257, 0, 1800, 1220),
-                         new PicData(picBox, "fashion23", "", "", "", "", 0.4426229508196721, -257, 0, 1800, 1220),
-                         new PicData(picBox, "fashion24", "", "", "", "", 0.4426229508196721, -257, 0, 1800, 1220),
-                         new PicData(picBox, "fashion25", "", "", "", "", 0.4426229508196721, -257, 0, 1800, 1220),
-                         new PicData(picBox, "fashion26", "", "", "", "", 0.4426229508196721, -257, 0, 1800, 1220),
+                         new PicData(picBox, "fashion19", "", "", "immigrazione a Belrino", "http://www.blog-hostelsclub.com/wp-content/uploads/2013/10/berlin-skyline.jpg", 0.7366984993178718, -160, 0, 950, 733),
+                         new PicData(picBox, "fashion20", "", "", "DIY do it yourself", "http://harmondrive.files.wordpress.com/2010/04/diy-icon.jpg?w=475", 1.266, -1, 0, 475, 395),
+                         new PicData(picBox, "fashion21", "", "", "", "http://2.bp.blogspot.com/_qaj9rXxrsG0/TTNxfzS5xqI/AAAAAAAAAE4/0tklaz4YxDo/s400/LEON_artwork_TIME_Cover-A.jpg", 1.789, 0, -13, 291, 400),
+                         new PicData(picBox, "fashion22", "", "", "telefono assemblabile a secondo del proprio utilizzo", "http://good-design.org.uk/wp-content/uploads/2013/09/phonebloks_open-620x387.jpg", 1.3953488372093024, -172, 0, 620, 387),
+                         new PicData(picBox, "fashion23", "They look like us, they talk like us, but they are almost a completely different species. The digital natives grew up surrounded by technological advances such as (high speed) internet, mobile phones and social media. They learn and think differently and have different priorities in life than generations before them.", "Trands reaserch", "new generation ability ", "http://www.trendsactive.com/wp-content/uploads/2012/09/digital-natives-trends.jpg", 1.173913043478261, 0, 0, 460, 460),
+                         new PicData(picBox, "fashion24", "We are in the middle of the rise of a new visual culture, created by a young ‘visual’ generation. This generation grew up surrounded by a total abundance of images. Psychological research shows the result: this generation thinks visually and learns in images. <br>", "http://www.trendsactive.com/", "visual culture", "http://www.trendsactive.com/wp-content/uploads/2012/09/Visual-culture-societal-trends.jpg", 1.173913043478261, 0, 0, 460, 460),
+                         new PicData(picBox, "fashion25", "The digitalization that has taken place over the past fifteen years has fundamentally changed society. Everything and everybody is – to a certain degree – connected. This has changed not only our behaviour, but also the fundamentals of virtually every organization. This trend is about people connecting with each other, with products (and services) and with organizations.", "", "", "http://www.trendsactive.com/wp-content/uploads/2012/09/Connected-society-societal-trends.jpg", 1.173913043478261, 0, 0, 460, 460),
+                         new PicData(picBox, "fashion26", "", "", "divorzio", "http://www.indian-ocean-times.com/photo/art/default/5844904-8714864.jpg?v=1378984600", 1.3846153846153846, -127, 0, 618, 390),
                          new PicData(picBox, "fashion27", "", "", "thÃ¨", "http://images.fineartamerica.com/images-medium-large/fishing-at-the-edge-of-a-cup-of-tea-mingqi-ge.jpg", 0.9, -253, 0, 900, 600)
                          ],
                "legality" : [
@@ -156,6 +156,6 @@ Map<String, List<PicData>> quotes = {
                          new PicData(picBox, "other27", "", "", "la morte di marat", "http://upload.wikimedia.org/wikipedia/commons/a/aa/Death_of_Marat_by_David.jpg", 0.5394605394605395, 0, -127, 1001, 1287)
                          ],
                "universe" : [
-                         new PicData(picBox, "universe0", "vielleicht...", "Sandro Poli", "", "img/nichts.png", 0.7022106631989596, 0, 0, 770, 769)
+                         new PicData(picBox, "universe0", "vielleicht...", "Sandro Poli", "", "img/nichts.png", 0.7022106631989596, 0, 0, 770, 769),null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null
                          ]
  };

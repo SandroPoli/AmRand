@@ -35,7 +35,8 @@ InputElement
 TextAreaElement
   tQuote,
   tAuthor,
-  tInfo;
+  tInfo,
+  tIntro;
 Element
   curIcon,
   pzInfo,
@@ -43,7 +44,8 @@ Element
   cube,
   viewBox,
   qteBox,
-  editor;
+  editor,
+  eIntro;
 
 LinkElement dataLink;
 List<Element> catBoxes;
@@ -61,13 +63,7 @@ Math.Random rnd = new Math.Random();
 void main() {
 
   dbgOut('main: started...');
-  // load data and init
-
-//  dataLink = new LinkElement()
-//  ..rel = 'import'
-//  ..href = 'data/data.html'
-//  ..onLoad.listen(initQuotes);
-//  document.head.append(dataLink);
+  querySelector('#introText').innerHtml = introText;
 
   // --- init global elements
   scene = querySelector('.scene');
@@ -83,6 +79,8 @@ void main() {
   iZoom = editor.querySelector('#iZoom');
   iOffset = editor.querySelector('#iOffset');
   pzInfo = editor.querySelector('#pzInfo');
+  eIntro = querySelector('#eIntro');
+  tIntro = querySelector('#tIntro');
 
   dbgOut('main: globals initialized...');
 
@@ -93,6 +91,7 @@ void main() {
   querySelector('#btnSearch').onClick.listen(search);
   querySelector('#btnSave').onClick.listen(saveClick);
   querySelector('#btnEnter').onClick.listen(enter);
+  querySelector('#btnSaveIntro').onClick.listen(saveIntro);
   querySelector('.intro').onClick.listen(smallIntroClick);
   querySelector('.edit').onClick.listen(smallEditClick);
 
@@ -131,17 +130,30 @@ dbgOut(txt) => dbg ?  print(txt) : {};
 enter([e]){
   dbgOut('enterBtn clicked...');
   querySelector('#intro').classes.add('hidden');
+  if (!canEdit) eIntro.classes.add('hidden');
+}
+
+saveIntro(e){
+  introText = tIntro.value.replaceAll('\n', '<br>');
+  querySelector('#introText').innerHtml = introText;
 }
 
 smallIntroClick(e){
   dbgOut('introBtn clicked...');
   querySelector('#intro').classes.remove('hidden');
+  if (canEdit){
+    tIntro.value = introText.replaceAll('<br>', '\n');
+    tIntro.style.height = '${querySelector("#introText").clientHeight}px';
+    eIntro.classes.remove('hidden');
+  } else {
+    eIntro.classes.add('hidden');
+  }
 }
 
 smallEditClick(e){
   dbgOut('editBtn clicked...');
   hideAll();
-  canEdit = true;
+  canEdit = !canEdit;
   showAll();
 }
 
@@ -342,40 +354,14 @@ showEditor(show){
     ..disabled = true;
     iOffset.disabled = true;
     editor.classes.add('hidden');
+    tIntro.classes.add('hidden');
   }
 }
 
 // --- initialization
 
 initQuotes(e){
-  dbgOut('initQuote() = data load event received...');
-//  quotes = new Map<String, List<PicData>>();
-//  var doc = dataLink.import;
-//  iDs.forEach((id){
-//    if (id != 'universe'){
-//      var data = doc.body.querySelector('#d-$id');
-//      var entries = new List<PicData>(37);
-//      for(var i = 1; i <=36; i++){
-//        var pdId = '${id}$i';
-//        if (data != null){
-//          var el = data.querySelector('#$pdId');
-//          if (el != null){
-//            var q = el.querySelector('.quote').innerHtml;
-//            var a = el.querySelector('.author').innerHtml;
-//            var p = el.querySelector('.info').innerHtml;
-//            var l = el.querySelector('.link').text;
-//            var x = num.parse(el.querySelector('.posX').text);
-//            var y = num.parse(el.querySelector('.posY').text);
-//            var z = double.parse(el.querySelector('.zoom').text);
-//            var w = el.querySelector('.oWidth') != null ? num.parse(el.querySelector('.oWidth').text) : null;
-//            var h = el.querySelector('.oHeight') != null ? num.parse(el.querySelector('.oHeight').text) : null;
-//            entries[i] = new PicData(picBox, pdId, q, a, p, l, z, x, y, w, h);
-//          }
-//        }
-//        quotes[id] = entries;
-//      }
-//    }
-//  });
+  dbgOut('initQuote()');
   init();
 }
 
@@ -573,6 +559,7 @@ String getDataFileContent(){
   var content = '/* ==== generated data file ==== */';
   content += '\n\npart of picData;';
   content += '\n\nElement picBox;';
+  content += '\n\nString introText = "$introText";';
   content += '\n\nMap<String, List<PicData>> quotes = {';
   quotes.forEach((key, list){
     var lStr = '';

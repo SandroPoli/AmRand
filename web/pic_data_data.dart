@@ -4,6 +4,8 @@ part of picData;
 
 Element picBox;
 
+String introText = 'Non eram nescius, Brute, cum, quae summis ingeniis exquisitaque doctrina philosophi Graeco sermone tractavissent, ea Latinis litteris mandaremus, fore ut hic noster labor in varias reprehensiones incurreret.<br>Nam quibusdam, et iis quidem non admodum indoctis, totum hoc displicet philosophari. quidam autem non tam id reprehendunt, si remissius agatur, sed tantum studium tamque multam operam ponendam in eo non arbitrantur.<br>Erunt etiam, et ii quidem eruditi Graecis litteris, contemnentes Latinas, qui se dicant in Graecis legendis operam malle consumere. postremo aliquos futuros suspicor, qui me ad alias litteras vocent, genus hoc scribendi, etsi sit elegans, personae tamen et dignitatis esse negent.';
+
 Map<String, List<PicData>> quotes = {
                "society" : [
                          new PicData(picBox, "society0", "Armut,    Keuschheit und Gehorsam -<br>drei Gelübde,   <br>deren jedes,   <br>einzeln betrachtet,   <br>der Natur das unausstehlichste scheint,   <br>so unerträglich sind sie alle.", "Johann Wolfgang von Goethe (1749-1832),   <br>dt. Dichter", "Armut", "http://www.ethnoconnect.org.au/files/attach/images/114/778/poverty.jpg", 0.393, -250, 0, 2388, 1585),

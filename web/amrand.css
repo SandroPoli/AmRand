@@ -364,16 +364,20 @@ footer {
 	z-index: -10;
 }
 
-#intro > h1 {
+#intro > .iText {
 	font-weight: normal;
 	width: 60%;
 	margin: 20px auto;
 }
 
-#intro > p {
-	margin: 20px auto;
-	width: 60%;
+#tIntro {
+  width: 100%;
+  margin-bottom: 2px;
+  font-size: medium;
+  font-family: sans-serif;
+  resize: none;
 }
+
 
 /* ---editor ---*/
 #editor {
@@ -384,6 +388,11 @@ footer {
 	background: rgba(255, 255, 255, 0.78);
 	padding: 10px;
 	overflow: hidden;
+}
+
+
+#eIntro.hidden{
+  display: none;
 }
 
 #editor > hr {

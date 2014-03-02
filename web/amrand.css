@@ -22,7 +22,7 @@ header,footer {
 
 header {
 	top: 0px;
-	padding-left: 3%;
+	padding-left: 76px;
 	font-size: x-large;
 	color: white;
 	background: rgba(50,50,50,50.8);
@@ -364,9 +364,10 @@ footer {
 	z-index: -10;
 }
 
+#intro > h1,
 #intro > .iText {
 	font-weight: normal;
-	width: 60%;
+	width: 70%;
 	margin: 20px auto;
 }
 

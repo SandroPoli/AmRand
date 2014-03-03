@@ -1606,6 +1606,7 @@ return this.zO}}}],["","file:///C:/Users/Rudy/Documents/GitHub/AmRand/web/amrand
 Iq:[function(){var z,y,x
 if($.EU)P.JS("main: started...")
 else H.B7([],P.L5(null,null,null,null,null))
+J.Qy(document.querySelector("#introText"),$.BA)
 $.G4=document.querySelector(".scene")
 $.Ez=document.querySelector(".cube")
 $.Ct=document.querySelector("#viewBox")
@@ -1620,6 +1621,8 @@ $.kG=$.km.querySelector("#iLink")
 $.b5=$.km.querySelector("#iZoom")
 $.zs=$.km.querySelector("#iOffset")
 $.IY=$.km.querySelector("#pzInfo")
+$.j1=document.querySelector("#eIntro")
+$.PR=document.querySelector("#tIntro")
 if($.EU)P.JS("main: globals initialized...")
 else H.B7([],P.L5(null,null,null,null,null))
 if($.EU)P.JS("main: data loading started...")
@@ -1632,6 +1635,8 @@ z=J.Vg(document.querySelector("#btnSave"))
 H.VM(new W.xC(0,z.uv,z.Ph,W.VF(D.Ug()),z.Sg),[H.Kp(z,0)]).Zz()
 z=J.Vg(document.querySelector("#btnEnter"))
 H.VM(new W.xC(0,z.uv,z.Ph,W.VF(D.ee()),z.Sg),[H.Kp(z,0)]).Zz()
+z=J.Vg(document.querySelector("#btnSaveIntro"))
+H.VM(new W.xC(0,z.uv,z.Ph,W.VF(D.PV()),z.Sg),[H.Kp(z,0)]).Zz()
 z=J.Vg(document.querySelector(".intro"))
 H.VM(new W.xC(0,z.uv,z.Ph,W.VF(D.SY()),z.Sg),[H.Kp(z,0)]).Zz()
 z=J.Vg(document.querySelector(".edit"))
@@ -1668,22 +1673,31 @@ z=C.IU.aM(window)
 H.VM(new W.xC(0,z.uv,z.Ph,W.VF(D.Zn()),z.Sg),[H.Kp(z,0)]).Zz()
 if($.EU)P.JS("main: window events set...")
 else H.B7([],P.L5(null,null,null,null,null))
-if($.EU)P.JS("initQuote() = data load event received...")
+if($.EU)P.JS("initQuote()")
 else H.B7([],P.L5(null,null,null,null,null))
 D.V3()},"call$0","KW",0,0,1],
 Bb:[function(a){if($.EU)P.JS("enterBtn clicked...")
 else H.B7([],P.L5(null,null,null,null,null))
-J.pP(document.querySelector("#intro")).h(0,"hidden")},function(){return D.Bb(null)},null,"call$1","call$0","ee",0,2,2,3],
-qH:[function(a){if($.EU)P.JS("introBtn clicked...")
+J.pP(document.querySelector("#intro")).h(0,"hidden")
+if(!$.Tl)J.pP($.j1).h(0,"hidden")},function(){return D.Bb(null)},null,"call$1","call$0","ee",0,2,2,3],
+f3:[function(a){$.BA=J.JA(J.Vm($.PR),"\n","<br>")
+J.Qy(document.querySelector("#introText"),$.BA)},"call$1","PV",2,0,4],
+qH:[function(a){var z,y
+if($.EU)P.JS("introBtn clicked...")
 else H.B7([],P.L5(null,null,null,null,null))
-J.pP(document.querySelector("#intro")).Rz(0,"hidden")},"call$1","SY",2,0,4],
+J.pP(document.querySelector("#intro")).Rz(0,"hidden")
+if($.Tl){z=$.PR
+y=$.BA
+J.Fc(z,H.ys(y,"<br>","\n"))
+J.OE($.PR.style,H.d(document.querySelector("#introText").clientHeight)+"px")
+J.pP($.j1).Rz(0,"hidden")}else J.pP($.j1).h(0,"hidden")},"call$1","SY",2,0,4],
 Lt:[function(a){if($.EU)P.JS("editBtn clicked...")
 else H.B7([],P.L5(null,null,null,null,null))
 if($.EU)P.JS("hideALL()")
 else H.B7([],P.L5(null,null,null,null,null))
 D.dj(!1)
 D.fJ(!1)
-$.Tl=!0
+$.Tl=!$.Tl
 if($.EU)P.JS("showALL()")
 else H.B7([],P.L5(null,null,null,null,null))
 D.dj(!0)
@@ -1697,15 +1711,14 @@ if($.EU)P.JS(z)
 else H.B7([],P.L5(null,null,null,null,null))
 if(a){z=$.q2
 if(z!=null)z.KS()
-else{z=$.th()
-y=$.iY
-if(y>=6)return H.e(z,y)
-x=z[y]
-w=$.EG
-if(x==="universe")J.BB(w.style,null)
-else{J.BB(w.style,"url(img/"+z[y]+".png)")
-J.RC(w.style,"0px 0px")
-J.uH(w.style,"cover")}}}else{z=$.EG
+else{z=$.EG
+y=z.style
+x=$.th()
+w=$.iY
+if(w>=6)return H.e(x,w)
+J.BB(y,"url(img/"+x[w]+".png)")
+J.RC(z.style,"0px 0px")
+J.uH(z.style,"cover")}}else{z=$.EG
 y=z.style
 x=$.th()
 w=$.iY
@@ -1746,8 +1759,14 @@ $.OX=H.BU(H.ys(y,w,""),null,null)
 y=$.th()
 x=$.iY
 if(x>=6)return H.e(y,x)
-if(y[x]==="universe")J.pP(document.querySelector("#tv")).h(0,"tvOff")
-else{y=$.aw().t(0,y[x])
+if(y[x]==="universe"){J.pP(document.querySelector("#tv")).h(0,"tvOff")
+y=$.aw()
+x=$.th()
+w=$.iY
+if(w>=6)return H.e(x,w)
+w=y.t(0,x[w])
+if(0>=w.length)return H.e(w,0)
+$.q2=w[0]}else{y=$.aw().t(0,y[x])
 x=$.OX
 if(x>>>0!==x||x>=y.length)return H.e(y,x)
 $.q2=y[x]
@@ -1764,15 +1783,14 @@ if($.EU)H.qw("showPic(true)")
 else H.B7([],P.L5(null,null,null,null,null))
 z=$.q2
 if(z!=null)z.KS()
-else{z=$.th()
-y=$.iY
-if(y>=6)return H.e(z,y)
-x=z[y]
-w=$.EG
-if(x==="universe")J.BB(w.style,null)
-else{J.BB(w.style,"url(img/"+z[y]+".png)")
-J.RC(w.style,"0px 0px")
-J.uH(w.style,"cover")}}D.MS(!0)
+else{z=$.EG
+y=z.style
+x=$.th()
+w=$.iY
+if(w>=6)return H.e(x,w)
+J.BB(y,"url(img/"+x[w]+".png)")
+J.RC(z.style,"0px 0px")
+J.uH(z.style,"cover")}D.MS(!0)
 D.tR(!0)},"call$1","G0",2,0,4],
 bv:[function(a){var z,y,x
 z=J.K0(document.querySelector("#iOffset"))
@@ -1927,7 +1945,8 @@ y.sRx(z,"1.2")
 y.sP(z,"1.0")
 z.disabled=!0
 J.zL($.zs,!0)
-J.pP($.km).h(0,"hidden")}},
+J.pP($.km).h(0,"hidden")
+J.pP($.PR).h(0,"hidden")}},
 V3:function(){var z,y,x,w
 if($.EU)P.JS("init()")
 else H.B7([],P.L5(null,null,null,null,null))
@@ -2056,6 +2075,8 @@ y="/* ==== generated data file ==== */"+"\n\npart of picData;"
 z.b=y
 y+="\n\nElement picBox;"
 z.b=y
+y+="\n\nString introText = \""+$.BA+"\";"
+z.b=y
 z.b=y+"\n\nMap<String, List<PicData>> quotes = {"
 $.aw().aN(0,new D.Sy(z))
 x=z.b
@@ -2110,8 +2131,9 @@ v=1
 while(!0){if(!(v<=(w?8:6)))break
 u=document.createElement("div",null)
 u.id="icon-"+H.d(a)+"-"+y
-J.Vn(u.style,""+y)
 t=J.RE(u)
+t.smk(u,"click zum Zeigen")
+J.Vn(u.style,""+y)
 t.gDD(u).FV(0,["icon","side"+x,a])
 s=C.hi.xh(u)
 r=s.Ph
@@ -2178,28 +2200,32 @@ if(typeof y!=="number")return H.s(y)
 a.sOp(z/y)}}},
 Sy:{
 "^":"Tp:13;b",
-call$2:function(a,b){var z,y,x,w,v,u,t
+call$2:function(a,b){var z,y,x,w,v,u,t,s
 z={}
 z.a=""
 if(b!=null){y=this.b
 y.b=y.b+("\n               \""+H.d(a)+"\" : [")
-J.kH(b,new D.yi(z,a,b))
-x=z.a
-w=x.length
-v=w-1
-if(v<0)return H.e(x,v)
-if(x[v]===","){u=C.xB.Nj(x,0,v)
-z.a=u
-z=u}else z=x
-t=y.b+z
-y.b=t
-y.b=t+"\n                         ],"}}},
+x=J.w1(b)
+x.aN(b,new D.yi(z,a,b))
+w=x.gB(b)
+while(!0){if(typeof w!=="number")return w.C()
+if(!(w<28))break
+z.a=z.a+"null,";++w}x=z.a
+v=x.length
+u=v-1
+if(u<0)return H.e(x,u)
+if(x[u]===","){t=C.xB.Nj(x,0,u)
+z.a=t
+z=t}else z=x
+s=y.b+z
+y.b=s
+y.b=s+"\n                         ],"}}},
 yi:{
 "^":"Tp:4;a,c,d",
 call$1:function(a){var z
-J.to(a,H.d(this.c)+J.UU(this.d,a))
+if(a!=null){J.to(a,H.d(this.c)+J.UU(this.d,a))
 z=this.a
-z.a=z.a+("\n                         "+a.gW5()+",")}},
+z.a=z.a+("\n                         "+a.gW5()+",")}}},
 vm:{
 "^":"Tp:4;a",
 call$1:function(a){return J.Mp(this.a)}}},1],["dart._internal","dart:_internal",,H,{
@@ -3652,7 +3678,7 @@ Nh:{
 bu:function(a){return a.toString()},
 "%":"DOMException"},
 cv:{
-"^":"KV;xr:className%,jO:id%,S:style=",
+"^":"KV;mk:title},xr:className%,jO:id%,S:style=",
 gQg:function(a){return new W.i7(a)},
 gwd:function(a){return new W.VG(a,a.children)},
 Md:function(a,b){return W.vD(a.querySelectorAll(b),null)},
@@ -4408,6 +4434,7 @@ $isj2:true,
 "%":"SVGScriptElement"},
 Lx:{
 "^":"d5;lz:disabled}",
+smk:function(a,b){a.title=b},
 "%":"SVGStyleElement"},
 d5:{
 "^":"cv;",
@@ -4904,6 +4931,7 @@ J.OG=function(a){return J.RE(a).gwd(a)}
 J.Om=function(a,b){return J.RE(a).sBb(a,b)}
 J.Pw=function(a,b){return J.RE(a).sxr(a,b)}
 J.Q6=function(a){return J.RE(a).gJR(a)}
+J.Qy=function(a,b){return J.RE(a).shf(a,b)}
 J.RC=function(a,b){return J.RE(a).snp(a,b)}
 J.TS=function(a,b){if(a==null)return b==null
 if(typeof a!="object")return b!=null&&a===b
@@ -5152,6 +5180,7 @@ $.zs=null
 $.f6=null
 $.O5=null
 $.il=null
+$.PR=null
 $.Ym=null
 $.IY=null
 $.G4=null
@@ -5159,6 +5188,7 @@ $.Ez=null
 $.Ct=null
 $.fB=null
 $.km=null
+$.j1=null
 $.pi=null
 $.q2=null
 $.oK=null
@@ -5176,6 +5206,7 @@ $.w5=null
 $.PN=null
 $.aj=null
 $.EG=null
+$.BA="Non eram nescius, Brute, cum, quae summis ingeniis exquisitaque doctrina philosophi Graeco sermone tractavissent, ea Latinis litteris mandaremus, fore ut hic noster labor in varias reprehensiones incurreret.<br>Nam quibusdam, et iis quidem non admodum indoctis, totum hoc displicet philosophari. quidam autem non tam id reprehendunt, si remissius agatur, sed tantum studium tamque multam operam ponendam in eo non arbitrantur.<br>Erunt etiam, et ii quidem eruditi Graecis litteris, contemnentes Latinas, qui se dicant in Graecis legendis operam malle consumere. postremo aliquos futuros suspicor, qui me ad alias litteras vocent, genus hoc scribendi, etsi sit elegans, personae tamen et dignitatis esse negent.<br><br><b>x SANDRO</b>: <br>per cambiare il test, prima entra (clicca <b>[ ENTER ]</b>) poi  edita (clicca <b>[ EDIT ]</b>), quindi, con editor aperto, clicca <b>[ INTRO ]</b> .<br>Quando avrai finito clicca <b>[ SAVE ]</b> il testo apparir\u00e1 sopra cos\u00ed lo puoi verdere in originale.<br>Per salvarlo nel file <b><i>pic_data_data.dart</b></i> clicca <b>[ ENTER ]</b>  per tornare alla finestra dell editor e clicca <b>[ DOWNLOAD ]</b> come sempre .. :-)"
 I.$lazy($,"globalThis","DX","jk",function(){return function() { return this; }()})
 I.$lazy($,"globalWindow","cO","C5",function(){return $.jk().window})
 I.$lazy($,"globalWorker","u9","vy",function(){return $.jk().Worker})
@@ -5229,7 +5260,7 @@ I.$lazy($,"_allowedElements","zX","AM",function(){var z=P.Ls(null,null,null,null
 z.FV(0,["A","ABBR","ACRONYM","ADDRESS","AREA","ARTICLE","ASIDE","AUDIO","B","BDI","BDO","BIG","BLOCKQUOTE","BR","BUTTON","CANVAS","CAPTION","CENTER","CITE","CODE","COL","COLGROUP","COMMAND","DATA","DATALIST","DD","DEL","DETAILS","DFN","DIR","DIV","DL","DT","EM","FIELDSET","FIGCAPTION","FIGURE","FONT","FOOTER","FORM","H1","H2","H3","H4","H5","H6","HEADER","HGROUP","HR","I","IFRAME","IMG","INPUT","INS","KBD","LABEL","LEGEND","LI","MAP","MARK","MENU","METER","NAV","NOBR","OL","OPTGROUP","OPTION","OUTPUT","P","PRE","PROGRESS","Q","S","SAMP","SECTION","SELECT","SMALL","SOURCE","SPAN","STRIKE","STRONG","SUB","SUMMARY","SUP","TABLE","TBODY","TD","TEXTAREA","TFOOT","TH","THEAD","TIME","TR","TRACK","TT","U","UL","VAR","VIDEO","WBR"])
 return z})
 I.$lazy($,"_attributeValidators","ql","cS",function(){return H.B7([],P.L5(null,null,null,null,null))})
-I.$lazy($,"quotes","uo","aw",function(){var z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,d0,d1,d2,d3,d4,d5,d6,d7,d8,d9,e0,e1,e2,e3,e4,e5,e6,e7,e8,e9,f0,f1,f2,f3,f4,f5,f6,f7,f8,f9,g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,h0,h1,h2,h3,h4,h5,h6,h7,h8,h9,i0,i1,i2,i3,i4,i5,i6,i7,i8,i9,j0,j1,j2,j3,j4,j5,j6,j7,j8,j9,k0,k1,k2
+I.$lazy($,"quotes","uo","aw",function(){var z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,d0,d1,d2,d3,d4,d5,d6,d7,d8,d9,e0,e1,e2,e3,e4,e5,e6,e7,e8,e9,f0,f1,f2,f3,f4,f5,f6,f7,f8,f9,g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,h0,h1,h2,h3,h4,h5,h6,h7,h8,h9,i0,i1,i2,i3,i4,i5,i6,i7,i8,i9,j0,j1,j2,j3,j4,j5,j6,j7,j8,j9,k0,k1,k2,k3,k4,k5,k6,k7,k8,k9,l0,l1,l2,l3,l4
 z=new L.cJ("society0","Armut,    Keuschheit und Gehorsam -<br>drei Gel\u00fcbde,   <br>deren jedes,   <br>einzeln betrachtet,   <br>der Natur das unausstehlichste scheint,   <br>so unertr\u00e4glich sind sie alle.","Johann Wolfgang von Goethe (1749-1832),   <br>dt. Dichter","Armut","",-250,0,0.393,0,1,2388,1585,null,$.EG,1,!1)
 z.sPj("http://www.ethnoconnect.org.au/files/attach/images/114/778/poverty.jpg")
 y=new L.cJ("society1","Geld ist besser als Armut -<br>wenn auch nur aus finanziellen Gr\u00fcnden.","Woody Allen (*1935),   <br>amerik. Regisseur,    Schauspieler,    Gagschreiber u. Schriftsteller","Reichtum und Armut<br>","",-4,0,0.722,0,1,770,769,null,$.EG,1,!1)
@@ -5240,7 +5271,7 @@ w=new L.cJ("society3","Es gibt zu viele Fl\u00fcchtlinge,    sagen die Menschen.
 w.sPj("img/society4.png")
 v=new L.cJ("society4","Es gibt keinen Weg zum Frieden,    denn Frieden ist der Weg.","Mahatma Gandhi","Pazifismus","",0,0,0.9,0,1,800,600,null,$.EG,1,!1)
 v.sPj("http://fc06.deviantart.net/fs40/i/2012/192/6/f/mahatma_gandhi_in_type_by_dencii-d1ucmsi.jpg")
-u=new L.cJ("society5","Subkulturen sind nicht ideologische Staatsapparate,    Au\u00dfenposten und Provinzen der Kulturindustrie und Arbeits\u00e4mter,    sondern weiterhin darin produktiv,    nicht-institutionelle Organisations- und Lebensmodelle denkbar zu machen. ","Diedrich Diedrichsen aus: Politische Korrekturen von 1996","Subkulturen wie z.B. Punks","",0,0,1.034,0,1,500,500,null,$.EG,1,!1)
+u=new L.cJ("society5","Subkulturen sind nicht ideologische Staatsapparate,    Aussenposten und Provinzen der Kulturindustrie und Arbeits\u00e4mter,    sondern weiterhin darin produktiv,    nicht-institutionelle Organisations- und Lebensmodelle denkbar zu machen. ","Diedrich Diedrichsen aus: Politische Korrekturen von 1996","Subkulturen wie z.B. Punks","",0,0,1.034,0,1,500,500,null,$.EG,1,!1)
 u.sPj("http://pad3.whstatic.com/images/b/b9/Mohawk-2.jpg")
 t=new L.cJ("society6","Kommunikation erfordert mehr Vorstellungskraft,    <br>als sich viele Leute vorstellen oder in Wirklichkeit haben.","Cyril Northcote Parkinson (1909-93),    brit. Historiker u. Publizist","Kommunikation","",0,-40,0.19838354151359294,0,1,2722,3690,null,$.EG,1,!1)
 t.sPj("http://best-posts.com/wp-content/uploads/2013/12/comic-satire-cartoons-angel-boligan-3.jpg")
@@ -5256,239 +5287,263 @@ o=new L.cJ("society11","Alkoholismus: Gift und Gegengift sind identisch."," Prof
 o.sPj("img/society12.png")
 n=new L.cJ("society12","Das Hirn ist wie geschaffen f\u00fcr Drogen. Je mehr man nimmt,    desto weniger wird es,    bis sich die Drogen endlich von allein er\u00fcbrigen.","Erhard Blanck (*1942)","Drogensucht","",0,0,0.718,0,1,770,769,null,$.EG,1,!1)
 n.sPj("img/society13.png")
-m=new L.cJ("society13","Behindert zu sein bedeutet lediglich,    da\u00df man etwas nicht kann,    was andere k\u00f6nnen. Wenn alle anderen Menschen fliegen k\u00f6nnten,    w\u00e4re ich schwer behindert \u2013 ohne da\u00df sich an mir irgend etwas daf\u00fcr \u00e4ndern m\u00fc\u00dfte.","Peter Hohl (*1941),    deutscher Journalist und Verleger","Behinderten","",-172,0,0.414,0,1,2205,1360,null,$.EG,1,!1)
+m=new L.cJ("society13","Behindert zu sein bedeutet lediglich,    dass man etwas nicht kann,    was andere k\u00f6nnen. Wenn alle anderen Menschen fliegen k\u00f6nnten,    w\u00e4re ich schwer behindert \u00e2\u20ac\u201c ohne dass sich an mir irgend etwas daf\u00fcr \u00e4ndern m\u00fcsste.","Peter Hohl (*1941),    deutscher Journalist und Verleger","Behinderten","",-172,0,0.414,0,1,2205,1360,null,$.EG,1,!1)
 m.sPj("http://www.mikrotribologiecentrum.de/uploads/pics/130201_martin_fleig_snowstorm_01.jpg")
-l=new L.cJ("society14","Erst wenn aus dem obrigkeitlichen Rechtsakt einer einseitig erkl\u00e4rten<br>Duldung Andersgl\u00e4ubiger das Recht auf freie Religionsaus\u00fcbung wird,    das die<br>Gl\u00e4ubigen wie die Ungl\u00e4ubigen einander als freie B\u00fcrger gegenseitig<br>einr\u00e4umen und anerkennen,    erst dann kommt Toleranz zu sich.","Eckmann + Eser Davolio 2003","Fran\u00e7ois Murad<br>in 2013 von syrischen Islamisten gek\u00f6pft","",0,0,1.248,0,1,700,400,null,$.EG,1,!1)
+l=new L.cJ("society14","Erst wenn aus dem obrigkeitlichen Rechtsakt einer einseitig erkl\u00e4rten<br>Duldung Andersgl\u00e4ubiger das Recht auf freie Religionsaus\u00fcbung wird,    das die<br>Gl\u00e4ubigen wie die Ungl\u00e4ubigen einander als freie B\u00fcrger gegenseitig<br>einr\u00e4umen und anerkennen,    erst dann kommt Toleranz zu sich.","Eckmann + Eser Davolio 2003","Fran\u00e7ois Murad<br>in 2013 von syrischen Islamisten gek\u00f6pft","",0,0,1.243,0,1,700,400,null,$.EG,1,!1)
 l.sPj("http://www.opsiyonhaber.com/d/news/18064.jpg")
-k=new L.cJ("society15","Wer sich der Spielsucht \u00fcberl\u00e4\u00dft,   <br>ist seiner Ruhe Feind und der Gesellschaft Pest.","<br>Gottlieb Konrad Pfeffel (1736 - 1809)","Spielsuchtigen","",-131,0,1.025,0,1,800,599,null,$.EG,1,!1)
+k=new L.cJ("society15","Wer sich der Spielsucht \u00fcberl\u00e4sst,   <br>ist seiner Ruhe Feind und der Gesellschaft Pest.","<br>Gottlieb Konrad Pfeffel (1736 - 1809)","Spielsuchtigen","",-131,0,1.025,0,1,800,599,null,$.EG,1,!1)
 k.sPj("http://www.grippe24.info/bilder/pokersucht.jpg")
-j=new L.cJ("society16","Ihre seelische Verfa\u00dftheit ist kein 'Irrtum' der Natur,    sondern <br>ein 'Kunstwerk' <br>des Menschen.","<br>Volkmar Sigusch in \"Geschlechtswechsel\",    1995","Transsexualit\u00e4t","",-6,0,1.075,0,1,720,480,null,$.EG,1,!1)
+j=new L.cJ("society16","Ihre seelische Verfasstheit ist kein 'Irrtum' der Natur,    sondern <br>ein 'Kunstwerk' <br>des Menschen.","<br>Volkmar Sigusch in \"Geschlechtswechsel\",    1995","Transsexualit\u00e4t","",-6,0,1.075,0,1,720,480,null,$.EG,1,!1)
 j.sPj("http://cdn2-b.examiner.com/sites/default/files/styles/article_large/hash/31/b6/31b6b7873184b12a4194394ea04a47ba.jpg?itok=o_TMK94W")
 i=new L.cJ("society17","Die Revolution ist die erfolgreiche Anstrengung,    eine schlechte Regierung loszuwerden und eine schlechtere zu errichten.","<br>Oscar Wilde","Revolution\u00e4re","",-16,0,1.567,0,1,415,330,null,$.EG,1,!1)
 i.sPj("http://nv-online.info/get_img?ImageId=60856")
 h=new L.cJ("society18","Freundlichkeit ist eine Sprache,    die Taube h\u00f6ren und Blinde sehen!","Mark Twain","Blinden","",0,0,1.055,0,1,1000,667,null,$.EG,1,!1)
 h.sPj("http://metaprocess.files.wordpress.com/2010/01/belief-is-blindness.jpg")
-g=new L.cJ("society19","Gott sei Dank,    da\u00df die Menschen noch nicht fliegen k\u00f6nnen und den Himmel ebenso verschmutzen wie die Erde.","Henry David Thoreau (1817-62),    amerik. SchriftstellerS","artist: Pawel Kuczynski","",-163,0,0.9523809523809523,0,1,800,567,null,$.EG,1,!1)
+g=new L.cJ("society19","Gott sei Dank,    dass die Menschen noch nicht fliegen k\u00f6nnen und den Himmel ebenso verschmutzen wie die Erde.","Henry David Thoreau (1817-62),    amerik. Schriftsteller","artist: Pawel Kuczynski","",-163,0,0.9523809523809523,0,1,800,567,null,$.EG,1,!1)
 g.sPj("http://twistedsifter.files.wordpress.com/2012/05/artwork-satire-cartoonist-pawel-kuczynski-polish-14.jpg")
-f=new L.cJ("society20","Nur wenig ist anregender als die erste gelungenene Missetat","Donatien Alphonse Fran\u00e7ois Marquis de Sade<br>(1740 - 1814)","The Saddest Sadist,    still from video,    2009","",-18,0,1.534,0,1,450,337,null,$.EG,1,!1)
+f=new L.cJ("society20","Nur wenig ist anregender als die erste gelungenene Missetat","Donatien Alphonse Fran\u00c3\u00a7ois Marquis de Sade<br>(1740 - 1814)","The Saddest Sadist, <br>still from video,    2009","",-18,0,1.534,0,1,450,337,null,$.EG,1,!1)
 f.sPj("http://nowherelimited.com/images/mary_reid_kelley-sadie-the_saddest_sadist-still_from_video-1-2009.jpg")
 e=new L.cJ("society21","Kultur ist ein sehr d\u00fcnner Firnis,    der sich leicht in Alkohol aufl\u00f6st.<br><br>","Huxley/x/details","Philip Seymour Hoffman","",-137,0,0.45,0,1,1600,1200,null,$.EG,1,!1)
 e.sPj("http://www.youthunitedpress.com/wp-content/uploads/2014/02/psh.jpg")
-d=new L.cJ("society22","Behinderungen m\u00fcssen keine Verhinderungen sein.","Walter Ludin (*1945),    Schweizer Journalist,    Redakteur","barriere archittetoniche","",-344,0,1.966,0,1,500,263,null,$.EG,1,!1)
+d=new L.cJ("society22","Behinderungen m\u00fcssen keine Verhinderungen sein.","Walter Ludin (*1945),    Schweizer Journalist,    Redakteur","architekonischer Barriere","",-344,0,1.956,0,1,500,263,null,$.EG,1,!1)
 d.sPj("http://www.raffaeleboccia.it/wp-content/uploads/2011/01/rampa.jpg")
-c=new L.cJ("society23","Sie sollen sich lieber an den gesunden Kohl und an Getreidebrei halten als an Fasane und Perlh\u00fchner.","Plinius der \u00c4ltere,    r\u00f6mischer Gelehrter und Schriftsteller,    <br>23 oder 24 \u2013 79","Veganer","",0,0,0.9060402684563759,0,1,618,596,null,$.EG,1,!1)
+c=new L.cJ("society23","Sie sollen sich lieber an den gesunden Kohl und an Getreidebrei halten als an Fasane und Perlh\u00fchner.","Plinius der \u00e4ltere,    r\u00f6mischer Gelehrter und Schriftsteller,    <br>23 oder 24 \u00e2\u20ac\u201c 79","Veganer","",0,0,0.9060402684563759,0,1,618,596,null,$.EG,1,!1)
 c.sPj("http://www.interabota2010.ru/wp-content/uploads/2013/06/vegetarianstvo.jpg")
-b=new L.cJ("society24","Wir \u00c4gypter nutzten Facebook,    um den Pr\u00e4sidenten loszuwerden,    und die Deutschen,    um ihren Verteidigungsminister zu behalten. Das macht den Unterschied aus.","Hamed Abdel-Samad","Gefangen in der virtueller Realit\u00e4t","",0,-156,0.594,0,1,930,1339,null,$.EG,1,!1)
+b=new L.cJ("society24","Wir \u00c4gypter nutzten Facebook,    <br>um den Pr\u00e4sidenten loszuwerden,<br>und  die Deutschen, um ihren Verteidigungsminister zu behalten. <br>Das macht den Unterschied aus.","Hamed Abdel-Samad","Gefangen in der virtueller Realit\u00e4t","",0,-156,0.591,0,1,930,1339,null,$.EG,1,!1)
 b.sPj("http://2.bp.blogspot.com/-PDVEyl-Sy2Y/Uh8YVRfLjjI/AAAAAAAASMU/KaxdUyG_slU/s1600/Pawel-Kuczynski+lr.jpg")
-a=new L.cJ("society25","Uns wird st\u00e4ndig eingeredet,    dass wir kaufen,    kaufen und nochmals kaufen m\u00fcssen. Das ist nat\u00fcrlich f\u00fcr die Nachhaltigkeit eine Katastrophe.","Hannes Jaenicke (*1960),    Schauspieler  ","Konsumismus<br>","",0,-136,0.998,0,1,516,700,null,$.EG,1,!1)
+a=new L.cJ("society25","Uns wird st\u00e4ndig eingeredet,<br>dass wir kaufen,    kaufen und nochmals kaufen m\u00fcssen. <br>Das ist nat\u00fcrlich <br>f\u00fcr die Nachhaltigkeit eine Katastrophe.","Hannes Jaenicke (*1960),    Schauspieler  ","Konsumismus<br>","",0,-136,0.998,0,1,516,700,null,$.EG,1,!1)
 a.sPj("http://www.equilibriarte.net/images/uploads/lor3nz8/comic-satire-21.jpg")
-a0=new L.cJ("society26","\"Das Auge der Erkenntnis\",    <br>ein Analphabet<br>kann es besitzen <br>und sich damit \u00fcber jeden Wissenschaftler erheben.","Emile Michel Cioran,    Die verfehlte Sch\u00f6pfung ","Analphabeten","",0,0,0.7022106631989596,0,1,770,769,null,$.EG,1,!1)
+a0=new L.cJ("society26","\"Das Auge der Erkenntnis\",    <br>ein Analphabet<br>kann es besitzen <br>und sich damit <br>\u00fcber jeden Wissenschaftler erheben.","Emile Michel Cioran,    Die verfehlte Sch\u00f6pfung ","Analphabetismus","",0,0,0.7022106631989596,0,1,770,769,null,$.EG,1,!1)
 a0.sPj("img/society33.png")
-a1=new L.cJ("society27","Masochismus: wenn Last zur Lust wird","Walter Ludin (1945*)","Emil Alzamora,    \u201cMasochist\u201d,    2004","",-98,0,0.827,0,1,980,653,null,$.EG,1,!1)
+a1=new L.cJ("society27","Masochismus: wenn Last zur Lust wird","Walter Ludin (1945*)","masochist<br>Emil Alzamora 2004","",-98,0,0.8269525267993875,0,1,980,653,null,$.EG,1,!1)
 a1.sPj("http://www.artwebradio.com/wp-content/uploads/2013/07/Emil-Alzamorana.jpg")
-a2=new L.cJ("security0","Wer die Freiheit aufgibt um Sicherheit zu gewinnen,    der wird am Ende beides verlieren.","Benjamin Franklin","Freiheit?","",-206,0,0.752,0,1,1680,1050,null,$.EG,1,!1)
-a2.sPj("http://i1-win.softpedia-static.com/screenshots/MonitorTest_2.png")
-a3=new L.cJ("security1","Wo du sicher bist,    setze Fragezeichen.<br><br>","Wieslaw Brudzinski","jump","",-93,0,0.992,0,1,800,513,null,$.EG,1,!1)
+a2=new L.cJ("security0","Wer die Freiheit aufgibt um Sicherheit zu gewinnen,    der wird am Ende beides verlieren.","Benjamin Franklin","Freiheit ? ","",-55,0,1.4438502673796791,0,1,500,374,null,$.EG,1,!1)
+a2.sPj("http://pictures.funny16.com/wp-content/uploads/2012/04/extreme-bicycle-security.jpg")
+a3=new L.cJ("security1","Wo du sicher bist,    setze Fragezeichen.<br><br>","Wieslaw Brudzinski","Springt er?","",-93,0,0.992,0,1,800,513,null,$.EG,1,!1)
 a3.sPj("http://4.bp.blogspot.com/-KsUAzvEWffs/T4CsVQM0S4I/AAAAAAAA0p8/hHEkQ1C8H30/s1600/adrenalina-alturas-edificios.jpg")
-a4=new L.cJ("security2","Es ist eine Erfahrung aus vielen Bereichen der Umweltpolitik,    dass die Vorreiter nicht nur ihre eigenen,    sondern tats\u00e4chlich die globalen Regeln \u00e4ndern. <br>","Hermann E.","global worming","",-48,0,1.207,0,1,500,333,null,$.EG,1,!1)
+a4=new L.cJ("security2","Es ist eine Erfahrung aus vielen Bereichen der Umweltpolitik,    dass die Vorreiter nicht nur ihre eigenen,    sondern tats\u00e4chlich die globalen Regeln \u00e4ndern. <br>","Hermann E.","globales Erw\u00e4rmung","",-221,0,1.547,0,1,500,333,null,$.EG,1,!1)
 a4.sPj("http://banksyt-shirts.com/wp-content/uploads/2010/12/banksy_global_warming.jpg")
-a5=new L.cJ("security3","\"Der entschiedene Vulkanist wird immer nur durch die Brille des Vulkanisten sehen,    so wie der Neptunist und der Bekenner der neuesten Hebungstheorie durch die seinige.\" ","Johann Wolfgang","Vulkan","",-102,0,0.84,0,1,988,660,null,$.EG,1,!1)
+a5=new L.cJ("security3","Der entschiedene Vulkanist wird immer nur durch die Brille<br>des Vulkanisten sehen,<br>so wie der Neptunist und der Bekenner<br>der neuesten Hebungstheorie <br>durch die seinige.","Johann Wolfgang","Vulkanisten et all","",-102,0,0.84,0,1,988,660,null,$.EG,1,!1)
 a5.sPj("http://www.blackball.it/wp-content/uploads/2014/02/103527536-ec982aa1-c438-4a42-94c3-f7717fb67fcf.jpg")
-a6=new L.cJ("security4","Ich will nicht in einer Welt leben,    in der alles,    was ich sage,    alles was ich mache,    der Name jedes Gespr\u00e4chspartners,    jeder Ausdruck von Kreativit\u00e4t,    Liebe oder Freundschaft aufgezeichnet wird.","Edward Snowden","datagate","",0,0,0.271,0,1,2048,2048,null,$.EG,1,!1)
-a6.sPj("http://www.wallpapervortex.com/ipad_air_wallpapers/ipad_air_35276_funny_land_of_the_free.jpg")
-a7=new L.cJ("security5","Seid vor allem immer f\u00e4hig,    jede Ungerechtigkeit gegen jeden Menschen an jedem Ort der Welt im Innersten zu f\u00fchlen. Das ist die sch\u00f6nste Eigenschaft eines Revolution\u00e4rs.","Che Guevara","Stadtguerilla","",0,0,0.354,0,1,2308,1528,null,$.EG,1,!1)
+a6=new L.cJ("security4","Ich will nicht in einer Welt leben, in der alles,    was ich sage, <br>alles was ich mache, der Name jedes Gespr\u00e4chspartners, jeder Ausdruck von Kreativit\u00e4t, Liebe oder Freundschaft aufgezeichnet wird.","Edward Snowden","Datagate","",-162,0,1.243,0,1,615,431,null,$.EG,1,!1)
+a6.sPj("http://api.ning.com/files/K9Qey2fF-PI*dxT87D5ks8aFFpi*y*xDz5YHUZzKyIZAHhCnrpPTy3ozgPtpsXjLpiRMa5d3-wPpbavtmAxjxpVaDD-FhwMa/willvarner.jpg")
+a7=new L.cJ("security5","Seid vor allem <br>immer f\u00e4hig, <br>jede Ungerechtigkeit gegen <br>jeden Menschen an jedem Ort der Welt <br>im innersten zu f\u00fchlen.<br><br>Das ist die sch\u00f6nste Eigenschaft eines Revolution\u00e4rs.","Che Guevara","Stadtguerilla","",0,0,0.354,0,1,2308,1528,null,$.EG,1,!1)
 a7.sPj("https://comunitaolivettiroma.files.wordpress.com/2012/02/99-le-grandi-manifestazioni-del-1968.jpg")
-a8=new L.cJ("security6","In unserer verschmutzten Umwelt wird die Luft langsam sichtbar.<br>","Norman Mailer","Verschmutzung","",-181,0,1.146,0,1,640,427,null,$.EG,1,!1)
+a8=new L.cJ("security6","In unserer verschmutzten Umwelt wird die Luft langsam sichtbar.<br>","Norman Mailer","Umweltverschmutzung","",-181,0,1.146,0,1,640,427,null,$.EG,1,!1)
 a8.sPj("http://www.tempostretto.it/sites/www.tempostretto.it/files/immagini/gallerie/paura-fumi-tossici-dopo-ennesimo-rogo-all-ex-sanderson-foto-alessio-villari/avi8365.jpg")
-a9=new L.cJ("security7","\u201eNicht die Umweltverschmutzung schadet unserer Umwelt,    sondern verschmutztes Wasser und verschmutzte Luft.\u201c ","George B.","Verschmutztem Wasser","",0,-197,0.998,0,1,510,751,null,$.EG,1,!1)
+a9=new L.cJ("security7","Nicht die Umweltverschm\u00fctzung schadet unserer Umwelt,<br>sondern verschmutztes Wasser und verschmutzte Luft.","George B.","Umweltverschmutzung","",0,-197,0.998,0,1,510,751,null,$.EG,1,!1)
 a9.sPj("http://notasaocafe.files.wordpress.com/2009/11/boligan_16112009_1.jpg?w=720")
-b0=new L.cJ("security8","Die Gr\u00f6\u00dfenordnung betr\u00e4gt etwa zwei Millionen Todesf\u00e4lle pro Jahr weltweit,    von denen etwa 12 000 Kinder.","http://it.wikipedia.org/wiki/Caduti_del_lavoro","Arbeitssicherheit","",0,0,0.299,0,1,3024,1830,null,$.EG,1,!1)
+b0=new L.cJ("security8","Die Gr\u00f6ssenordnung betr\u00e4gt etwa zwei Millionen Todesf\u00e4lle pro Jahr weltweit,    von denen etwa 12 000 Kinder.","Quelle: wikipedia","Arbeitssicherheit","",0,0,0.299,0,1,3024,1830,null,$.EG,1,!1)
 b0.sPj("http://www.controvoci.com/news/2008/07_lug/sicurezza%20sul%20lavoro%202.jpg")
-b1=new L.cJ("security9","Die Finanzminister und die Bankiers haben eins gemeinsam. Sie leben von anderer Leute Geld. Die Bankiers haben nur die unangenehme Aufgabe,    es wieder zur\u00fcckzuzahlen.<br>","Hermann Josef Abs ","Macht der Banken","",-90,0,0.483,0,1,1698,1131,null,$.EG,1,!1)
+b1=new L.cJ("security9","Die Finanzminister und die Bankiers haben eins gemeinsam: sie leben von anderer Leute Geld. <br>Die Bankiers haben nur die unangenehme Aufgabe, es wieder zur\u00fcckzuzahlen.<br>","Hermann Josef Abs ","Macht der Banken","",-90,0,0.483,0,1,1698,1131,null,$.EG,1,!1)
 b1.sPj("http://www.etfnews.it/wp-content/uploads/2012/05/Wall-St-scorte-ed-Azioni-Banca-Borsa-Valori-New-York_000007337843Medium.jpg")
-b2=new L.cJ("security10","\u2019\u2019Der Fu\u00dfball ist einer der am weitesten verbreiteten religi\u00f6sen Aberglauben unserer Zeit. Er ist heute das wirkliche Opium des Volkes.\u2018\u2018 Umberto Eco","Umberto Eco","Ultras","",0,0,0.844,0,1,640,640,null,$.EG,1,!1)
+b2=new L.cJ("security10","Der Fussball ist einer der am weitesten verbreiteten religi\u00f6sen Aberglauben unserer Zeit.<br><br>Er ist heute das wirkliche Opium des Volkes.","Umberto Eco","Ultras","",0,0,0.84375,0,1,640,640,null,$.EG,1,!1)
 b2.sPj("http://distilleryimage0.s3.amazonaws.com/ea94eaa08d4111e3be910ab7fe098654_8.jpg")
-b3=new L.cJ("security11","\"Der Mensch erfand die Atombombe,    doch keine Maus der Welt w\u00fcrde eine Mausefalle konstruieren.\"","Albert Einstein","Atombomben","",-170,0,0.542,0,1,1600,1000,null,$.EG,1,!1)
+b3=new L.cJ("security11","Der Mensch erfand die Atombombe,<br>doch keine Maus<br>der Welt w\u00fcrde eine Mausefalle konstruieren.","Albert Einstein","Atombomben","",-170,0,0.542,0,1,1600,1000,null,$.EG,1,!1)
 b3.sPj("http://www.meteoweb.eu/wp-content/uploads/2013/09/bomba-nucleare.jpg")
-b4=new L.cJ("security12","<br>Ich bin nicht sicher,    mit welchen Waffen der dritte Weltkrieg ausgetragen wird,    aber im vierten Weltkrieg werden sie mit St\u00f6cken und Steinen k\u00e4mpfen.<br>","Albert Einstein","Chemiewaffen","",-45,0,1.147,0,1,640,400,null,$.EG,1,!1)
+b4=new L.cJ("security12","<br>Ich bin nicht sicher,<br>mit welchen Waffen der dritte Weltkrieg ausgetragen wird,<br>aber im vierten Weltkrieg werden sie mit St\u00f6cken und Steinen k\u00e4mpfen.<br>","Albert Einstein","Chemiewaffen","",-45,0,1.147,0,1,640,400,null,$.EG,1,!1)
 b4.sPj("http://www.lapresse.it/polopoly_fs/1.421824.1384447523!/image/image.JPG_gen/derivatives/box_640x400/image.JPG")
-b5=new L.cJ("security13","<br>Diese Schei\u00dfe bleibt zwischen Mir,    Dir und Mr.-der-bald-den-rest-seines-kurzen-Schei\u00dflebens-in-unertr\u00e4glichen-Schmerzen-verbringen-wird-Vergewaltiger.<br>","Marcellus Wallace","Vergewaltigungen","",0,0,0.995,0,1,576,544,null,$.EG,1,!1)
+b5=new L.cJ("security13","<br>Diese Scheisse bleibt zwischen Mir,  Dir und Mr. -der-bald-den-rest-seines-kurzen-Scheisslebens<br>-in-unertr\u00e4glichen-Schmerzen-verbringen-wird-Vergewaltiger.<br>","Marcellus Wallace","Aus dem Film:<br>Uhrwerk Orange, 1971","",0,0,0.995,0,1,576,544,null,$.EG,1,!1)
 b5.sPj("http://sergiogiuffrida.files.wordpress.com/2007/12/kubrick-stupro.jpg")
 b6=new L.cJ("security14","Krise ist ein produktiver Zustand. Mann muss ihm nur den Beigeschmack der Katastrophe nehmen.<br>","Max Frisch","Krise","",-126,0,1.507,0,1,459,277,null,$.EG,1,!1)
 b6.sPj("http://www.w-t-w.org/en/wp-content/uploads/2013/11/Who-Is-Responsible.jpg")
-b7=new L.cJ("security15","Nichts in dieser Welt ist sicher,    au\u00dfer dem Tod und den Steuern.<br>","Benjamin Franklin","Sicherheit im Haus","",0,-32,0.981,0,1,500,595,null,$.EG,1,!1)
+b7=new L.cJ("security15","Nichts in dieser Welt ist sicher,    ausser dem Tod und den Steuern.<br>","Benjamin Franklin","Sicherheit im Haus","",0,-32,0.981,0,1,500,595,null,$.EG,1,!1)
 b7.sPj("https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-frc3/t1/428163_10150687873816259_1338512119_n.jpg")
-b8=new L.cJ("security16"," Managerkrankheit: eine Epidemie,    die durch den Uhrzeiger hervorgerufen und durch den Terminkalender \u00fcbertragen wird.","John Steinbeck","epidemie","",-33,0,0.968,0,1,640,459,null,$.EG,1,!1)
+b8=new L.cJ("security16"," Managerkrankheit: eine Epidemie, die durch den Uhrzeiger hervorgerufen und durch den Terminkalender \u00fcbertragen wird.","John Steinbeck","Epidemie","",-33,0,0.968,0,1,640,459,null,$.EG,1,!1)
 b8.sPj("http://asienspiegel.ch/wp-content/uploads/2010/12/schweinegrippe.jpg")
-b9=new L.cJ("security17","Asien und Pazifik: 122,   3 Millionen<br><br>Afrika s\u00fcdlich der Sahara: 49,   3 Millionen<br><br>Lateinamerika und Karibik: 5,   7 Millionen<br><br>Sonstige Regionen: 13,   4 Millionen","http://de.wikipedia.org/wiki/Kinderarbeit","Nicht mehr Kinderarbeit","",0,0,0.983,0,1,764,508,null,$.EG,1,!1)
+b9=new L.cJ("security17","Asien und Pazifik: 122,   3 Millionen<br><br>Afrika s\u00fcdlich der Sahara: 49,   3 Millionen<br><br>Lateinamerika und Karibik: 5,   7 Millionen<br><br>Sonstige Regionen: 13,   4 Millionen","Quelle: http://de.wikipedia.org/wiki/Kinderarbeit","Kinderarbeit","",0,0,0.983,0,1,764,508,null,$.EG,1,!1)
 b9.sPj("http://cfile215.uf.daum.net/image/194B99464FDC21DE2C6863")
-c0=new L.cJ("security18","Ich besch\u00e4ftige mich nicht mit dem,    was getan worden ist. Mich interessiert,    was getan werden muss.<br>","Marie Curie","Mehr Chancen f\u00fcr junge Menschen","",-73,0,1.142,0,1,550,412,null,$.EG,1,!1)
+c0=new L.cJ("security18","Ich besch\u00e4ftige mich nicht mit dem,<br>was getan worden ist.<br>Mich interessiert, <br>was getan werden muss.<br>","Marie Curie","Mehr Chancen f\u00fcr junge Menschen","",-73,0,1.142,0,1,550,412,null,$.EG,1,!1)
 c0.sPj("http://www.inprecor.gr/wp-content/uploads/2012/10/_%CE%B3%CE%BA%CF%81%CE%AC%CF%86%CE%B9%CF%84%CE%B9_241012-e1351113108574.jpg")
 c1=new L.cJ("security19","Wenn die Leute Menschen w\u00e4ren,    g\u00e4be es kein Ausl\u00e4nderproblem.","Peter E. Schumacher ","Seit 1994 in der Kanal von Sizilien sind 7.065 Menschen tot oder vermisst","",-210,0,0.9851851851851852,0,1,800,532,null,$.EG,1,!1)
 c1.sPj("http://www.suoniemigrantifestival.it/gallery/barcone_immigrati_-foto_g.lotti-.jpg")
-c2=new L.cJ("security20","","","onde anomale","",0,-225,0.92,0,1,600,902,null,$.EG,1,!1)
+c2=new L.cJ("security20","Die weitgehend mechanisierte und automatisierte Daseinsvorsorge, die unser Leben begleitet, wiegt uns in tr\u00fcgerischer Sicherheit. Einstmals dagegen wu\u00dften die Menschen, da\u00df sie nur bestehen konnten, wenn sie st\u00e4ndig auf den Kampf mit den Naturgewalten vorbereitet waren.","Heinrich L\u00fcbke (1892-1974)","Naturgewalt","",0,-225,0.9,0,1,600,902,null,$.EG,1,!1)
 c2.sPj("http://bucketofsquash.com/wp-content/uploads/2013/04/de71299e6d5ec2cdffeafb22a8b4aded1.jpg")
-c3=new L.cJ("security21","","","sifdare i propri limiti","",-55,0,0.993,0,1,634,536,null,$.EG,1,!1)
+c3=new L.cJ("security21","Es gibt keine Grenzen. Weder f\u00fcr Gedanken, noch f\u00fcr Gef\u00fchle. <br>Es ist die Angst,<br>die Grenzen setzt.","Ingmar Bergman","eigenen Grenzen","",-55,0,0.9925925925925926,0,1,634,536,null,$.EG,1,!1)
 c3.sPj("http://i.dailymail.co.uk/i/pix/2011/08/22/article-0-0D86D0CA00000578-810_634x536.jpg")
-c4=new L.cJ("security22","","","tsunami","",-98,0,1.273,0,1,620,400,null,$.EG,1,!1)
+c4=new L.cJ("security22","2004: 230,000 tote<br>           Indische Ocean <br><br>1908: 123,000 tote<br>           Messina Italien<br><br>1883: ~120,000 tote<br>          Krakatoa, Indonesia\t","quelle: wikipedia","Tsunamis","",-98,0,1.279,0,1,620,400,null,$.EG,1,!1)
 c4.sPj("http://i.telegraph.co.uk/multimedia/archive/01500/2004-tsunami_1500383i.jpg")
-c5=new L.cJ("security23","Shanghai Tower<br><br>H\u00f6he 632 m","Architekt: Gensler Architects","Urban Ninjas Climb Shanghai Tower","",0,0,0.757,0,1,717,907,null,$.EG,1,!1)
+c5=new L.cJ("security23","Shanghai Tower<br><br>H\u00f6he 632 m","Architekt: Gensler Architects","Urban Ninjas auf dem Shanghai Tower","",0,0,0.757,0,1,717,907,null,$.EG,1,!1)
 c5.sPj("http://www.fubiz.net/wp-content/uploads/2014/02/Shanghai-Tower-2.png")
-c6=new L.cJ("security24","","","http://www.jr-art.net/projects/face-2-face","",-181,0,0.6683168316831684,0,1,1439,808,null,$.EG,1,!1)
+c6=new L.cJ("security24","Ein Projekt zweier Amerikaner, die witzige Grimassenfotos von Israelis und Pal\u00e4stinensern aufgenommen haben und diese in \u00fcberdimensionaler Gr\u00f6\u00dfe auf beiden Seiten der Mauer in Israel-Pal\u00e4stina angebracht haben","JR and Marco,<br>2007","Projekt: Face 2 Face, <br>Israel und Palestinien, (Illegale Fotoausstellung)","",-181,0,0.673,0,1,1439,808,null,$.EG,1,!1)
 c6.sPj("http://verobellimbusto.files.wordpress.com/2012/05/jr-artist-inside-out-palestina-israel-via-partecipactive1.jpg")
-c7=new L.cJ("security25","","","attentati","",-172,0,1.116,0,1,738,462,null,$.EG,1,!1)
+c7=new L.cJ("security25","Wer einen Menschen t\u00f6tet und behauptet, <br>es im Interesse der Machtlosen getan zu haben, wird <br>\u00bbTerrorist\u00ab genannt;<br>wer aber im Interesse der M\u00e4chtigen Millionen t\u00f6tet, <br>wird \u00bbHeld\u00ab genannt.","Gerald Dunkl (*1959)","Terror","",-172,0,1.118,0,1,738,462,null,$.EG,1,!1)
 c7.sPj("http://www.direttanews.it/wp-content/uploads/londra_attentati_7_luglio_2005.jpg")
-c8=new L.cJ("security26","","","carte di credito clonate ","",-121,0,1.548,0,1,600,334,null,$.EG,1,!1)
+c8=new L.cJ("security26","Sicherheit erreicht man nicht, indem man Z\u00e4une errichtet, Sicherheit gewinnt man, indem man Tore \u00f6ffnet.","Urho Kekkonen (1900-86)"," Datenschutz","",-121,0,1.549,0,1,600,334,null,$.EG,1,!1)
 c8.sPj("http://www.wpsite.net/wp-content/uploads/2012/04/wordpress-secure.jpg")
-c9=new L.cJ("security27","Aquila,   Abruzzo,   Italy<br>9. April 2009<br><br>67.000 Obdachlose<br><br>Toten bel\u00e4uft sich auf 308","http://de.wikipedia.org/wiki<br>/Erdbeben_von_L%E2%80%99Aquila_2009","Zerst\u00f6rtes Rathaus von L\u2019Aquila","",-276,0,0.723,0,1,1152,768,null,$.EG,1,!1)
+c9=new L.cJ("security27","Aquila,   Abruzzo,   Italy<br>9. April 2009<br><br>67.000 Obdachlose<br><br>Toten bel\u00e4uft sich auf 308","quelle: wikipedia","Naturgewalt: Erdbeben","",-276,0,0.723,0,1,1152,768,null,$.EG,1,!1)
 c9.sPj("http://cultura.biografieonline.it/wp-content/uploads/2013/04/aquila-terremoto-2009.jpg")
-d0=new L.cJ("fashion0","\u201eMode ist die erste Stufe der Emanzipation.\u201d","Miuccia Prada","vestiti d'alta moda  con materiale tossico ","",-92,0,1.689,0,1,450,300,null,$.EG,1,!1)
+d0=new L.cJ("fashion0","Mode ist die erste Stufe der Emanzipation.","Miuccia Prada","vestiti d'alta moda  con materiale tossico ","",-92,0,1.681,0,1,450,300,null,$.EG,1,!1)
 d0.sPj("http://www.dire.it/codimmagine/6281/formato/ImageGallery/greenpeace.jpg")
-d1=new L.cJ("fashion1","","","Candy Crush Saga","",0,-87,0.758,0,1,728,971,null,$.EG,1,!1)
+d1=new L.cJ("fashion1","Spiel auf Facebook mit monatlich durchschnittlich 46 Millionen Nutzern<br><br>Candy Crush Saga become WORLD'S most popular game.","Victoria Woollaston","Candy Crush Saga","",0,-87,0.755,0,1,728,971,null,$.EG,1,!1)
 d1.sPj("http://2.bp.blogspot.com/-oWavJUr_VIE/UOmemdM9T2I/AAAAAAAAN3o/j0ryQ2u64gQ/s1600/candy_crush_saga_itunes_game_freeappskingdotcom_gameplay.jpg")
-d2=new L.cJ("fashion2","","","","",0,0,0.902,0,1,613,612,null,$.EG,1,!1)
+d2=new L.cJ("fashion2","Coursera\u2019s stats read as such: 680,000 students from 190 countries viewing 14 million videos and taking 6 million quizzes in 1.6 million course enrollments across 43 courses. However, with this new infusion, Coursera will now be offering about 111 classes.","TEDGlobal","Coursera.org","",0,0,0.904,0,1,613,612,null,$.EG,1,!1)
 d2.sPj("https://lh4.googleusercontent.com/-unTzRaQA640/Ub-CKFe0glI/AAAAAAAABPk/iBnVva22lPg/w800-h800/photo.jpg")
-d3=new L.cJ("fashion3","","","espansione economica cinese<br>","",-33,0,1.328,0,1,620,388,null,$.EG,1,!1)
+d3=new L.cJ("fashion3","Es ist offen sichtlich, dass China an einer de-amerikanisierten Welt arbeitet.","Rico Albrecht","Chinas wirtschaftliche Expansion<br>","",-33,0,1.332,0,1,620,388,null,$.EG,1,!1)
 d3.sPj("http://arte.sky.it/wp-content/uploads/2013/05/Lo-skyline-di-Pechino-620x388.jpg")
-d4=new L.cJ("fashion4","","","google glass","",-122,0,1.213,0,1,619,409,null,$.EG,1,!1)
+d4=new L.cJ("fashion4","\"Die Limousine der oberen Mittelklasse, die 2015 auf den Markt kommt, kann man demnach zum Beispiel aus der Ferne ver- oder entriegeln. Ebenso kann man \u00fcber die Google-Brille den Wagen auf einem \u00fcberf\u00fcllten Parkplatz schnell orten. Au\u00dferdem sollen Push-Nachrichten den Fahrer daran erinnern, das Auto zum Service zu bringen \u2013 \u00fcber die integrierte Telefonfunktion der Brille kann man gleich einen Anruf zur Terminvereinbarung t\u00e4tigen.\"","DenkBevorDuTust","google glass","",-122,0,1.213,0,1,619,409,null,$.EG,1,!1)
 d4.sPj("http://www.blogcdn.com/de.engadget.com/media/2013/08/glass-1367355098.jpg")
-d5=new L.cJ("fashion5","","","biofood","",0,0,1.560693641618497,0,1,347,346,null,$.EG,1,!1)
+d5=new L.cJ("fashion5","\u201cOrganic Oreos are not a health food. When Coca-Cola begins selling organic Coke, as it surely will, the company will have struck a blow for the environment perhaps, but not for our health. Most consumers automatically assume that the word \"organic\" is synomymous with health, but it makes no difference to your insulin metabolism if the high-fructose corn syrup in your soda is organic.\u201d <br>","Michael Pollan","biofood","",0,0,1.560693641618497,0,1,347,346,null,$.EG,1,!1)
 d5.sPj("http://www.jobswithfood.com/organicstamp.jpg")
-d6=new L.cJ("fashion6","","","robot per insegnare le pose della preghiera","",0,0,1.124,0,1,640,480,null,$.EG,1,!1)
+d6=new L.cJ("fashion6","\u201cIf you don't want a generation of robots, fund the arts!\u201d <br>","Cath Crowley, Graffiti Moon","robot ","",0,0,1.124,0,1,640,480,null,$.EG,1,!1)
 d6.sPj("http://i1.ytimg.com/vi/IEE3kLIY5NM/sddefault.jpg")
-d7=new L.cJ("fashion7","","","new marketing","",-63,0,0.597,0,1,1240,930,null,$.EG,1,!1)
+d7=new L.cJ("fashion7","das Spiel ist auf dem ersten Platz unter den am meisten in der Welt heruntergeladen, sammelt $ 50.000 pro Tag, aber der Autor hat gerade aus dem Speicher entfernt wird. Warum?","Dong Nguyen","FlappyBird<br> marketing genius","",-63,0,0.603,0,1,1240,930,null,$.EG,1,!1)
 d7.sPj("http://www.imore.com/sites/imore.com/files/styles/large/public/field/image/2014/02/flappy_bird_ipad_mini_hero.jpg?itok=IvEvLv6Q")
-d8=new L.cJ("fashion8","","","recycling","",0,0,0.797,0,1,693,693,null,$.EG,1,!1)
+d8=new L.cJ("fashion8","Der Staat sch\u00fctzt auch in Verantwortung f\u00fcr die zuk\u00fcnftigen Generationen die nat\u00fcrlichen Lebens-grundlagen und die Tiere im Rahmen der verfassungsgem\u00e4\u00dfen Ordnung durch die Gesetzgebung und nach Ma\u00dfgabe von Gesetz und Recht durch die vollziehende Gewalt und die Rechtsprechung.","Europ\u00e4ische Union","recycling","",0,0,0.801,0,1,693,693,null,$.EG,1,!1)
 d8.sPj("http://www.jost-transport.ch/uploads/pics/Recycling_01.jpg")
-d9=new L.cJ("fashion9","","","sviluppo della cultura","",0,-75,1.681,0,1,300,420,null,$.EG,1,!1)
+d9=new L.cJ("fashion9","Wenn die Sonne der Kultur tief steht, werfen selbst die Zwerge lange Schatten.<br>","Karl Kraus","Entwicklung der Kultur","",0,-75,1.681,0,1,300,420,null,$.EG,1,!1)
 d9.sPj("http://good50x70.org/2011/imagecontest/poster/1985.thumbnail.jpg")
-e0=new L.cJ("fashion10","","","","",-89,0,1.189,0,1,640,426,null,$.EG,1,!1)
+e0=new L.cJ("fashion10"," Jetzt hat Google seine n\u00e4chste Erfindung \u00f6ffentlich gemacht: Es ist eine elektronische Kontaktlinse f\u00fcr Diabetiker, die Blutzucker-Werte kontrolliert. ","google","Kontaktlinse f\u00fcr Diabetiker","",-89,0,1.189,0,1,640,426,null,$.EG,1,!1)
 e0.sPj("http://mtdata.ru/u1/photo8FD2/20127618666-0/original.jpg")
-e1=new L.cJ("fashion11","","","fixed gear <br>l'utilizzo della bici","",-108,0,1.202,0,1,600,393,null,$.EG,1,!1)
+e1=new L.cJ("fashion11","Every time I see an adult on a bicycle, I no longer despair for the future of the human race.","H. G. Wells","fixed gear ","",-108,0,1.198,0,1,600,393,null,$.EG,1,!1)
 e1.sPj("http://www.thecoolist.com/wp-content/uploads/2009/11/bertelli-biciclette_domenica-sport-fixed-gear-bike_2.jpg")
-e2=new L.cJ("fashion12","","","eletric auto","",-349,0,2.092,0,1,468,243,null,$.EG,1,!1)
+e2=new L.cJ("fashion12","Every day I get to 'Think' and work on everything from digitizing electric grids so they can accommodate renewable energy and enable mass adoption of electric cars, helping major cities reduce congestion and pollution, to developing new micro-finance programs that help tiny businesses get started in markets such as Brazil, India, Africa.<br><br><br>","Ginni Rometty","eletric auto","",-349,0,2.08,0,1,468,243,null,$.EG,1,!1)
 e2.sPj("http://media.treehugger.com/assets/images/2011/10/PlugIn2.jpg")
-e3=new L.cJ("fashion13","","","africa cultura","",0,-119,0.183,0,1,2953,4134,null,$.EG,1,!1)
+e3=new L.cJ("fashion13","I dream of the realization of the unity of Africa, whereby its leaders combine in their efforts to solve the problems of this continent. I dream of our vast deserts, of our forests, of all our great wildernesses.<br><br><br>","Nelson Mandela","africa for the future","",0,-119,0.193,0,1,2953,4134,null,$.EG,1,!1)
 e3.sPj("http://good50x70.org/2011/imagecontest/poster/788.jpg")
-e4=new L.cJ("fashion14","","","","",0,-66,0.183,0,1,2953,4134,null,$.EG,1,!1)
+e4=new L.cJ("fashion14","Never think that war, no matter how necessary, nor how justified, is not a crime.<br>","Ernest Hemingway","#NoMoreWar","",0,-66,0.193,0,1,2953,4134,null,$.EG,1,!1)
 e4.sPj("http://good50x70.org/2011/imagecontest/poster/42.jpg")
-e5=new L.cJ("fashion15","","","","",-52,0,1.4025974025974026,0,1,462,385,null,$.EG,1,!1)
+e5=new L.cJ("fashion15","During my travels in Iraq, Israel, Gaza, Brazil, Indonesia, Japan, Europe and all over the United States, I have seen and heard the voices of people who want change. They want the stabilization of the economy, education and healthcare for all, renewable energy and an environmental vision with an eye on generations to come.","Michael Franti","Renewable Energy","",-52,0,1.4025974025974026,0,1,462,385,null,$.EG,1,!1)
 e5.sPj("http://bioenergyitalyblog.it/wp-content/uploads/2013/05/Fiere-energie-rinnovabili-nel-mondo.png")
-e6=new L.cJ("fashion16","","","telefoni per bambini","",-180,0,1.511,0,1,520,347,null,$.EG,1,!1)
+e6=new L.cJ("fashion16","They are responsible for starting this relationship and wanting to help Africa. The United States is very well suited for this as they are a country that has the capacity, they have better access to technology and they are a successful country.<br>","Phumzile Mlambo-Ngcuka","Africa","",-180,0,1.511,0,1,520,347,null,$.EG,1,!1)
 e6.sPj("http://www.evidence4action.net/wp-content/uploads/2012/08/Africas-mobile-phone-industry-booming-1.jpg")
-e7=new L.cJ("legality0","","","wildes Bauen","",0,0,0.685,0,1,800,800,null,$.EG,1,!1)
-e7.sPj("http://www.cartoongallery.eu/englishversion/wp-content/gallery/iboligan/boligan1e.jpg")
-e8=new L.cJ("legality1","","","paradisi fiscali","",-55,0,1.394,0,1,450,332,null,$.EG,1,!1)
-e8.sPj("http://blog.ilgiornale.it/wallandstreet/files/2014/01/image1.jpg")
-e9=new L.cJ("legality2","","","costa concordia","",-188,0,1.206,0,1,622,395,null,$.EG,1,!1)
-e9.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/concordia2702-622x395.jpg")
-f0=new L.cJ("legality3","","","Scontri tra polizia e manifestanti ad Ankara,    in Turchia,    nelle proteste contro lo scandalo corruzione del governo Erdo\u011fan","",-224,0,0.903010033444816,0,1,942,598,null,$.EG,1,!1)
-f0.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/turchia2702.jpg")
-f1=new L.cJ("legality4","","","brasile contro mondiali 2014","",-86,0,1.419,0,1,470,323,null,$.EG,1,!1)
-f1.sPj("http://www.socialfootballtv.com/uploads/articles/1391944556.jpg")
-f2=new L.cJ("legality5","","","Una processione per ricordare le vittime degli scontri a Kiev,    in Ucraina. (Bulent Kilic,    Afp)","",0,0,0.903010033444816,0,1,942,598,null,$.EG,1,!1)
-f2.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/ucraina2602.jpg")
-f3=new L.cJ("legality6","","","inquinamento","",-187,0,1.119,0,1,738,462,null,$.EG,1,!1)
-f3.sPj("http://1.bp.blogspot.com/-Mr9Q4POsOVA/TdvPlJpg_xI/AAAAAAAAAAs/8dw8I5GB67A/s1600/marea_nera_pellicano_ap_06.jpg")
-f4=new L.cJ("legality7","","","politici","",-47,0,1.137,0,1,600,460,null,$.EG,1,!1)
-f4.sPj("http://www.novesudieci.org/wp-content/uploads/2012/06/ricchi-a-tavola.bmp")
-f5=new L.cJ("legality8","","","La sorveglianza contro il bracconaggio nel parco nazionale di Zakouma,    in Ciad. (Marco Longari,    Afp)","",-128,0,0.903010033444816,0,1,942,598,null,$.EG,1,!1)
-f5.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/ciad2602.jpg")
-f6=new L.cJ("legality9","","","I soccorsi dopo un bombardamento aereo ad Aleppo,    in Siria. (Ammar Abdullah,    Reuters/Contrasto)","",-13,0,0.903010033444816,0,1,942,598,null,$.EG,1,!1)
-f6.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/siria2602.jpg")
-f7=new L.cJ("legality10","","","droghe leggere ","",-7,0,0.628,0,1,1280,860,null,$.EG,1,!1)
-f7.sPj("http://assets.vice.com/content-images/article/your-town-is-a-paradise-tel-aviv/galleryImage/02.jpg")
-f8=new L.cJ("legality11","","","maltrattamento animale<br>","",-121,0,1.379,0,1,563,381,null,$.EG,1,!1)
-f8.sPj("http://geograficamente.files.wordpress.com/2010/01/allevamenti_11.jpg")
-f9=new L.cJ("legality12","","","protetanucleare","",-154,0,1.119,0,1,620,412,null,$.EG,1,!1)
-f9.sPj("http://www.greenpeace.org/international/ReSizes/ImageGalleryLarge/Global/international/photos/other/2013/year-in-photos/GP04HYB.jpg")
-g0=new L.cJ("legality13","","","Greenpeace International activist Sini Saarela (from Finland)","",-35,0,1.072,0,1,620,443,null,$.EG,1,!1)
-g0.sPj("http://www.greenpeace.org/international/ReSizes/ImageGalleryLarge/Global/international/photos/other/2013/year-in-photos/20-25/GP04TYP.jpg")
-g1=new L.cJ("legality14","","","","",0,0,1.2,0,1,620,406,null,$.EG,1,!1)
-g1.sPj("http://www.greenpeace.org/international/ReSizes/ImageGalleryLarge/Global/international/photos/other/2013/year-in-photos/GP04J3T.jpg")
-g2=new L.cJ("legality15","","","","",0,-120,0.183,0,1,2953,4134,null,$.EG,1,!1)
-g2.sPj("http://good50x70.org/2011/imagecontest/poster/174.jpg")
-g3=new L.cJ("legality16","","","","",0,-116,0.183,0,1,2953,4134,null,$.EG,1,!1)
-g3.sPj("http://good50x70.org/2011/imagecontest/poster/1638.jpg")
-g4=new L.cJ("legality17","","","","",0,0,0.183,0,1,2953,4134,null,$.EG,1,!1)
-g4.sPj("http://good50x70.org/2011/imagecontest/poster/1545.jpg")
-g5=new L.cJ("legality18","","","<br>NEW BEGINNIG TO LYBIA","",0,-107,0.183,0,1,2953,4134,null,$.EG,1,!1)
-g5.sPj("http://good50x70.org/2011/imagecontest/poster/1771.jpg")
-g6=new L.cJ("legality19","","","DOMESTIC VIOLENCE","",0,-53,0.183,0,1,2953,4134,null,$.EG,1,!1)
-g6.sPj("http://good50x70.org/2011/imagecontest/poster/1766.jpg")
-g7=new L.cJ("legality20","","","","",0,-142,0.183,0,1,2953,4134,null,$.EG,1,!1)
-g7.sPj("http://good50x70.org/2011/imagecontest/poster/1285.jpg")
-g8=new L.cJ("legality21","","","PRESERVE WATER","",0,-171,0.183,0,1,2953,4134,null,$.EG,1,!1)
-g8.sPj("http://good50x70.org/2011/imagecontest/poster/830.jpg")
-g9=new L.cJ("legality22","","","","",0,-1,0.183,0,1,2953,4134,null,$.EG,1,!1)
-g9.sPj("http://good50x70.org/2011/imagecontest/poster/96.jpg")
-h0=new L.cJ("legality23","","","","",0,-121,0.183,0,1,2953,4134,null,$.EG,1,!1)
-h0.sPj("http://good50x70.org/2011/imagecontest/poster/2041.jpg")
-h1=new L.cJ("legality24","","","WOMEN'S RIGHTS VIOLATION","",0,0,0.183,0,1,2953,4134,null,$.EG,1,!1)
-h1.sPj("http://good50x70.org/2011/imagecontest/poster/243.jpg")
-h2=new L.cJ("legality25","","","PANDA <br>SOLIDARITY","",-50,0,0.213,0,1,2953,4134,null,$.EG,1,!1)
-h2.sPj("http://good50x70.org/2011/imagecontest/poster/1927.jpg")
-h3=new L.cJ("legality26","","","media liberi","",0,0,0.183,0,1,2953,4134,null,$.EG,1,!1)
-h3.sPj("http://good50x70.org/2011/imagecontest/poster/1543.jpg")
-h4=new L.cJ("legality27","","","palestina","",-54,0,0.178,0,1,4544,3040,null,$.EG,1,!1)
-h4.sPj("http://www.sunray22b.net/images/Palestine179.jpg")
-h5=new L.cJ("other0","","","Artist: Blu","",0,0,1.2,0,1,640,553,null,$.EG,1,!1)
-h5.sPj("http://www.123inspiration.com/wp-content/uploads/2012/03/street-artiste-BLU-1.png")
-h6=new L.cJ("other1","","","","",0,0,1.193,0,1,590,826,null,$.EG,1,!1)
-h6.sPj("http://www.maxitendance.com/wp-content/uploads/2014/02/caricatures-angel-boligan-corbo-humour-noir-dessins-10.jpg")
-h7=new L.cJ("other2","","","","",-65,0,1.4136125654450262,0,1,500,382,null,$.EG,1,!1)
-h7.sPj("http://reefbuilders.com/files/2011/10/bubble-fish-tank-1.jpg")
-h8=new L.cJ("other3","","","tv dipendenza","",-35,0,1.208,0,1,620,428,null,$.EG,1,!1)
-h8.sPj("http://www.eluniversal.com.mx/img/2007/06/Car/boligan110607.jpg")
-h9=new L.cJ("other4","arrestato per aver denunciato la cina","ai wei wei","semi di girasole","",-172,0,1.091,0,1,760,474,null,$.EG,1,!1)
-h9.sPj("http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2010/10/11/1286797833422/Ai-Weiwei-007.jpg")
-i0=new L.cJ("other5","","","","",0,0,1.131,0,1,600,450,null,$.EG,1,!1)
-i0.sPj("https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-prn2/t1/1655958_744034232274149_1721483115_n.jpg")
-i1=new L.cJ("other6","","","","",-3,0,0.8681672025723473,0,1,625,622,null,$.EG,1,!1)
-i1.sPj("https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-prn2/t1/1794540_747496835261222_1367503856_n.jpg ")
-i2=new L.cJ("other7","","","Artist : Erik Ravelo","",0,0,1.034,0,1,500,500,null,$.EG,1,!1)
-i2.sPj("http://31.media.tumblr.com/37b7504461a4c9e4f889dd16e1a28fc7/tumblr_msmie1xV4g1rbl50so1_500.jpg")
-i3=new L.cJ("other8","h\u00e4ngt vom wo man geboren ist","","Artist: Pawel Kuczynski","",-156,0,1.219,0,1,605,426,null,$.EG,1,!1)
-i3.sPj("http://bp3.uuuploads.com/satirical-art-pawel-kuczynski/satirical-art-pawel-kuczynski-7.jpg")
-i4=new L.cJ("other9","","","muraglia cinese","",-170,0,0.452,0,1,1800,1220,null,$.EG,1,!1)
-i4.sPj("http://dallacity.finanza.com/files/2010/10/000003732362-cina-muraglia-cinese.jpg")
-i5=new L.cJ("other10","","","senzatetto","",-135,0,1.475,0,1,466,345,null,$.EG,1,!1)
-i5.sPj("http://www.csindy.com/binary/9c46/1272324293-mother_and_baby_by_johnmccabe.jpg")
-i6=new L.cJ("other11","","citazione dal libro","1984","",0,-93,0.415065334358186,0,1,1301,2124,null,$.EG,1,!1)
-i6.sPj("http://www.penguin.com.au/jpg-large/9780141036144.jpg")
-i7=new L.cJ("other12","","","felixbaumgartner","",0,0,1.167,0,1,634,436,null,$.EG,1,!1)
-i7.sPj("http://totallycoolpix.com/wp-content/uploads/2012/10/felixbaumgartner1.jpg")
-i8=new L.cJ("other13","","","Artist's Shit 1961 Piero Manzoni 1933-1963 ","",0,0,0.371,0,1,1457,1536,null,$.EG,1,!1)
-i8.sPj("https://www.tate.org.uk/art/images/work/T/T07/T07667_10.jpg")
-i9=new L.cJ("other14","all animals are equal,    but some animals are more equal than others.<br>","la fattoria degli animali","leggi sul uguaglianza ","",0,0,1.231,0,1,400,480,null,$.EG,1,!1)
-i9.sPj("http://www.vegetarianfriends.net/Barndoor4.jpg")
-j0=new L.cJ("other15","","","into the wild (eremitA)","",-133,0,1.501,0,1,500,325,null,$.EG,1,!1)
-j0.sPj("http://31.media.tumblr.com/d1c1d90b3181132521f7db51a2d99e91/tumblr_mfr1flCTEs1r429qho1_500.jpg")
-j1=new L.cJ("other16","","","sochi esagerazioni al limite dello spreco","",-137,0,0.287,0,1,3000,1922,null,$.EG,1,!1)
-j1.sPj("http://cbsboston.files.wordpress.com/2014/02/467578719_10.jpg")
-j2=new L.cJ("other17","","","souspension","",0,0,0.96,0,1,750,500,null,$.EG,1,!1)
-j2.sPj("http://www.suspension.org/hooklife/wp-content/uploads/2013/07/521891_446262625459679_1639662450_n.jpg")
-j3=new L.cJ("other18","","","corrida","",0,0,1.022,0,1,500,489,null,$.EG,1,!1)
-j3.sPj("https://lh3.googleusercontent.com/-pEVRTtLnBV4/UwDH08T7dZI/AAAAAAAADKs/PPqMnv3jSpw/w500/1891101_749392271738345_1873023806_n.jpg")
-j4=new L.cJ("other19","","","","",0,0,0.308,0,1,3255,2440,null,$.EG,1,!1)
-j4.sPj("http://static3.businessinsider.com/image/51f959a0ecad043a1e000004/italys-top-court-confirms-berlusconi-prison-sentence.jpg")
-j5=new L.cJ("other20","\"il carcere dovrebbe essere un luogo riabilitativo e non di maltrattamento\"","","carceri","",0,0,0.9608540925266904,0,1,737,562,null,$.EG,1,!1)
-j5.sPj("http://www.volontariatoggi.info/wp-content/uploads/2009/12/Carcere.jpg")
-j6=new L.cJ("other21","denuncia il padre mafioso","","beppino impastato mafia","",0,0,1.014,0,1,510,510,null,$.EG,1,!1)
-j6.sPj("http://lavocedimpastato.files.wordpress.com/2014/01/peppino-impastato1.jpg")
-j7=new L.cJ("other22","","","deforestazione","",0,-213,1.08,0,1,500,729,null,$.EG,1,!1)
-j7.sPj("http://www.bartarinha.ir/files/fa/news/1390/5/30/26418_729.jpg")
-j8=new L.cJ("other23","WAR IS NOT FOR MEN BUT CLOWNS.<br>","Lukasz Jankowski","Krieg","",-79,0,1.383,0,1,512,377,null,$.EG,1,!1)
-j8.sPj("http://kschelsky.files.wordpress.com/2014/01/1496685_720625347948371_1246488537_n.jpg?w=590")
-j9=new L.cJ("other24","","","","",-127,0,0.6609547123623011,0,1,1280,817,null,$.EG,1,!1)
-j9.sPj("http://www.chronicle.su/wp-content/uploads/Banksy_Napalm_HR_400k.jpg")
-k0=new L.cJ("other25","","","disuguaglianza sociale","",-170,0,0.5142857142857142,0,1,1400,1050,null,$.EG,1,!1)
-k0.sPj("http://1.bp.blogspot.com/-9US8g4Fek_0/UrNpxLiTyPI/AAAAAAAAAX8/SBYgkGF8bAI/s1600/Banksy+-+5.gif")
-k1=new L.cJ("other26","","","bernauer strasse berlin","",0,0,0.734,0,1,1051,736,null,$.EG,1,!1)
-k1.sPj("http://3.bp.blogspot.com/_36-jwxEsTTA/TRNC71kZVBI/AAAAAAAACMc/lf-vPed1LR0/s1600/Berlin+Mauermuseum+2.JPG,    ")
-k2=new L.cJ("other27","","","la morte di marat","",0,-127,0.5394605394605395,0,1,1001,1287,null,$.EG,1,!1)
-k2.sPj("http://upload.wikimedia.org/wikipedia/commons/a/aa/Death_of_Marat_by_David.jpg")
-return H.B7(["society",[z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1],"security",[a2,a3,a4,a5,a6,a7,a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,c0,c1,c2,c3,c4,c5,c6,c7,c8,c9],"fashion",[d0,d1,d2,d3,d4,d5,d6,d7,d8,d9,e0,e1,e2,e3,e4,e5,e6],"legality",[e7,e8,e9,f0,f1,f2,f3,f4,f5,f6,f7,f8,f9,g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,h0,h1,h2,h3,h4],"other",[h5,h6,h7,h8,h9,i0,i1,i2,i3,i4,i5,i6,i7,i8,i9,j0,j1,j2,j3,j4,j5,j6,j7,j8,j9,k0,k1,k2]],P.L5(null,null,null,null,null))})
+e7=new L.cJ("fashion17","Being honest with you, it's not the 'great' wall of China. It's an all right wall. It's the 'All Right Wall of China.'<br><br>","Karl Pilkington","muraglia cinese","",-257,0,0.4426229508196721,0,1,1800,1220,null,$.EG,1,!1)
+e7.sPj("http://dallacity.finanza.com/files/2010/10/000003732362-cina-muraglia-cinese.jpg")
+e8=new L.cJ("fashion18","Ein Bioprinter (selten: Organischer Drucker) ist eine spezielle Form eines 3D-Druckers, welcher computer- gesteuert mit Techniken des Tissue Engineering regelm\u00e4\u00dfige Strukturen (sog. Bioarrays) oder Gewebe aus zuvor gez\u00fcchteten einzelnen Zellen herstellen soll. Sp\u00e4ter soll die Technik es erm\u00f6glichen, ganze Organe, oder sogar synthetische Lebe-wesen herzustellen. ","wikipedia","3d printer<br>","",0,-83,1.832,0,1,219,340,null,$.EG,1,!1)
+e8.sPj("https://mediasaturnstore.blob.core.windows.net/productimages/main/7630003309980_1394187.png")
+e9=new L.cJ("fashion19","Approximately 470,000 people of non-German nationality from around 190 countries live in the 12 districts of Berlin. They account for approximately 13% of the total population.","Demographics of Berlin - Wikipedia"," Belrin","",-160,0,0.741,0,1,950,733,null,$.EG,1,!1)
+e9.sPj("http://www.blog-hostelsclub.com/wp-content/uploads/2013/10/berlin-skyline.jpg")
+f0=new L.cJ("fashion20","\u201cIt takes half your life before you discover life is a do-it-yourself project.\u201d<br>","Napoleon Hill","DIY ","",-1,0,1.266,0,1,475,395,null,$.EG,1,!1)
+f0.sPj("http://harmondrive.files.wordpress.com/2010/04/diy-icon.jpg?w=475")
+f1=new L.cJ("fashion21","\"Facebook hilft, mit Leuten in Kontakt zu bleiben, die wir auch im echten Leben kennen. Mehr nicht. Wer glaubt, dass jeder Facebook-Kontakt ein Freund ist, der wei\u00df nicht, was Freundschaft bedeutet.\"","Mark Zuckerberg","Facebook Inc. CEO ","",0,-100,1.8556701030927836,0,1,291,400,null,$.EG,1,!1)
+f1.sPj("http://2.bp.blogspot.com/_qaj9rXxrsG0/TTNxfzS5xqI/AAAAAAAAAE4/0tklaz4YxDo/s400/LEON_artwork_TIME_Cover-A.jpg")
+f2=new L.cJ("fashion22","Phonebloks war die Idee, dessen Ziel es war, ein Mobiltelefon unter die Leute zu bringen, das aus mehreren verschiedenen Komponenten selbst zusammengebaut werden kann, um somit zuk\u00fcnftig Schrott zu minimieren, nat\u00fcrliche Ressourcen zu schonen und die Nutzer vor unn\u00f6tigen Ausgaben zu sch\u00fctzen.","Phonebloks.com","Phonebloks","",-172,0,1.395,0,1,620,387,null,$.EG,1,!1)
+f2.sPj("http://good-design.org.uk/wp-content/uploads/2013/09/phonebloks_open-620x387.jpg")
+f3=new L.cJ("fashion23","They look like us, they talk like us, but they are almost a completely different species. The digital natives grew up surrounded by technological advances such as (high speed) internet, mobile phones and social media. They learn and think differently and have different priorities in life than generations before them.","Trands reaserch","new generation ability ","",0,0,1.173913043478261,0,1,460,460,null,$.EG,1,!1)
+f3.sPj("http://www.trendsactive.com/wp-content/uploads/2012/09/digital-natives-trends.jpg")
+f4=new L.cJ("fashion24","We are in the middle of the rise of a new visual culture, created by a young \u2018visual\u2019 generation. This generation grew up surrounded by a total abundance of images. Psychological research shows the result: this generation thinks visually and learns in images. <br>","http://www.trendsactive.com/","visual culture","",0,0,1.173913043478261,0,1,460,460,null,$.EG,1,!1)
+f4.sPj("http://www.trendsactive.com/wp-content/uploads/2012/09/Visual-culture-societal-trends.jpg")
+f5=new L.cJ("fashion25","The digitalization that has taken place over the past fifteen years has fundamentally changed society. Everything and everybody is \u2013 to a certain degree \u2013 connected. This has changed not only our behaviour, but also the fundamentals of virtually every organization. This trend is about people connecting with each other, with products (and services) and with organizations.","unknow","Digitalization","",0,0,1.173913043478261,0,1,460,460,null,$.EG,1,!1)
+f5.sPj("http://www.trendsactive.com/wp-content/uploads/2012/09/Connected-society-societal-trends.jpg")
+f6=new L.cJ("fashion26","Marriages that took place in the EU was 2.2 million, while around 1.0 million divorces.","divorce 2013 EUROSTAT","divorce","",-127,0,1.3846153846153846,0,1,618,390,null,$.EG,1,!1)
+f6.sPj("http://www.indian-ocean-times.com/photo/art/default/5844904-8714864.jpg?v=1378984600")
+f7=new L.cJ("fashion27","Does anybody think these people were just sitting around drinking tea?<br><br>","Condoleezza Rice","Tea","",-253,0,0.9,0,1,900,600,null,$.EG,1,!1)
+f7.sPj("http://images.fineartamerica.com/images-medium-large/fishing-at-the-edge-of-a-cup-of-tea-mingqi-ge.jpg")
+f8=new L.cJ("legality0","Baulust <br>Geldverlust.","J\u00fcdische Weisheit","wildes Bauen","",0,0,0.685,0,1,800,800,null,$.EG,1,!1)
+f8.sPj("http://www.cartoongallery.eu/englishversion/wp-content/gallery/iboligan/boligan1e.jpg")
+f9=new L.cJ("legality1","Ranking <br>1.  Schweiz<br>  2. Luxemburg<br>  3. Hong Kong<br>  4. Cayman Islands<br>  5. Singapur<br>  6. USA<br>  7. Libanon <br>  8. Deutschland<br>  9. Jersey<br>10. Japan<br>","Quelle: Tax Justice Network 2013","Steueroasen","",-55,0,1.385,0,1,450,332,null,$.EG,1,!1)
+f9.sPj("http://blog.ilgiornale.it/wallandstreet/files/2014/01/image1.jpg")
+g0=new L.cJ("legality2","Die \"Costa Concordia\" war vor der italienischen Mittelmeer-Insel Giglio havariert und gekentert. 32 der mehr als 4000 Menschen an Bord kamen ums Leben. ","quelle: Abendzeitung, M\u00fcnchen 2014","Fahrl\u00e4ssigkeit","",-188,0,1.331,0,1,622,395,null,$.EG,1,!1)
+g0.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/concordia2702-622x395.jpg")
+g1=new L.cJ("legality3","Der Polizeikessel <br>ist eine Taktik im Polizeieinsatz, die bei Demonstrationen, Aufz\u00fcgen und anderen Versammlungen eingesetzt wird, <br>um Menschenmassen zu kontrollieren.","Quelle: wikipedia","Demonstrationen","",-224,0,0.903010033444816,0,1,942,598,null,$.EG,1,!1)
+g1.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/turchia2702.jpg")
+g2=new L.cJ("legality4","\"<i>Essigrevolution</i>\", <br>\"<i>20-Cent-Revolution</i>\"<br>oder auch <br>\"<i>Passe Livre</i>\" <br>genannt.<br><br><br>","Quelle: wikipedia","Fussball-Weltmeisterschaft 2014","",-86,0,1.409,0,1,470,323,null,$.EG,1,!1)
+g2.sPj("http://www.socialfootballtv.com/uploads/articles/1391944556.jpg")
+g3=new L.cJ("legality5","Die Au\u00dfenminister der 28 NATO-Staaten haben die Regierung der Ukraine aufgefordert, die \"\u00fcberm\u00e4\u00dfige Gewalt\" gegen Demonstranten zu stoppen. Diese habe keinen Platz in einem modernen europ\u00e4ischen Staat, sagte US-Au\u00dfenminister John Kerry","Quelle: \u00a9 ARD-aktuell / tagesschau.de","Ukraine","",0,0,0.903010033444816,0,1,942,598,null,$.EG,1,!1)
+g3.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/ucraina2602.jpg")
+g4=new L.cJ("legality6","Es w\u00e4re ein Irrtum, zu glauben, <br>dass die immensen Wassermengen der Ozeane eine beliebige Menge an Schadstoffen verkraften und abbauen k\u00f6nnten.","T. Seilnacht (www.seilnacht.com)","\u00d6lverschmutzung der Weltmeere","",-187,0,1.118,0,1,738,462,null,$.EG,1,!1)
+g4.sPj("http://1.bp.blogspot.com/-Mr9Q4POsOVA/TdvPlJpg_xI/AAAAAAAAAAs/8dw8I5GB67A/s1600/marea_nera_pellicano_ap_06.jpg")
+g5=new L.cJ("legality7","Geld darf nicht die Welt regieren!","Papst Franziskus (2013)","Geld und Macht","",-47,0,1.138,0,1,600,460,null,$.EG,1,!1)
+g5.sPj("http://www.novesudieci.org/wp-content/uploads/2012/06/ricchi-a-tavola.bmp")
+g6=new L.cJ("legality8","Organisierte Kriminalit\u00e4t macht wegen enormer Gewinne systematisch Jagd auf bedrohte Tiere"," Jason Bell","Wilderei","",-128,0,0.903010033444816,0,1,942,598,null,$.EG,1,!1)
+g6.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/ciad2602.jpg")
+g7=new L.cJ("legality9","In Syriens Wirtschaftsmetropole Aleppo toben erbitterte Stra\u00dfenk\u00e4mpfe. <br>Um die Stadt zu halten, setzt Syriens Diktator Assad jetzt auch Kampfflugzeuge ein.<br>Die meisten Opfer d\u00fcrften Zivilisten sein.","Quelle: der Spigel, 2013","Bombardementen","",-13,0,0.903010033444816,0,1,942,598,null,$.EG,1,!1)
+g7.sPj("http://contents.internazionale.it/wp-content/uploads/2014/02/siria2602.jpg")
+g8=new L.cJ("legality10","Heute ist die Einteilung in harte und weiche Drogen \u00fcberholt, da sie sich als unflexible Schwarz-Wei\u00df-Malerei erwiesen hat.","Quelle: <br>www.thema-drogen.net","Weiche Drogen","",-7,0,0.633,0,1,1280,860,null,$.EG,1,!1)
+g8.sPj("http://assets.vice.com/content-images/article/your-town-is-a-paradise-tel-aviv/galleryImage/02.jpg")
+g9=new L.cJ("legality11","Die Gefl\u00fcgelproduktion ist nur machbar <br>mit t\u00e4glichen Straftaten oder Rechtsverst\u00f6\u00dfen \u2013 erm\u00f6glicht durch Verwaltungsbeh\u00f6rden","Tiersch\u00fczeraussage nach enem Strafverfahren wegen Tierqu\u00e4lerei gegen Manager eines Gefl\u00fcgelkonzerns","Tierzucht (Tierqu\u00e4lerei ?)","",-121,0,1.384,0,1,563,381,null,$.EG,1,!1)
+g9.sPj("http://geograficamente.files.wordpress.com/2010/01/allevamenti_11.jpg")
+h0=new L.cJ("legality12","Keine Fukushimas mehr","(nicht nur) <br>Japanischen Protestanten","Atomenergie","",-154,0,1.12,0,1,620,412,null,$.EG,1,!1)
+h0.sPj("http://www.greenpeace.org/international/ReSizes/ImageGalleryLarge/Global/international/photos/other/2013/year-in-photos/GP04HYB.jpg")
+h1=new L.cJ("legality13","Wir zeigen dir die Umweltproblematiken auf und geben Vorschl\u00e4ge f\u00fcr eine Verbesserung der Situation.","Greenpeace","Greenpeace International activist Sini Saarela<br>(aus Finland)","",-35,0,1.074,0,1,620,443,null,$.EG,1,!1)
+h1.sPj("http://www.greenpeace.org/international/ReSizes/ImageGalleryLarge/Global/international/photos/other/2013/year-in-photos/20-25/GP04TYP.jpg")
+h2=new L.cJ("legality14","Schweizer Prominente wie Emil und Sandra Studer bekunden Solidarit\u00e4t mit Marco<br><br>Die Arktis geh\u00f6rt allen Menschen und muss unter Schutz gestellt werden","Greenpeace","Arktis","",0,0,1.206,0,1,620,406,null,$.EG,1,!1)
+h2.sPj("http://www.greenpeace.org/international/ReSizes/ImageGalleryLarge/Global/international/photos/other/2013/year-in-photos/GP04J3T.jpg")
+h3=new L.cJ("legality15","Gib einem Mann <br>einen Fisch und <br>du ern\u00e4hrst ihn f\u00fcr einen Tag. <br>Lehre einen Mann <br>zu fischen und <br>du ern\u00e4hrst ihn f\u00fcr sein Leben.","Konfuzius, (551-479 v. Chr)","\u00dcberfischung","",0,-120,0.193,0,1,2953,4134,null,$.EG,1,!1)
+h3.sPj("http://good50x70.org/2011/imagecontest/poster/174.jpg")
+h4=new L.cJ("legality16","50 W\u00e4lder<br>so gross wie einen Fussballfeld<br><i>pro Minute</i><br>zerst\u00f6rt<br><i>jeden Tag</i><br>in den letzten<br><i>13 Jahre</i>","Quelle: www.globalforestwatch.org","Etwaldung","",-22,-116,0.193,0,1,2953,4134,null,$.EG,1,!1)
+h4.sPj("http://good50x70.org/2011/imagecontest/poster/1638.jpg")
+h5=new L.cJ("legality17","Rund ein Drittel aller<br>in der Schweiz produzierten Lebensmittel <br>geht zwischen Feld und Teller verloren oder wird verschwendet.","Quelle: foodwaste.ch","Lebensmittelverschwendung","",0,0,0.193,0,1,2953,4134,null,$.EG,1,!1)
+h5.sPj("http://good50x70.org/2011/imagecontest/poster/1545.jpg")
+h6=new L.cJ("legality18","<i>Ich hoffe, dass Bengasi wieder eine friedliche Stadt wird und Libyen wieder zum Leben erwacht.</i><br><br>...(den Sieg \u00fcber Gaddafi)...<br><br><i>das Beste vom Besten f\u00fcr uns alle!</i>"," Ali Wakwak","Revolution","",-96,0,0.45,0,1,1600,1200,null,$.EG,1,!1)
+h6.sPj("http://art4arte.files.wordpress.com/2013/02/img-20130122-00323.jpg")
+h7=new L.cJ("legality19","Gewalt ist Analphabetentum der Seele.","Rita S\u00fcssmuth","H\u00e4usliche Gewalt","",0,-53,0.182864883169658,0,1,2953,4134,null,$.EG,1,!1)
+h7.sPj("http://good50x70.org/2011/imagecontest/poster/1766.jpg")
+h8=new L.cJ("legality20","Weltweit geraucht: <br>5 Millionen Tonnen Zigaretten pro Jahr <br>und 6 Millionen Tote wegen den Folgen durch Rauchen","Quelle: <br>www.worldwide-datas.com","Rauchen","",0,-142,0.193,0,1,2953,4134,null,$.EG,1,!1)
+h8.sPj("http://good50x70.org/2011/imagecontest/poster/1285.jpg")
+h9=new L.cJ("legality21","Das Prinzip aller Dinge ist Wasser; <br>aus Wasser ist alles, und ins Wasser <br>kehrt alles zur\u00fcck.","Thales von Milet <br>(um 625 - 545 v. Chr.)","Wassererhaltung","",-15,-171,0.193,0,1,2953,4134,null,$.EG,1,!1)
+h9.sPj("http://good50x70.org/2011/imagecontest/poster/830.jpg")
+i0=new L.cJ("legality22","Der ungerechteste Frieden ist immer noch besser als der gerechteste Krieg.","Marcus Tullius Cicero","Frieden","",0,0,0.213,0,1,2953,4134,null,$.EG,1,!1)
+i0.sPj("http://good50x70.org/2011/imagecontest/poster/96.jpg")
+i1=new L.cJ("legality23","Die Wertsch\u00e4tzung von Vielfalt bedeutet, ohne Angst verschieden sein zu k\u00f6nnen.","Theodor W. Adorno","Kulturelle Vielfalt","",0,-121,0.193,0,1,2953,4134,null,$.EG,1,!1)
+i1.sPj("http://good50x70.org/2011/imagecontest/poster/2041.jpg")
+i2=new L.cJ("legality24","Mehr Stolz, ihr Frauen! Wie ist es nur m\u00f6glich, dass ihr euch nicht aufb\u00e4umt gegen die Verachtung, <br>die euch noch immer trifft. <br>- Auch heute noch? -<br>Ja, auch heute noch...","Hedwig Dohm (1831-1919)","Frauenrechte","",0,0,0.193,0,1,2953,4134,null,$.EG,1,!1)
+i2.sPj("http://good50x70.org/2011/imagecontest/poster/243.jpg")
+i3=new L.cJ("legality25","Tierschutz ist Erziehung zur Menschlichkeit.","Albert Schweitzer<br>(1875-1965) ","Tierschutz","",-83,0,0.233,0,1,2953,4134,null,$.EG,1,!1)
+i3.sPj("http://good50x70.org/2011/imagecontest/poster/1927.jpg")
+i4=new L.cJ("legality26","Weltwirtschaftsforum 2013 in Davos, Podiumsdiskussion mit dem Titel <i>\u201eEthischer Kapitalismus - einen Versuch wert?\"</i>","Quelle:<br>www.huffingtonpost.de","Kapitalismus als Kannibalismus","",0,0,0.193,0,1,2953,4134,null,$.EG,1,!1)
+i4.sPj("http://good50x70.org/2011/imagecontest/poster/1543.jpg")
+i5=new L.cJ("legality27","Wer die Wahrheit nicht wei\u00df, der ist blo\u00df ein Dummkopf. <br>Aber wer sie wei\u00df und sie eine L\u00fcge nennt, der ist ein Verbrecher. ","Bertolt Brecht","Palestina","",-54,0,0.188,0,1,4544,3040,null,$.EG,1,!1)
+i5.sPj("http://www.sunray22b.net/images/Palestine179.jpg")
+i6=new L.cJ("other0","Je gr\u00f6\u00dfer der Finanzspekulations-Skandal im multinationalen Konzern, um so kleiner die Gefahr, als l\u00e4cherlicher \u00d6lfleck unter der Dampfwalze der Konzerngeschichte zu verschwinden.","Christa Schyboll","Artist: Blu","",0,0,0.976491862567812,0,1,640,553,null,$.EG,1,!1)
+i6.sPj("http://www.123inspiration.com/wp-content/uploads/2012/03/street-artiste-BLU-1.png")
+i7=new L.cJ("other1","Uns wird st\u00e4ndig eingeredet, dass wir kaufen, kaufen und nochmals kaufen m\u00fcssen. Das ist nat\u00fcrlich f\u00fcr die Nachhaltigkeit eine Katastrophe.","Hannes Jaenicke (1960)","Weihnachten und Konsum","",0,0,0.9152542372881356,0,1,590,826,null,$.EG,1,!1)
+i7.sPj("http://www.maxitendance.com/wp-content/uploads/2014/02/caricatures-angel-boligan-corbo-humour-noir-dessins-10.jpg")
+i8=new L.cJ("other2","We all live in a televised goldfish bowl.<br>","Kingman Brewster, Jr.","Goldfisch ","",-65,0,1.413,0,1,500,382,null,$.EG,1,!1)
+i8.sPj("http://reefbuilders.com/files/2011/10/bubble-fish-tank-1.jpg")
+i9=new L.cJ("other3","Intelligenz und Intelligenzquotient werden als unbekannte Begriffe im n\u00e4chsten Jahrhundert nur noch im Lexikon verewigt sein, denn die gesetzlich gesicherten 24 Fernsehstunden schlie\u00dfen aus, da\u00df \u00fcberhaupt noch jemand schreiben und lesen kann.","Josef von Ferenczy ","fernsehen","",-35,0,1.211,0,1,620,428,null,$.EG,1,!1)
+i9.sPj("http://www.eluniversal.com.mx/img/2007/06/Car/boligan110607.jpg")
+j0=new L.cJ("other4","As a political activist, he has been highly and openly critical of the Chinese Government's stance on democracy and human rights. He has investigated government corruption and cover-up. In 2011, following his arrest at Beijing on 3 April, he was held for 81 days.","Artisti: Ai Weiwei","2010, Sunflower Seeds,installed at the Tate Modern London. The work consists of one hundred million porcelain \"seeds\", each individually hand-painted.","",-172,0,1.093,0,1,760,474,null,$.EG,1,!1)
+j0.sPj("http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2010/10/11/1286797833422/Ai-Weiwei-007.jpg")
+j1=new L.cJ("other5","Erziehung ist organisierte Verteidigung der Erwachsenen gegen die Jugend.","Mark Twain","Erl\u00f6sung von den neuen Generationen","",0,0,1.077,0,1,600,450,null,$.EG,1,!1)
+j1.sPj("https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-prn2/t1/1655958_744034232274149_1721483115_n.jpg")
+j2=new L.cJ("other6","Wir leben in einem System, in dem man entweder Rad sein mu\u00df oder unter die R\u00e4der ger\u00e4t.<br><br>","Friedrich Nietzsche","Wettbewerbsf\u00e4higkeit","",-3,0,0.8681672025723473,0,1,625,622,null,$.EG,1,!1)
+j2.sPj("https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-prn2/t1/1794540_747496835261222_1367503856_n.jpg ")
+j3=new L.cJ("other7","Wenn die W\u00fcrde des Menschen unantastbar ist, was ist dann die W\u00fcrde eines KINDES?","unknow ","Artist : Erik Ravelo","",0,0,1.035,0,1,500,500,null,$.EG,1,!1)
+j3.sPj("http://31.media.tumblr.com/37b7504461a4c9e4f889dd16e1a28fc7/tumblr_msmie1xV4g1rbl50so1_500.jpg")
+j4=new L.cJ("other8","Was in der Kindheit zerst\u00f6rt wurde, kann im Leben niemals mehr korrigiert werden \u2013 man kann sich h\u00f6chstens damit arrangieren\u2026<br>","Wolfgang J. Reus ","Artist: Pawel Kuczynski","",-110,0,1.109,0,1,640,450,null,$.EG,1,!1)
+j4.sPj("https://lh5.googleusercontent.com/-6vkjjeVEATA/UYDs1o96eTI/AAAAAAAABCQ/2OoDkOIv6aU/w800-h800/Images-010.jpg")
+j5=new L.cJ("other9","Es gibt keinen Weg zum Frieden, denn Frieden ist der Weg.<br>","Mahatma Gandhi","Konflikte in der Welt (Februar 2014)","",-182,0,0.9591474245115453,0,1,977,563,null,$.EG,1,!1)
+j5.sPj("http://static.fanpage.it.s3.amazonaws.com/socialmediafanpage/wp-content/uploads/2014/01/03-Guerre-nel-mondo.png")
+j6=new L.cJ("other10","Die freundliche Passantin verabschiedet sich. Mein Blick wandert durch die Glasscheibe hinein in die warme B\u00e4ckerei. Die Menschen auf der anderen Seite der Fenster sehen uns nicht. Der Mann hat Schmerzen. Ich unterhalte mich mit ihm, um ihn abzulenken.","obdachloser","Obdachlos","",-135,0,1.482,0,1,466,345,null,$.EG,1,!1)
+j6.sPj("http://www.csindy.com/binary/9c46/1272324293-mother_and_baby_by_johnmccabe.jpg")
+j7=new L.cJ("other11","Und wenn alle anderen die von der Partei verbreitete L\u00fcge glaubten - wenn alle Aufzeichnungen gleich lauteten -, dann ging die L\u00fcge in die Geschichte ein und wurde Wahrheit<br>","George Orwell","1984","",0,-93,0.415065334358186,0,1,1301,2124,null,$.EG,1,!1)
+j7.sPj("http://www.penguin.com.au/jpg-large/9780141036144.jpg")
+j8=new L.cJ("other12","Es kam mir pl\u00f6tzlich, dass diese kleine Erbse, sch\u00f6n und blau, die Erde war. Ich hob meinen Daumen und schloss ein Auge, und mein Daumen verdeckte den Planeten Erde. Ich f\u00fchlte mich nicht wie ein Riese. Ich f\u00fchlte mich sehr, sehr klein.","Neil Armstrong","Felix Baumgartner","",0,0,1.171,0,1,634,436,null,$.EG,1,!1)
+j8.sPj("http://totallycoolpix.com/wp-content/uploads/2012/10/felixbaumgartner1.jpg")
+j9=new L.cJ("other13","...Ich sage blo\u00df, die Kunst ist eine T\u00e4uschung..","Marcel Duchamp","Artist's Shit 1961, <br>Piero Manzoni (1933-1963).<br>Eine Dose erzielte im Jahr 2008 bei Sotheby\u2019s einen Auktionsspreis von 97.250 englischen Pfund (ca. 132.000 Euro).","",0,0,0.372,0,1,1457,1536,null,$.EG,1,!1)
+j9.sPj("https://www.tate.org.uk/art/images/work/T/T07/T07667_10.jpg")
+k0=new L.cJ("other14","all animals are equal,    but some animals are more equal than others.<br>","la fattoria degli animali","Soziale Gerechtigkeit","",0,0,1.231,0,1,400,480,null,$.EG,1,!1)
+k0.sPj("http://www.vegetarianfriends.net/Barndoor4.jpg")
+k1=new L.cJ("other15","\"Und jetzt hatte er sich emanzipiert, von dieser Welt der Zerstreung, der falschen Sicherheit, der Eltern und des materiellen \u00dcberflusses..<br>Von all den Dingen die Chris von der wahren Natur seines Lebens trennten.\"","Alexander Supertramp","into the wild","",-133,0,1.497,0,1,500,325,null,$.EG,1,!1)
+k1.sPj("http://31.media.tumblr.com/d1c1d90b3181132521f7db51a2d99e91/tumblr_mfr1flCTEs1r429qho1_500.jpg")
+k2=new L.cJ("other16","\u201cI want to be a giant and take all the buildings and trucks and break them.\u201d She made a snapping motion with her hands. \u201cIt is horrible to make such things with nature.\u201d<br>51 miliardi di dollari","Quelle: www.outsideonline.com","Olympische Verschwendung zu Lasten der Armutsbek\u00e4mpfung<br>(51 Milliarden Dollar)","",-137,0,0.285,0,1,3000,1922,null,$.EG,1,!1)
+k2.sPj("http://cbsboston.files.wordpress.com/2014/02/467578719_10.jpg")
+k3=new L.cJ("other17","Meist liegt die Motivation in der damit einhergehenden K\u00f6rpererfahrung, basierend auf Belastbarkeitserprobung und Bewusstseinserweiterung. H\u00e4ufig begeben sich Personen dabei in einen meditativen Zustand. Auch das Gef\u00fchl des freien Schwebens d\u00fcrfte f\u00fcr so manchen ein Beweggrund sein. ","Quelle: de.wikipedia.org","Suspension","",0,0,0.96,0,1,750,500,null,$.EG,1,!1)
+k3.sPj("http://www.suspension.org/hooklife/wp-content/uploads/2013/07/521891_446262625459679_1639662450_n.jpg")
+k4=new L.cJ("other18","Was immer ein Mensch den Tieren antut, wird ihm mit gleicher M\u00fcnze zur\u00fcckgezahlt.","Pythagoras","Stierkampf","",0,0,1.024,0,1,500,489,null,$.EG,1,!1)
+k4.sPj("https://lh3.googleusercontent.com/-pEVRTtLnBV4/UwDH08T7dZI/AAAAAAAADKs/PPqMnv3jSpw/w500/1891101_749392271738345_1873023806_n.jpg")
+k5=new L.cJ("other19","The paranoia of the universal conspiracy will never end and you can not stanarla because you never know what's behind it. It 'a psychological temptation of our species. Berlusconi has spent all of his campaign talking about double conspiracy, judges and the Communists. There are no more communists around, not even looking for them with a lantern, yet to Berlusconi were attempting to seize power","Umberto Eco","Silvio Berlusconi ","",0,0,0.231,0,1,3255,2440,null,$.EG,1,!1)
+k5.sPj("http://static3.businessinsider.com/image/51f959a0ecad043a1e000004/italys-top-court-confirms-berlusconi-prison-sentence.jpg")
+k6=new L.cJ("other20","\"Gef\u00e4ngnis soll ein Ort der Rehabilitation und nicht die von Misshandlung sein\"","Dario Fo'","Gef\u00e4ngnisse","",0,0,0.961,0,1,737,562,null,$.EG,1,!1)
+k6.sPj("http://www.volontariatoggi.info/wp-content/uploads/2009/12/Carcere.jpg")
+k7=new L.cJ("other21","He was born in the land of vespers and orange trees<br>Between Cinisi and Palermo he talked on his radio In his eyes you could read the longing for change<br>The longing for justice that led him to fight<br>He had a cumbersome and respected name<br>In that environment he so little honoured<br>You know where you were born, but not how you\u2019re to die<br>Nor if an ideal will hurt you","Modena City Ramblers","Peppino Impastato","",0,0,1.014,0,1,510,510,null,$.EG,1,!1)
+k7.sPj("http://lavocedimpastato.files.wordpress.com/2014/01/peppino-impastato1.jpg")
+k8=new L.cJ("other22","Am Anfang glaubte ich noch, ich w\u00fcrde um die Kautschukb\u00e4ume k\u00e4mpfen,<br>dann dachte ich, ich wolle den Regenwald Amazoniens retten.<br>Mittlerweise wei\u00df ich, dass mein Kampf dem \u00dcberleben der Menschheit gilt. <br>                        ","Chico Mendes, Kautschukzapfer","Entwaldung","",0,-247,1.08,0,1,500,729,null,$.EG,1,!1)
+k8.sPj("http://www.bartarinha.ir/files/fa/news/1390/5/30/26418_729.jpg")
+k9=new L.cJ("other23","War is not for men<br>but for clowns.","Lukasz Jankowski","Krieg","",-79,0,1.383,0,1,512,377,null,$.EG,1,!1)
+k9.sPj("http://kschelsky.files.wordpress.com/2014/01/1496685_720625347948371_1246488537_n.jpg?w=590")
+l0=new L.cJ("other24","This satirical work is an attack on the consumerism that occupies the attention of the American people and keeps them blind to the way their foreign policy is conducted. Also invites the observer to ponder the commercialization of war itself, which is now a multi-billion dollar industry with very powerful corporate lobbies.","Quelle: www.stencilrevolution.com","Banksy ","",-155,0,0.666,0,1,1280,817,null,$.EG,1,!1)
+l0.sPj("http://www.chronicle.su/wp-content/uploads/Banksy_Napalm_HR_400k.jpg")
+l1=new L.cJ("other25","Die Ungleichheit ist die Quelle aller Revolutionen; denn die Ungleichheit kann durch nichts ertr\u00e4glich gemacht werden.<br>","Aristoteles","Soziale Ungleichheit","",-170,0,0.52,0,1,1400,1050,null,$.EG,1,!1)
+l1.sPj("http://1.bp.blogspot.com/-9US8g4Fek_0/UrNpxLiTyPI/AAAAAAAAAX8/SBYgkGF8bAI/s1600/Banksy+-+5.gif")
+l2=new L.cJ("other26","Ich ha\u00adbe kein Ver\u00adtrau\u00aden in Ap\u00adpel\u00adle, wenn hin\u00adter ihn\u00aden we\u00adder ei\u00adne mo\u00adra\u00adli\u00adsche noch ei\u00adne ma\u00adter\u00adiel\u00adle Macht steht.Die mo\u00adra\u00adli\u00adsche Macht ist da, wenn die\u00adje\u00adni\u00adgen, die den Ap\u00adpell vor\u00adbrin\u00adgen, be\u00adreit sind, et\u00adwas zu tun, et\u00adwas f\u00fcr die Sache zu opfern.<br>","Mahatma Gandhi, Indian","Bernauerstrasse Berlin","",0,0,0.738,0,1,1051,736,null,$.EG,1,!1)
+l2.sPj("http://3.bp.blogspot.com/_36-jwxEsTTA/TRNC71kZVBI/AAAAAAAACMc/lf-vPed1LR0/s1600/Berlin+Mauermuseum+2.JPG,    ")
+l3=new L.cJ("other27","Eine Spannung erh\u00e4lt das Bild durch den Widerspruch, dass ein Ermordeter gezeigt wird, der aber noch Kraft in den H\u00e4nden hat, Feder und Papier festzuhalten, und dessen Kopf auch noch nicht nach hinten oder vorn\u00fcbergesackt ist. David bem\u00fchte sich offenkundig, Marat im Moment des Sterbens zu zeigen.","Quelle: de.wikipedia.org","Der Tod des Marat<br>Jacques-Louis David (1748\u20131825)","",0,-127,0.541,0,1,1001,1287,null,$.EG,1,!1)
+l3.sPj("http://upload.wikimedia.org/wikipedia/commons/a/aa/Death_of_Marat_by_David.jpg")
+l4=new L.cJ("universe0","vielleicht...","Sandro Poli","","",0,0,0.7022106631989596,0,1,770,769,null,$.EG,1,!1)
+l4.sPj("img/nichts.png")
+return H.B7(["society",[z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1],"security",[a2,a3,a4,a5,a6,a7,a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,c0,c1,c2,c3,c4,c5,c6,c7,c8,c9],"fashion",[d0,d1,d2,d3,d4,d5,d6,d7,d8,d9,e0,e1,e2,e3,e4,e5,e6,e7,e8,e9,f0,f1,f2,f3,f4,f5,f6,f7],"legality",[f8,f9,g0,g1,g2,g3,g4,g5,g6,g7,g8,g9,h0,h1,h2,h3,h4,h5,h6,h7,h8,h9,i0,i1,i2,i3,i4,i5],"other",[i6,i7,i8,i9,j0,j1,j2,j3,j4,j5,j6,j7,j8,j9,k0,k1,k2,k3,k4,k5,k6,k7,k8,k9,l0,l1,l2,l3],"universe",[l4]],P.L5(null,null,null,null,null))})
 
 init.functionAliases={}
 init.metadata=[{func:"uO",args:[J.O]},{func:"X0",void:true},{func:"bw",opt:[null]},,{func:"aB",args:[null]},{func:"XF",args:[W.Aj]},{func:"Gl",ret:J.kn,args:[null,null]},{func:"bX",ret:J.im,args:[null]},{func:"E0",ret:J.kn,args:[P.a,P.a]},{func:"ZY",ret:J.im,args:[P.a]},{func:"EC",ret:J.O,args:[W.D0]},{func:"Vv",ret:J.kn,args:[W.cv,J.O,J.O,W.JQ]},{func:"NT"},{func:"bh",args:[null,null]},{func:"TS",args:[null,J.O]},{func:"Km",args:[W.cv]},{func:"mQ",void:true,args:[null],opt:[P.mE]},{func:"BG",args:[null],opt:[null]},{func:"Uf",ret:J.kn},{func:"bb",args:[null,P.mE]},{func:"lv",args:[P.wv,null]},{func:"Pt",ret:J.O,args:[J.im]},{func:"YI",void:true,args:[P.a]},{func:"qu",void:true,args:[W.KV]},];$=null

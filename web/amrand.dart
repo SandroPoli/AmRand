@@ -387,6 +387,7 @@ init(){
         var iconId = 'iconH'; // e.g. society1
         var icon = new DivElement()
         ..id = 'icon-$id-$iconCnt'
+        ..title = 'click zum Zeigen'
         ..style.zIndex = '$iconCnt'
         ..classes.addAll(['icon', 'side$side', id])
         ..onTransitionEnd.listen(iconDone)

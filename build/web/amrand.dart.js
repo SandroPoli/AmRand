@@ -344,6 +344,7 @@ z.fixed$length=init
 return z}}},
 P:{
 "^":"num/Gv;",
+gzP:function(a){return a===0?1/a<0:a<0},
 JV:function(a,b){return a%b},
 yu:function(a){var z
 if(a>=-2147483648&&a<=2147483647)return a|0
@@ -351,12 +352,10 @@ if(isFinite(a)){z=a<0?Math.ceil(a):Math.floor(a)
 return z+0}throw H.b(P.f(''+a))},
 UD:function(a){if(a<0)return-Math.round(-a)
 else return Math.round(a)},
-Sy:function(a,b){var z,y
+Sy:function(a,b){var z
 if(b>20)throw H.b(P.C3(b))
 z=a.toFixed(b)
-if(a===0)y=1/a<0
-else y=!1
-if(y)return"-"+z
+if(a===0&&this.gzP(a))return"-"+z
 return z},
 bu:function(a){if(a===0&&1/a<0)return"-0.0"
 else return""+a},
@@ -379,10 +378,12 @@ $isnum:true,
 static:{"^":"SA,yc"}},
 im:{
 "^":"int/P;",
+$isdouble:true,
 $isnum:true,
 $isint:true},
 VA:{
 "^":"double/P;",
+$isdouble:true,
 $isnum:true},
 O:{
 "^":"String/Gv;",
@@ -453,6 +454,7 @@ return-1},
 u8:function(a,b){return this.XU(a,b,0)},
 Is:function(a,b,c){if(c>a.length)throw H.b(P.TE(c,0,a.length))
 return H.m2(a,b,c)},
+tg:function(a,b){return this.Is(a,b,0)},
 gl0:function(a){return a.length===0},
 gor:function(a){return a.length!==0},
 bu:function(a){return a},
@@ -1089,7 +1091,7 @@ if("number" in a&&typeof a.number=="number"){x=a.number
 w=x&65535
 if((C.jn.GG(x,16)&8191)===10)switch(w){case 438:return z.call$1(H.T3(H.d(y)+" (Error "+w+")",null))
 case 445:case 5007:v=H.d(y)+" (Error "+w+")"
-return z.call$1(new H.ZQ(v,null))
+return z.call$1(new H.W0(v,null))
 default:}}if(a instanceof TypeError){v=$.WD()
 u=$.OI()
 t=$.PH()
@@ -1114,7 +1116,7 @@ if(m==null){m=o.qS(y)
 if(m==null){m=n.qS(y)
 v=m!=null}else v=!0}else v=!0}else v=!0}else v=!0}else v=!0}else v=!0}else v=!0
 if(v){v=m==null?null:m.method
-return z.call$1(new H.ZQ(y,v))}}}v=typeof y==="string"?y:""
+return z.call$1(new H.W0(y,v))}}}v=typeof y==="string"?y:""
 return z.call$1(new H.vV(v))}if(a instanceof RangeError){if(typeof y==="string"&&y.indexOf("call stack")!==-1)return new P.VS()
 return z.call$1(new P.AT(null))}if(typeof InternalError=="function"&&a instanceof InternalError)if(typeof y==="string"&&y==="too much recursion")return new P.VS()
 return a},
@@ -1320,7 +1322,7 @@ if(!(H.t1(o,n)||H.t1(n,o)))return!1}}return H.Vt(a.named,b.named)},
 ml:function(a,b,c){return a.apply(b,c)},
 F3:function(a){var z=$.NF
 return"Instance of "+(z==null?"<Unknown>":z.call$1(a))},
-kE:function(a){return H.eQ(a)},
+bw:function(a){return H.eQ(a)},
 iw:function(a,b,c){Object.defineProperty(a, b, {value: c, enumerable: false, writable: true, configurable: true})},
 w3:function(a){var z,y,x,w,v,u
 z=$.NF.call$1(a)
@@ -1451,7 +1453,7 @@ return new H.Zr(a.replace('\\$arguments\\$','((?:x|[^x])*)').replace('\\$argumen
     return e.message;
   }
 }(a)}}},
-ZQ:{
+W0:{
 "^":"Ge;V7,Ga",
 bu:function(a){var z=this.Ga
 if(z==null)return"NullError: "+H.d(this.V7)
@@ -1604,7 +1606,9 @@ t:function(a,b){if(b!==0)H.vh(P.N(b))
 return this.zO}}}],["","file:///C:/Users/Rudy/Documents/GitHub/AmRand/web/amrand.dart",,D,{
 "^":"",
 Iq:[function(){var z,y,x
-if($.EU)P.JS("main: started...")
+z=J.kE(window.navigator.userAgent,"(Dart)")
+$.EU=z
+if(z)P.JS("main: started...")
 else H.B7([],P.L5(null,null,null,null,null))
 J.Qy(document.querySelector("#introText"),$.BA)
 $.G4=document.querySelector(".scene")
@@ -1675,7 +1679,8 @@ if($.EU)P.JS("main: window events set...")
 else H.B7([],P.L5(null,null,null,null,null))
 if($.EU)P.JS("initQuote()")
 else H.B7([],P.L5(null,null,null,null,null))
-D.V3()},"call$0","KW",0,0,1],
+D.V3()
+if(!$.EU)J.oH(document.querySelector(".edit").style,"none")},"call$0","KW",0,0,1],
 Bb:[function(a){if($.EU)P.JS("enterBtn clicked...")
 else H.B7([],P.L5(null,null,null,null,null))
 J.pP(document.querySelector("#intro")).h(0,"hidden")
@@ -1981,23 +1986,31 @@ z.gDD(c).Rz(0,"empty")
 z.gDD(c).Rz(0,"noQte")
 z.gDD(c).Rz(0,"noAuthor")
 z.gDD(c).Rz(0,"noInfo")}}J.HT(c.style,"rotate("+($.YG().j1(20)-10)+"deg)")},
-a7:[function(a){var z,y
+a7:[function(a){var z,y,x
 if(!$.aS)return
 if($.EU)P.JS("hideALL()")
 else H.B7([],P.L5(null,null,null,null,null))
 D.dj(!1)
 D.fJ(!1)
-z=$.oH
-$.oH=600
-$.Nk=600
-$.oH=600
-y=$.Ct
-J.vP(y.style,"600px")
-J.OE(y.style,H.d($.Nk)+"px")
-y=$.pi
-y.toString
-H.bQ(y,new D.nu())
-y=$.oH
+z=$.U5
+y=window.innerWidth
+if(typeof y!=="number")return y.W()
+$.U5=P.y(450,P.J(600,y-210))
+y=window.innerHeight
+if(typeof y!=="number")return y.W()
+y=P.y(450,P.J(600,y-100))
+$.Nk=y
+x=$.U5
+if(typeof x!=="number")return H.s(x)
+if(y>x){$.Nk=x
+y=x}else $.U5=y
+x=$.Ct
+J.vP(x.style,H.d(y)+"px")
+J.OE(x.style,H.d($.Nk)+"px")
+x=$.pi
+x.toString
+H.bQ(x,new D.nu())
+y=$.U5
 if((z==null?y!=null:z!==y)&&z!=null)$.aw().aN(0,new D.qM(z))
 if($.EU)P.JS("showALL()")
 else H.B7([],P.L5(null,null,null,null,null))
@@ -2160,7 +2173,7 @@ nu:{
 call$1:function(a){var z,y,x
 z={}
 y=J.MK(a,".icon")
-x=$.oH
+x=$.U5
 if(typeof x!=="number")return x.V()
 z.a=0
 z.b=1
@@ -2193,7 +2206,7 @@ call$2:function(a,b){J.kH(b,new D.rf(this.c))}},
 rf:{
 "^":"Tp:4;d",
 call$1:function(a){var z,y
-if(a!=null){z=$.oH
+if(a!=null){z=$.U5
 y=this.d
 if(typeof z!=="number")return z.V()
 if(typeof y!=="number")return H.s(y)
@@ -2316,7 +2329,7 @@ Zv:function(a,b){return this.mb(J.i4(this.CR,b))},
 $asaL:function(a,b){return[b]},
 $asmW:function(a,b){return[b]},
 $isqC:true},
-U5:{
+oi:{
 "^":"mW;l6,T6",
 gA:function(a){var z=new H.SO(J.GP(this.l6),this.T6)
 z.$builtinTypeInfo=this.$builtinTypeInfo
@@ -2779,7 +2792,7 @@ y=P.p9("")
 try{$.tw().push(a)
 y.KF("{")
 z.a=!0
-J.kH(a,new P.W0(z,y))
+J.kH(a,new P.ZQ(z,y))
 y.KF("}")}finally{z=$.tw()
 if(0>=z.length)return H.e(z,0)
 z.pop()}return y.gvM()},
@@ -2787,7 +2800,7 @@ k6:{
 "^":"a;X5,vv,OX,OB,wV",
 gB:function(a){return this.X5},
 gvc:function(){return H.VM(new P.fG(this),[H.Kp(this,0)])},
-gUQ:function(a){return H.K1(H.VM(new P.fG(this),[H.Kp(this,0)]),new P.oi(this),H.Kp(this,0),H.Kp(this,1))},
+gUQ:function(a){return H.K1(H.VM(new P.fG(this),[H.Kp(this,0)]),new P.NB(this),H.Kp(this,0),H.Kp(this,1))},
 t:function(a,b){var z,y,x,w,v,u,t
 if(typeof b==="string"&&b!=="__proto__"){z=this.vv
 if(z==null)y=null
@@ -2871,7 +2884,7 @@ else a[b]=c},a0:function(){var z=Object.create(null)
 P.cW(z,"<non-identifier-key>",z)
 delete z["<non-identifier-key>"]
 return z}}},
-oi:{
+NB:{
 "^":"Tp:4;a",
 call$1:function(a){return this.a.t(0,a)}},
 fG:{
@@ -3275,7 +3288,7 @@ aN:function(a,b){var z,y
 z=this.gB(a)
 for(y=0;y<z;++y){b.call$1(this.t(a,y))
 if(z!==this.gB(a))throw H.b(P.a4(a))}},
-ev:function(a,b){return H.VM(new H.U5(a,b),[H.ip(a,"lD",0)])},
+ev:function(a,b){return H.VM(new H.oi(a,b),[H.ip(a,"lD",0)])},
 tt:function(a,b){var z,y,x
 if(b){z=H.VM([],[H.ip(a,"lD",0)])
 C.Nm.sB(z,this.gB(a))}else z=H.VM(Array(this.gB(a)),[H.ip(a,"lD",0)])
@@ -3311,7 +3324,7 @@ z.KF("]")}finally{$.xb().Rz(0,a)}return z.gvM()},
 $isList:true,
 $aszM:null,
 $isqC:true},
-W0:{
+ZQ:{
 "^":"Tp:13;a,b",
 call$2:function(a,b){var z=this.a
 if(!z.a)this.b.KF(", ")
@@ -4056,6 +4069,7 @@ snp:function(a,b){this.hV(a,"background-position",b,"")},
 sKc:function(a,b){this.hV(a,"background-size",b,"")},
 sOR:function(a,b){this.hV(a,"bottom",b,"")},
 skZ:function(a,b){this.hV(a,"cursor",b,"")},
+suL:function(a,b){this.hV(a,"display",b,"")},
 sfg:function(a,b){this.hV(a,"height",b,"")},
 sBb:function(a,b){this.hV(a,"left",b,"")},
 gpC:function(a){return this.T2(a,"max-zoom")},
@@ -4489,6 +4503,17 @@ return a^a>>>6},
 Up:function(a){a=536870911&a+((67108863&a)<<3>>>0)
 a^=a>>>11
 return 536870911&a+((16383&a)<<15>>>0)},
+J:function(a,b){if(a>b)return b
+if(a<b)return a
+if(typeof b==="number"){if(typeof a==="number")if(a===0)return(a+b)*a*b
+if(a===0&&C.jn.gzP(b)||isNaN(b))return b
+return a}return a},
+y:function(a,b){if(a>b)return a
+if(a<b)return b
+if(typeof b==="number"){if(typeof a==="number")if(a===0)return a+b
+if(isNaN(b))return b
+return a}if(b===0&&C.jn.gzP(a))return b
+return a},
 mg:{
 "^":"a;",
 j1:function(a){if(a<=0||a>4294967296)throw H.b(P.C3("max must be in range 0 < max \u2264 2^32, was "+a))
@@ -4955,12 +4980,14 @@ J.ZP=function(a,b){return J.RE(a).Tk(a,b)}
 J.i4=function(a,b){return J.w1(a).Zv(a,b)}
 J.jV=function(a,b){return J.RE(a).wR(a,b)}
 J.jd=function(a){return J.RE(a).gni(a)}
+J.kE=function(a,b){return J.U6(a).tg(a,b)}
 J.kH=function(a,b){return J.w1(a).aN(a,b)}
 J.kV=function(a,b,c){return J.RE(a).AH(a,b,c)}
 J.kW=function(a,b,c){if((a.constructor==Array||H.Gp(a,a[init.dispatchPropertyName]))&&!a.immutable$list&&b>>>0===b&&b<a.length)return a[b]=c
 return J.w1(a).u(a,b,c)}
 J.kp=function(a,b,c,d){return J.RE(a).r6(a,b,c,d)}
 J.ky=function(a,b,c){return J.RE(a).dR(a,b,c)}
+J.oH=function(a,b){return J.RE(a).suL(a,b)}
 J.pO=function(a){return J.U6(a).gor(a)}
 J.pP=function(a){return J.RE(a).gDD(a)}
 J.pR=function(a,b){return J.RE(a).sG6(a,b)}
@@ -5161,7 +5188,7 @@ $.vv=null
 $.Bv=null
 $.iY=0
 $.OX=0
-$.oH=null
+$.U5=null
 $.Nk=null
 $.oc=-1
 $.Oo=-1
@@ -5173,7 +5200,7 @@ $.Tl=!1
 $.aS=!1
 $.Dw=!1
 $.eE=!1
-$.EU=!0
+$.EU=!1
 $.kG=null
 $.b5=null
 $.zs=null

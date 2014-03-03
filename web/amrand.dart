@@ -24,7 +24,7 @@ bool
   ready = false,
   offsetting = false,
   canOffset = false,
-  dbg = true;
+  dbg = false;
 
 // -- elements
 InputElement
@@ -61,6 +61,8 @@ Math.Random rnd = new Math.Random();
 
 // --- main (web) app
 void main() {
+
+  dbg = window.navigator.userAgent.contains('(Dart)');
 
   dbgOut('main: started...');
   querySelector('#introText').innerHtml = introText;
@@ -121,6 +123,8 @@ void main() {
   dbgOut('main: window events set...');
 
   initQuotes(null);
+
+  if (!dbg) querySelector('.edit').style.display= 'none';
 }
 
 dbgOut(txt) => dbg ?  print(txt) : {};
@@ -454,8 +458,8 @@ resize([e]){
   if (!ready) return;
   hideAll();
   var oldSize = vWidth;
-  vWidth = 600; // window.innerWidth - 220;
-  vHeight = 600; // window.innerHeight - 100;
+  vWidth = Math.max(450, Math.min(600, window.innerWidth - 210));
+  vHeight = Math.max(450, Math.min(600, window.innerHeight - 100));
   if (vHeight > vWidth)
     vHeight = vWidth;
   else

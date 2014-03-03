@@ -33,6 +33,8 @@ footer {
   text-align: center;
   font-size: x-small;
   background: rgba(30,30,30,0.8);
+  height: 20px;
+  vertical-align: middle;
 }
 
 #loading {
@@ -49,12 +51,12 @@ footer {
 
 .colMid {
   float: left;
-  padding: 7% 5%;
+  padding-top: 7%;
 }
 
 .colRight {
   float: left;
-  padding: 4%;
+  padding-top: 4%;
 }
 
 /* --view box ---*/
@@ -370,6 +372,8 @@ footer {
   font-weight: normal;
   width: 70%;
   margin: 20px auto;
+  max-height: 40%;
+  overflow-y: auto;
 }
 
 #tIntro {
